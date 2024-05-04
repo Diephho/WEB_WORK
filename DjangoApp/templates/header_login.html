@@ -10,7 +10,7 @@
         </button>
 
         <div class="navbar_logo_web">
-            <a href="#">
+            <a href="/">
                 <img src="/static/Image_web_offical/LOGO_OFFICIAL.jpg" alt="logoweb" />
             </a>
         </div>
@@ -21,20 +21,21 @@
         </h3>
         <div class="navbar_body flex_Search_center">
             <div>
-                <div class="Search_Wrapper flex_Search_center">
-
-                    <div class="Search_SearchIcon">
+                <form class="Search_Wrapper flex_Search_center" role="search" method=POST action = "{% url 'search' %}">
+                    {% csrf_token %}
+                    <button class="Search_SearchIcon" style="display: block" type="submit">
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
                                 <path fill="#da9a72"
                                     d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
                             </svg>
                         </a>
-                    </div>
+                    </button>
 
 
-                    <input class="Search_input" id="id_Search_input" spellcheck="false"
-                        placeholder="Tìm kiếm địa điểm món ăn bạn yêu thích" value="" />
+                    <input class="Search_input" spellcheck="false" type="search"
+                    placeholder="Tìm kiếm địa điểm món ăn bạn yêu thích" value="" name="searched" />
+                </form>
                     <div class="Search_dropdown">
                         <a href="#" class="dropdown-item">Item 1</a>
                         <a href="#" class="dropdown-item">Item 2</a>
@@ -120,9 +121,9 @@
                 </button>
                 <ul id="dropdownMenu" class="dropdown-menu" style="display: none;">
 
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="editprofile">Profile</a></li>
                     <li><a href="#">Settings</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
                 </ul>
             </div>
 
@@ -143,7 +144,7 @@
             <img src="{{userinfo.avatar.url}}" alt="avatar_user">
             <p>{{ userinfo.firstname }} {{userinfo.lastname}}</p>
         </div>
-        <form method="post" enctype="multipart/form-data" id="postForm" name="form">
+        <form method=POST enctype="multipart/form-data" id="postForm" name="form" action = "{% url 'whilelogin' user_id=request.user.id %}">
             {% csrf_token %}
             <input class="input_textbox" type="text" name="title" placeholder=" Title" required><br><br>
             <textarea class="box_input_content" placeholder="  Content" name="content"></textarea>
