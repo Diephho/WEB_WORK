@@ -22,6 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-sg)saf=pu_asn=+zww$p1v@@hrh=5!+h4ed&z+y2!#3_#*(z#j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+CSRF_TRUSTED_ORIGINS = ['https://ansaplangdaihoc.azurewebsites.net']
+
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
