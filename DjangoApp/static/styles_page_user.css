@@ -521,7 +521,6 @@ body {
     line-height: 1.5;
 }
 .rating-content .icon-star{
-    background-image: url("icon-list.png");
     background-repeat: no-repeat;
     vertical-align: middle;
     display: inline-block;
@@ -557,7 +556,6 @@ body {
 .likeandcomment .like:hover{
     cursor: pointer;
     .icon-like{
-        background-image: url("icon-list.png");
         background-repeat: no-repeat;
         vertical-align: middle;
         display: inline-block;
@@ -568,7 +566,6 @@ body {
     }
 }
 .like .icon-like{
-    background-image: url("icon-list.png");
     background-repeat: no-repeat;
     vertical-align: middle;
     display: inline-block;
