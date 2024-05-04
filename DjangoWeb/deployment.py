@@ -20,6 +20,11 @@ MIDDLEWARE = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_URL = '/post_images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'post_images')
+
+LOGIN_URL = '/'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
