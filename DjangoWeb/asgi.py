@@ -11,8 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-setting_module = 'DjangoWeb.deployment' if 'amthuclangdaihoc.azurewebsites.net' in os.environ else 'DjangoWeb.settings'
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', setting_module)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DjangoWeb.settings')
 
 application = get_asgi_application()

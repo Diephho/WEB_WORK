@@ -11,7 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-settings_module = 'DjangoWeb.deployment' if 'amthuclangdaihoc.azurewebsites.net' in os.environ else 'DjangoWeb.settings'
+settings_module = 'DjangoWeb.deployment' if 'WEBSITE_HOSTNAME' in os.environ else 'DjangoWeb.settings'
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
