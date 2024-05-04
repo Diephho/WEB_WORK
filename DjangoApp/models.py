@@ -11,8 +11,7 @@ class UserInfo(models.Model):
     avatar = models.ImageField(null=True, default=None)
     introduction=models.CharField(max_length=200,null=True)
     date = models.DateTimeField(auto_now_add=True)
-    def __str__(self) :
-        return self.firstname    
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -34,3 +33,10 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+class Comment(models.Model):
+    id=models.AutoField(primary_key=True)
+    content=models.CharField(max_length=200)
+    date=models.DateTimeField(auto_now_add=True)
+    idPost=models.ForeignKey("Post",on_delete=models.CASCADE,null=True)
+    idUsercomment=models.ForeignKey("UserInfo",on_delete=models.CASCADE,null=True)
+    idcommentReply=models.ForeignKey("self",on_delete=models.CASCADE,null=True,blank=True)

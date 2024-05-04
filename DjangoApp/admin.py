@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from .models import Post,UserInfo, Tag
+from .models import Post,UserInfo, Tag,Comment
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):
@@ -18,3 +18,8 @@ class CustomUserAdmin(admin.ModelAdmin):
 admin.site.register(User, CustomUserAdmin)  # Đăng ký mô hình người dùng với cấu hình tùy chỉnh
 
 admin.site.register(Tag)
+
+class CustomComment(admin.ModelAdmin):
+    list_display=('id','content','date')
+    ordering = ('id',)
+admin.site.register(Comment,CustomComment) 

@@ -9,12 +9,14 @@ from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.views import PasswordResetCompleteView
 from DjangoApp.models import *
 from openai import OpenAI
-import os
+import os,json
+from django.http import JsonResponse,HttpResponseBadRequest
 from .forms import PostForm
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
+from django.utils.timezone import localtime
+
         
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'Forget_password.html'
@@ -85,22 +87,7 @@ def whilelogin(request, user_id):
         if request.method == 'POST':
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                post = form.save(commit=False)  # Không lưu vào cơ sở dữ liệu ngay lập tức
-                post.idUser = userinfo  # Gán idUser từ userinfo
-                post.save()
-
-                # Lưu các tag được chọn vào bài đăng
-                selected_tags = []
-
-                # Xác định các tag được chọn từ request.POST
-                for key, value in request.POST.items():
-                    if value == 'on':  # Nếu checkbox được chọn
-                        tag_name = key.replace('_', ' ')  # Chuyển tên trường thành tên tag
-                        tag = Tag.objects.get_or_create(name=tag_name)[0]
-                        selected_tags.append(tag)
-
-                # Lưu các tag vào bài đăng
-                post.tags.add(*selected_tags)
+                post = form.save()
                 return redirect('/post/{}/'.format(post.id))
         return render(request,'index_login.html', {'form': form,'top_posts': top_posts, 'other_posts': other_posts, 'userinfo': userinfo})
     else:
@@ -168,6 +155,46 @@ def editprofile(request, user_id):
             return redirect('index')
 
 def post(request, post_id):
+    
     post = get_object_or_404(Post, pk=post_id)
-    userinfo = post.idUser
-    return render(request, 'index_post.html', {'post': post, 'userinfo': userinfo})
+    userpostinfo = post.idUser
+    listcomment= Comment.objects.filter(idPost=post_id)
+    check = {}
+    for comment in listcomment:
+        if comment.idcommentReply is None:
+            check[comment.id] = 1
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            if request.content_type != 'application/json':
+                print(request.content_type)
+                return HttpResponseBadRequest('Invalid content type.')
+            try:
+                comment_data = json.loads(request.body.decode('utf-8'))
+            except json.JSONDecodeError:
+                return HttpResponseBadRequest('Invalid JSON data.')
+            comment_content = comment_data.get('content')
+            if not comment_content or not comment_content.strip():
+                return HttpResponseBadRequest('Invalid comment content.')
+            new_comment = Comment.objects.create()
+            new_comment.content=comment_content
+            form_type=comment_data.get('form_type')
+            if form_type=='formcommentreply':
+                idcommentrep=comment_data.get('idcommentrep')
+                new_comment.idcommentReply=get_object_or_404(Comment,id=idcommentrep)
+            
+            new_comment.idPost=post
+            new_comment.idUsercomment=userpostinfo
+            new_comment.save()
+            
+            return JsonResponse({
+                'success': True,
+                'comment': {
+                    'id': new_comment.id,
+                    'content': new_comment.content,
+                    'date': new_comment.date,
+                }
+            })
+        userinfo=get_object_or_404(UserInfo,id=request.user.id)
+        return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo, 'userinfo': userinfo, 'listcomment':listcomment,'check':check})
+    else:
+        return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo,'listcomment':listcomment})

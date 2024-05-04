@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block CSS %}
 <link rel="stylesheet" href="/static/styles_post.css">
 {% endblock %}
@@ -18,79 +17,310 @@
     <div class="container-left">
         <div class="post-item">
             <div class="author">
-                <div class="avatar-img"><a href="#"><img src="{{ userinfo.avatar.url }}" alt="Avatar"></a></div>
+                <div class="avatar-img"><a href="#"><img src="{{userpostinfo.avatar.url}}" alt="Avatar"></a></div>
                 <div class="summary-post">
-                    <div class="author-name"><a href="#"><p>{{ userinfo.firstname }} {{ userinfo.lastname }}</p></a></div>
+                    <div class="author-name"><a href="#"><p>{{userpostinfo.firstname}} {{ userpostinfo.lastname }}</p></a></div>
                     <div class="time-post"> {{ post.date }}</div>
+                    <div class="rating-content">
+                        <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                        <span><b>{{ post.star }}</b></span>
+                        <span><b>/5.0</b></span>
+                    </div>
                 </div>
             </div>
             <div class="img-dishes">
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
             </div>
-            <div class="rating-content">
-                <i class="icon-star"></i>
-                <span><b>{{ post.star }}</b></span>
-                <span><b>/5.0</b></span>
-            </div>
+            <br>
             <div class="post-content">
                 <div class="title-content">
-                    <h1>{{ post.title }}</h1>
+                    <p>{{ post.title }}</p>
                 </div>
-                <div class="tag">
-                    {% for tag in post.tags.all %}
-                        <span class="tag-item">#{{ tag.name }}</span>
-                    {% endfor %}
-                </div>
+                <br>
                 <div class="content">
                     {{ post.content }}
                 </div>            
-                <div class="comment">
+                <br>
+                <br><div class="line"></div>
+                <div class="active">
                     <div class="likeandcomment">
                         <span class="like">
-                            <i class="icon-like"></i>
+                            {% if like is True %}
+                            <i class="fa-solid fa-thumbs-up" style="color: #2f72e4;"></i>
+                            {% else %}
+                            <i class="fa-regular fa-thumbs-up" style="color: #c3c2c7;"></i>
+                            {% endif %}
                             15 người yêu thích - Đang làm
                         </span>
-                        <b class="slcomment">1 Bình luận - Đang làm</b>
+                        <b class="slcomment">
+                            {% with total=listcommentinfo.count %}
+                            {{ total }} 
+                            {% endwith %}
+                            Bình luận
+                        </b>
                     </div>
-                    <div class="user-comment">
-                        <div class="avatar-user"><a href="#"><img src="avatar_test.jpg" alt="Avatar"></a></div>
-                        <div class="write-comment">
-                            <textarea class="write" placeholder="Viết bình luận" oninput="autoGrow(this)"></textarea>
-                            <script>
-                                function autoGrow(element) {
-                                element.style.height = "5px";
-                                element.style.height = (element.scrollHeight)+"px";
-                                }
-                            </script>
-                        </div>
-                    </div>
-                    <div class="list-comment">
-                        <div class="comment-1">
-                            <div class="avatar-comment"><a href="#"><img src="avatar_test.jpg" alt="Avatar"></a></div>
-                            <div class="summary-comment">
-                                <div class="comment-name">
-                                    <a href="#">Nguyễn B</a>
-                                    <p>12:35 ngày 30/3/2022</p>
+                    <br>
+                    <div class="line"></div>
+                    
+                    <form class="user-comment" id="comment-form" method="POST">
+                        {% csrf_token %}
+                        <div class="avatar-img"><a href="#"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
+                        <input type="hidden" name="form_type" value="formcomment">
+                        <textarea class="write" name="content-comment" placeholder="Viết bình luận" ></textarea>
+                        <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #3a74d9; font-size:22px;"></i></button>
+                    </form>    
+                    <div class="list-comment" id="comments-container">
+                        {% for comment in listcomment %}
+                            {% if comment.idcommentReply is not None %}
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        let parentid="group-comment-{{comment.idcommentReply.id}}";
+                                        let parentdiv=document.getElementById(parentid);
+                                        let newdiv=document.createElement("div");
+                                        newdiv.id = "group-comment-{{comment.id}}";
+                                        {% if comment.idcommentReply.idcommentReply is None %}
+                                            newdiv.style.marginLeft="7.5rem";
+                                        {% endif %}
+                                        newdiv.innerHTML=`
+                                            <div class="comment">
+                                                <div class="avatar-img">
+                                                    <a href="#">
+                                                        <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
+                                                    </a>
+                                                </div>
+                                                <div class="summary-comment">
+                                                    <div class="comment-name">
+                                                        <a href="#">
+                                                            {{comment.idUsercomment.firstname}}
+                                                            {{comment.idUsercomment.lastname}}
+                                                        </a>
+                                                        <p>{{comment.date}}</p>
+                                                    </div>
+                                                    <div class="content-comment">{{comment.content}}</div>
+                                                    <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        parentdiv.appendChild(newdiv);
+                                        initializeReplyButtons();
+                                    });
+                                </script>
+                            {% else %}
+                                <div id="group-comment-{{comment.id}}">
+                                    <div class="comment">
+                                        <div class="avatar-img">
+                                            <a href="#">
+                                                <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
+                                            </a>
+                                        </div>
+                                        <div class="summary-comment">
+                                            <div class="comment-name">
+                                                <a href="#">
+                                                    {{comment.idUsercomment.firstname}}
+                                                    {{comment.idUsercomment.lastname}}
+                                                </a>
+                                                <p>{{comment.date}}</p>
+                                            </div>
+                                            <div class="content-comment">{{comment.content}}</div>
+                                            <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="content-comment">Quá tuyệt vời</div>
-                                <div class="reply-comment">Trả lời</div>
-                            </div>
-                        </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            let checkcomment = [];
+            function commentform(){
+                const commentForm = document.getElementById('comment-form');
+                commentForm.addEventListener('submit', async (event) => {
+                    event.preventDefault(); 
+                    
+                    const commentData = {
+                        content: document.querySelector('textarea[name="content-comment"]').value,
+                        form_type: document.querySelector('input[name="form_type"]').value,
+                    };
+                    try {
+                        const response = await fetch('', { 
+                            method: 'POST',
+                            headers: {
+                                "X-CSRFToken": "{{csrf_token}}",
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(commentData)
+                        });
+                        if (!response.ok) { 
+                            throw new Error(`Error submitting comment: ${response.statusText}`);
+                        }
+                        const newCommentData = await response.json(); 
+                        const newComment = document.createElement('div');
+                        newcommentidstr=`${newCommentData.comment.id}`;
+                        newComment.innerHTML = 
+                        `<div class="comment">
+                            <div class="avatar-img">
+                                <a href="#">
+                                    <img src="{{userinfo.avatar.url}}" alt="Avatar">
+                                </a>
+                            </div>
+                            <div class="summary-comment">
+                                <div class="comment-name">
+                                    <a href="#">
+                                        {{userinfo.firstname}} {{userinfo.lastname}}
+                                    </a>
+                                    <p>${newCommentData.comment.date}</p>
+                                </div>
+                                <div class="content-comment">${commentData.content}</div>
+                                <div class="reply-comment" id="reply-comment-${newcommentidstr}">Trả lời</div>
+                            </div>
+                        </div>`;
+                        const commentContainer = document.getElementById('comments-container'); 
+                        commentContainer.appendChild(newComment);
+                        commentForm.reset(); 
+                        var cmid=`${newCommentData.comment.id}`;
+                        checkcomment.push(cmid);
+                        console.log(checkcomment);
+                        initializeReplyButtons();
+                    } catch (error) {
+                        console.error('Error submitting comment:', error);
+                        alert('An error occurred. Please try again later.');
+                    }
+                });
+            }
+            function initializeReplyButtons() {
+                let replyButtons = document.querySelectorAll(".reply-comment");
+                replyButtons.forEach(function(replyButton) {
+                    replyButton.addEventListener("click", function() {
+                        let existingForms = document.querySelectorAll(".user-comment-reply");
+                        existingForms.forEach(function(form) {
+                            form.remove();
+                        });
+                        let id = this.id;
+                        let commentId = id.split("-")[2];
+                        let parentid=`group-comment-${commentId}`;
+                        let newdiv=document.createElement('div');
+                        let commentidint=parseInt(commentId);
+                        const groupcomment = document.getElementById(parentid);
+
+                        let check=false;
+                        for (const element of checkcomment) {
+                            if(commentidint==element){
+                                check=true;
+                            }
+                        }
+                        if(check==true){
+                            newdiv.style.marginLeft='7.5rem';
+                        }
+                        newdiv.innerHTML=`
+                        <form class="user-comment-reply" id="reply-comment-form" method="POST">
+                            {% csrf_token %}
+                            <div class="avatar-img"><a href="#"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
+                            <input type="hidden" name="form_type_reply" value="formcommentreply">
+                            <input type="number" class="idcommentrep" name="idcommentrep" value=${commentidint} style="display:none;"/>
+                            <textarea class="write" name="content-comment-reply" placeholder="Viết bình luận" ></textarea>
+                            <button type="submit" name="send-comment-reply" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #3a74d9; font-size:22px;"></i></button>
+                        </form>
+                        `;
+                        groupcomment.appendChild(newdiv);
+                        ReplyCommentForm();
+                    });
+                });
+            }
+            function ReplyCommentForm(){
+                const commentFormReply = document.getElementById('reply-comment-form');
+                commentFormReply.addEventListener('submit', async (event) => {
+                    event.preventDefault(); 
+                    const commentData = {
+                        content: document.querySelector('textarea[name="content-comment-reply"]').value,
+                        form_type: document.querySelector('input[name="form_type_reply"]').value,
+                        idcommentrep: document.querySelector('input[name="idcommentrep"]').value,
+                    };
+                    try {
+                        const response = await fetch('', { 
+                            method: 'POST',
+                            headers: {
+                                "X-CSRFToken": "{{csrf_token}}",
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(commentData)
+                        });
+                        if (!response.ok) { 
+                            throw new Error(`Error submitting comment: ${response.statusText}`);
+                        }
+                        let idcommentrepstr=`${commentData.idcommentrep}`;
+                        const newCommentData = await response.json(); 
+                        const newComment = document.createElement('div');
+                        newcommentidstr=`${newCommentData.comment.id}`;
+                        newComment.id=`group-comment-${newcommentidstr}`;
+                        let parent=document.getElementById(`group-comment-${idcommentrepstr}`)
+                        let check=false;
+                        newComment.id=`group-comment-${newcommentidstr}`;
+                        for (const element of checkcomment) {
+                            if(idcommentrepstr==element){
+                                check=true;
+                            }
+                        }
+                        if(check==true){
+                            newComment.style.marginLeft='7.5rem';
+                        }
+                        newComment.innerHTML = 
+                        `<div class="comment">
+                            <div class="avatar-img">
+                                <a href="#">
+                                    <img src="{{userinfo.avatar.url}}" alt="Avatar">
+                                </a>
+                            </div>
+                            <div class="summary-comment">
+                                <div class="comment-name">
+                                    <a href="#">
+                                        {{userinfo.firstname}} {{userinfo.lastname}}
+                                    </a>
+                                    <p>${newCommentData.comment.date}</p>
+                                </div>
+                                <div class="content-comment">${commentData.content}</div>
+                                <div class="reply-comment" id="reply-comment-${newcommentidstr}">Trả lời</div>
+                            </div>
+                        </div>`;
+                        
+                        let commentContainer = document.getElementById(`group-comment-${idcommentrepstr}`); 
+                        commentContainer.appendChild(newComment);
+                        commentFormReply.reset(); 
+                        let existingForms = document.querySelectorAll(".user-comment-reply");
+                        existingForms.forEach(function(form) {
+                            form.remove();
+                        });
+                        initializeReplyButtons();
+                    } catch (error) {
+                        console.error('Error submitting comment:', error);
+                        alert('An error occurred. Please try again later.');
+                    }
+                });
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                initializeReplyButtons();
+                commentform();
+                {% for comment in listcomment %}
+                    {% if comment.idcommentReply is None %}
+                        var id="{{comment.id}}";
+                        checkcomment.push(id);
+                    {% endif %}
+                {% endfor %}
+                console.log(checkcomment);
+            });
+        </script>
     </div>
     <div class="container-right">
         <div class="author-box">
             <div class="author-info">
-                <div class="avatar-img"><a href="#"><img src="{{ userinfo.avatar.url }}" alt="Avatar"></a></div>
-                <div class="author-name"><a href="#"><p>{{ userinfo.firstname }} {{ userinfo.lastname }}</p></a></div>
+                <div class="avatar-img"><a href="#"><img src="{{userpostinfo.avatar.url}}" alt="Avatar"></a></div>
+                <div class="author-name"><a href="#"><p>{{userpostinfo.firstname}}{{userpostinfo.lastname}}</p></a></div>
             </div>
             <div class="line"></div>
             <div class="activity">
                 <div class="sl-baiviet">
-                    <div class="sl">{{ userinfo.post_set.count }}</div>
+                    <div class="sl">14</div>
                     <div class="label">Bài viết</div>
                 </div>
                 <div class="sl-nguoitheodoi">
@@ -105,5 +335,5 @@
         </div>
     </div>
 </div>
-<!-- Xong phan noi dung-->
+{% comment %} <!-- Xong phan noi dung--> {% endcomment %}
 {% endblock %}
