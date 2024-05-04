@@ -133,7 +133,6 @@ EMAIL_HOST_USER = '22520628@gm.uit.edu.vn'
 EMAIL_HOST_PASSWORD = 'yzat hyho vczp odlf'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/post_images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'post_images')
 
 LOGIN_URL = '/'
