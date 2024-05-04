@@ -2,8 +2,8 @@ import os
 from .settings import *
 from .settings import BASE_DIR
 
-ALLOWED_HOSTS = [os.environ['']]
-CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['']]
+ALLOWED_HOSTS = [os.environ['amthuclangdaihoc.azurewebsites.net']]
+CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['amthuclangdaihoc.azurewebsites.net']]
 DEBUG = False
 
 MIDDLEWARE = [
