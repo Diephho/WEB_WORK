@@ -158,34 +158,61 @@ def post(request, post_id):
     
     post = get_object_or_404(Post, pk=post_id)
     userpostinfo = post.idUser
+    userinfo=get_object_or_404(UserInfo,id=request.user.id)
     listcomment= Comment.objects.filter(idPost=post_id)
     check = {}
     for comment in listcomment:
         if comment.idcommentReply is None:
             check[comment.id] = 1
     if request.user.is_authenticated:
+        userstar=0
+        if React.objects.filter(idpost= post.id, iduser=userinfo.id).exists() is True:
+            userstarobj=get_object_or_404(React,idpost= post, iduser=userinfo)
+            userstar=userstarobj.star
         if request.method == 'POST':
             if request.content_type != 'application/json':
                 print(request.content_type)
                 return HttpResponseBadRequest('Invalid content type.')
             try:
-                comment_data = json.loads(request.body.decode('utf-8'))
+                data_post = json.loads(request.body.decode('utf-8'))
+                form_type=data_post.get('form_type')
             except json.JSONDecodeError:
                 return HttpResponseBadRequest('Invalid JSON data.')
-            comment_content = comment_data.get('content')
+            if data_post.get('form_type')=='react':
+                st=data_post.get('star')
+                if React.objects.filter(idpost= post.id, iduser=userinfo.id).exists() is True:
+                    previous=get_object_or_404(React,idpost= post, iduser=userinfo)
+                    post.totalstar-=previous.star
+                    post.numcreact-=1
+                    previous.star=st
+                    previous.save()
+                else:
+                    newreact=React.objects.create()
+                    newreact.star=st
+                    newreact.idpost=post
+                    newreact.iduser=userinfo
+                    newreact.save()
+                post.totalstar+=st
+                post.numcreact+=1
+                post.star=round((1.0*post.totalstar/post.numcreact),1) 
+                post.save()
+                return JsonResponse({
+                    'star': post.star,
+                })
+            comment_content = data_post.get('content')
             if not comment_content or not comment_content.strip():
                 return HttpResponseBadRequest('Invalid comment content.')
             new_comment = Comment.objects.create()
             new_comment.content=comment_content
-            form_type=comment_data.get('form_type')
             if form_type=='formcommentreply':
-                idcommentrep=comment_data.get('idcommentrep')
+                idcommentrep=data_post.get('idcommentrep')
                 new_comment.idcommentReply=get_object_or_404(Comment,id=idcommentrep)
-            
             new_comment.idPost=post
-            new_comment.idUsercomment=userpostinfo
+            new_comment.idUsercomment=userinfo
             new_comment.save()
-            
+            new_comment.date=(new_comment.date.strftime("%B %d, %Y, %I:%M %p").replace(" 0", " "))
+            new_comment.date=(new_comment.date[:-2] + new_comment.date[-2:].lower())
+            new_comment.date = new_comment.date.replace("pm", "p.m.")
             return JsonResponse({
                 'success': True,
                 'comment': {
@@ -194,11 +221,9 @@ def post(request, post_id):
                     'date': new_comment.date,
                 }
             })
-        userinfo=get_object_or_404(UserInfo,id=request.user.id)
-        return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo, 'userinfo': userinfo, 'listcomment':listcomment,'check':check})
+        return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo, 'userinfo': userinfo, 'listcomment':listcomment,'check':check,'userstar': userstar})
     else:
         return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo,'listcomment':listcomment})
-
 
 def search_suggestions(request):
     suggestions = []
