@@ -10,7 +10,7 @@
         </button>
 
         <div class="navbar_logo_web">
-            <a href="#">
+            <a href="/">
                 <img src="/static/Image_web_offical/LOGO_OFFICIAL.jpg" alt="logoweb" />
             </a>
         </div>
@@ -23,7 +23,7 @@
             <div>
                 <form class="Search_Wrapper flex_Search_center" role="search" method=POST action="{% url 'search' %}">
                     {% csrf_token %}
-                    <button class="Search_SearchIcon" style="display: block" type="submit">
+                    <button class="Search_SearchIcon" name="Search" style="display: block" type="submit">
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
                                 <path fill="#da9a72"
@@ -38,18 +38,6 @@
                 
                     <div class="Search_dropdown">
                         <div id="searchSuggestions"></div>
-                        <div class="input_textbox_search" id="tagField_search" style="display: flex;">
-                            <div class="input_textbox_search_grid">
-                                <input type="checkbox" id="monChay" name="món chay">
-                                <label for="monChay"> Món chay </label><br>
-                                <input type="checkbox" id="thucanNhanh" name="thức ăn nhanh">
-                                <label for="thucanNhanh"> Thức ăn nhanh </label><br>
-                                <input type="checkbox" id="traSua" name="trà sữa">
-                                <label for="traSua"> Trà sữa </label><br>
-                                <input type="checkbox" id="anSang" name="ăn sáng">
-                                <label for="anSang"> Ăn sáng </label><br>
-                            </div>
-                        </div>
                     </div>
 
                 </form>
@@ -76,7 +64,7 @@
                 </button>
                 <ul id="dropdownMenu" class="dropdown-menu" style="display: none;">
 
-                    <li><a href="{% url 'Edit Profile' user_id=userinfo.id %}">Profile</a></li>
+                    <li><a href="{% url 'Profile' user_id=userinfo.id %}">Profile</a></li>
                     <li><a href="#">Settings</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                 </ul>
@@ -131,7 +119,7 @@
             </div>
             <br>
             <div class="rel_btn_post">
-                <button class="btn_post_content" type="submit">Đăng</button>
+                <button class="btn_post_content" type="submit" name="dangbai">Đăng</button>
             </div>
         </form>
 

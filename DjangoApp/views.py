@@ -84,7 +84,7 @@ def whilelogin(request, user_id):
         top_posts = Post.objects.order_by('-star')[:2]  # Lấy 2 bài đăng có star lớn nhất
         other_posts = Post.objects.exclude(pk__in=[post.pk for post in top_posts])  # Lấy các bài đăng không thuộc top_posts
         form = PostForm()
-        if request.method == 'POST':
+        if request.method == 'POST' and 'dangbai' in request.POST:
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
                 post = form.save()
@@ -100,7 +100,7 @@ def search(request):
     searched = ""
     keys = []
     user = request.user if request.user.is_authenticated else None
-    if request.method == "POST":
+    if request.method == "POST" and 'Search' in request.POST:
         searched = request.POST.get("searched", "")
         keys = Post.objects.filter(title__contains=searched)
     return render(request, 'search.html', {"searched": searched, "keys": keys, "user": user})
@@ -131,9 +131,10 @@ def ai_suggest(request):
             if chunk.choices[0].delta.content is not None:
                 result += chunk.choices[0].delta.content
     return render(request, 'ai_suggest.html', {'result': result})
-@login_required
-def editprofile(request, user_id):
-    if request.user.id==user_id: 
+
+def profile(request, user_id):
+    if request.user.id==user_id:
+        is_owner = True
         userinfo = get_object_or_404(UserInfo,id=user_id)
         if request.method=="POST":
             if 'savebtn' in request.POST:
@@ -144,15 +145,14 @@ def editprofile(request, user_id):
                 userinfo.avatar=request.FILES.get('inputavatar')
                 userinfo.introduction=request.POST.get('introduction')
                 userinfo.save()
-                return render(request, 'profile.html',{'user':userinfo})
+                return render(request, 'profile.html',{'user':userinfo, 'is_owner': is_owner})
             if 'cancelbtn' in request.POST:
                 return redirect('/usr/{}/'.format(request.user.id))
-        return render(request, 'profile.html',{'user':userinfo})
+        return render(request, 'profile.html',{'user':userinfo, 'is_owner': is_owner})
     else:
-        if request.user.is_authenticated:
-            return redirect('/usr/{}/'.format(request.user.id))
-        else:
-            return redirect('index')
+        is_owner = False
+        otheruserinfo = get_object_or_404(UserInfo, id=user_id)
+        return render(request, 'profile.html', {'otheruserinfo': otheruserinfo, 'is_owner': is_owner})
 
 def post(request, post_id):
     
@@ -164,28 +164,55 @@ def post(request, post_id):
         if comment.idcommentReply is None:
             check[comment.id] = 1
     if request.user.is_authenticated:
+        userstar=0
+        userinfo=get_object_or_404(UserInfo,id=request.user.id)
+        if React.objects.filter(idpost= post.id, iduser=userinfo.id).exists() is True:
+            userstarobj=get_object_or_404(React,idpost= post, iduser=userinfo)
+            userstar=userstarobj.star
         if request.method == 'POST':
             if request.content_type != 'application/json':
                 print(request.content_type)
                 return HttpResponseBadRequest('Invalid content type.')
             try:
-                comment_data = json.loads(request.body.decode('utf-8'))
+                data_post = json.loads(request.body.decode('utf-8'))
+                form_type=data_post.get('form_type')
             except json.JSONDecodeError:
                 return HttpResponseBadRequest('Invalid JSON data.')
-            comment_content = comment_data.get('content')
+            if data_post.get('form_type')=='react':
+                st=data_post.get('star')
+                if React.objects.filter(idpost= post.id, iduser=userinfo.id).exists() is True:
+                    previous=get_object_or_404(React,idpost= post, iduser=userinfo)
+                    post.totalstar-=previous.star
+                    post.numcreact-=1
+                    previous.star=st
+                    previous.save()
+                else:
+                    newreact=React.objects.create()
+                    newreact.star=st
+                    newreact.idpost=post
+                    newreact.iduser=userinfo
+                    newreact.save()
+                post.totalstar+=st
+                post.numcreact+=1
+                post.star=round((1.0*post.totalstar/post.numcreact),1) 
+                post.save()
+                return JsonResponse({
+                    'star': post.star,
+                })
+            comment_content = data_post.get('content')
             if not comment_content or not comment_content.strip():
                 return HttpResponseBadRequest('Invalid comment content.')
             new_comment = Comment.objects.create()
             new_comment.content=comment_content
-            form_type=comment_data.get('form_type')
             if form_type=='formcommentreply':
-                idcommentrep=comment_data.get('idcommentrep')
+                idcommentrep=data_post.get('idcommentrep')
                 new_comment.idcommentReply=get_object_or_404(Comment,id=idcommentrep)
-            
             new_comment.idPost=post
-            new_comment.idUsercomment=userpostinfo
+            new_comment.idUsercomment=userinfo
             new_comment.save()
-            
+            new_comment.date=(new_comment.date.strftime("%B %d, %Y, %I:%M %p").replace(" 0", " "))
+            new_comment.date=(new_comment.date[:-2] + new_comment.date[-2:].lower())
+            new_comment.date = new_comment.date.replace("pm", "p.m.")
             return JsonResponse({
                 'success': True,
                 'comment': {
@@ -194,11 +221,9 @@ def post(request, post_id):
                     'date': new_comment.date,
                 }
             })
-        userinfo=get_object_or_404(UserInfo,id=request.user.id)
-        return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo, 'userinfo': userinfo, 'listcomment':listcomment,'check':check})
+        return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo, 'userinfo': userinfo, 'listcomment':listcomment,'check':check,'userstar': userstar})
     else:
         return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo,'listcomment':listcomment})
-
 
 def search_suggestions(request):
     suggestions = []
@@ -212,3 +237,41 @@ def search_suggestions(request):
         suggestions = [post.title for post in unique_suggestions]
         postids = [post.id for post in unique_suggestions]
     return JsonResponse({'suggestions': suggestions, 'postids': postids})
+
+def category(request):
+    mon_chay_posts = []
+    thuc_an_nhanh_posts = []
+    tra_sua_posts = []
+    an_sang_posts = []
+
+    # Lấy các bài viết có tag "Món chay"
+    mon_chay_tag = Tag.objects.get(name="món chay")      
+    mon_chay_posts = Post.objects.filter(tags=mon_chay_tag)[:9]
+
+    # Lấy các bài viết có tag "thức ăn nhanh"
+    thuc_an_nhanh_tag = Tag.objects.get(name="thức ăn nhanh")      
+    thuc_an_nhanh_posts = Post.objects.filter(tags=thuc_an_nhanh_tag)[:9]
+
+    # Lấy các bài viết có tag "trà sữa
+    tra_sua_tag = Tag.objects.get(name="trà sữa")   
+    tra_sua_posts = Post.objects.filter(tags=tra_sua_tag)[:9]
+    
+    # Lấy các bài viết có tag "Trà sữa"
+    an_sang_tag = Tag.objects.get(name="ăn sáng")
+    an_sang_posts = Post.objects.filter(tags=an_sang_tag)[:9]
+
+    return render(request, 'category.html', {'mon_chay_posts': mon_chay_posts, 'thuc_an_nhanh_posts': thuc_an_nhanh_posts, 'tra_sua_post': tra_sua_posts, 'an_sang_post': an_sang_posts})
+
+from datetime import date
+def daily(request):
+    # Lấy ngày hiện tại
+    current_date = date.today()
+
+    # Lấy tất cả các bài viết trong ngày
+    daily_posts = Post.objects.filter(date__date=current_date)
+
+    return render(request, 'daily.html', {'daily_posts': daily_posts})
+
+def ranking(request):
+    top_posts = Post.objects.order_by('-star')
+    return render(request, 'ranking.html', {'top_posts': top_posts})

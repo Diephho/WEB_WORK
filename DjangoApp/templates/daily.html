@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block CSS %}
+<link rel="stylesheet" href="/static/styles_search.css">
+{% endblock %}
+
+{% block header %}
+    {% if user.is_authenticated %}
+        {% include 'header_login.html' %}
+    {% else %}
+        {% include 'header_index.html' %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<!--  bat dau code cho phan noi dung  -->
+<div class="result_text"> Danh sách bài viết mới có trong ngày <i class="fa-solid fa-calendar-days"></i> </div>
+    <section class="container">
+        {% if daily_posts %}
+            {% for post in daily_posts %}
+            <a href="{% url 'post' post_id=post.id %}">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.address }}</p>
+            </a>
+            {% endfor %}
+        {% else %}
+            <h1> Chưa có bài viết nào trong ngày </h1>
+        {% endif %}
+    </section>
+{% endblock %}

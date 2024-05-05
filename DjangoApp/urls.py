@@ -32,9 +32,12 @@ urlpatterns = [
     path('post/<int:post_id>/', views.post, name='post'),
     path('search/', views.search, name="search"),
     path('aisuggest/', ai_suggest,name="AI suggest"),
-    path('usr/<int:user_id>/editprofile/', views.editprofile, name="Edit Profile"),
+    path('usr/<int:user_id>/profile/', views.profile, name="Profile"),
     path('logout/',views.logoutPage,name='logout'),
     path('search/suggestions/', views.search_suggestions, name='search_suggestions'),
+    path('category/', views.category, name="category"),
+    path('daily/', views.daily, name="daily"),
+    path('ranking/', views.ranking, name='ranking'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from .models import Post,UserInfo, Tag,Comment
+from .models import Post,UserInfo, Tag,Comment,React
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):
@@ -23,3 +23,9 @@ class CustomComment(admin.ModelAdmin):
     list_display=('id','content','date')
     ordering = ('id',)
 admin.site.register(Comment,CustomComment) 
+
+class CustomReact(admin.ModelAdmin):
+    list_display=('id','star','idpost','iduser')
+    ordering = ('id',)
+    
+admin.site.register(React,CustomReact)

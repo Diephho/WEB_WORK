@@ -4,41 +4,40 @@
             <a href="#"><i class="fa-sharp fa-solid fa-arrow-up" style="color: #cf7207;"></i></a>
             
         </button>
+        {% if request.user.is_authenticated %}
+            <button class="Asisstant_box">
+            <i id="chat-icon" class="fa-regular fa-comments ui-draggable ui-draggable-handle" style="
+            z-index: 11111;
+            cursor: pointer;
+            color: rgb(203 65 55);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #e7a414;
 
-        <button class="Asisstant_box">
-        <i id="chat-icon" class="fa-regular fa-comments ui-draggable ui-draggable-handle" style="
-        z-index: 11111;
-        cursor: pointer;
-        color: rgb(203 65 55);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background-color: #e7a414;
-
-        "></i>
-        </button>
+            "></i>
+            </button>
+        {% endif %}
     </div>
 
 </aside>
 <!--  xong phan ben phai -->
 <!-- ===========vertical tab left ==================== -->
 <div class="nav_left_vert">
-    <ul class="sidebar_vert">
-        <li><a class="active" href="#">Trang chủ</a></li>
+    <ul class="sidebar_vert" style="display: none;">
+        <li><a class="active" href="/">Trang chủ</a></li>
         <li class="type_meal">
-            <a href="#" class="sub_type_meal">Thể loại món</a>
+            <a href="/category" class="sub_type_meal">Thể loại món</a>
             <ul class="sub_nav">
-                <li><a href="#"> Đồ chay</a></li>
-                <li><a href="#"> Ăn chính </a></li>
-                <li><a href="#"> Ăn vặt </a></li>
-                <li><a href="#"> Đồ uống </a></li>
+                <li><a toscroll=#monchay href="/category"> Món chay </a></li>
+                <li><a toscroll=#thucannhanh href="/category"> Thức ăn nhanh </a></li>
+                <li><a toscroll=#trasua href="/category"> Trà sữa </a></li>
+                <li><a toscroll=#ansang href="/category"> Ăn sáng </a></li>
             </ul>
         </li>
-        <li><a href="News.html">Tin nổi bật</a></li>
-        <li><a href="#">Bài viết trong ngày</a></li>
-        <li><a href="#">Địa điểm hot </a></li>
-        <li><a href="#">Top xếp hạng</a></li>
+        <li><a href="/daily">Bài viết trong ngày</a></li>
+        <li><a href="/ranking">Top xếp hạng</a></li>
     </ul>
 
     <script>

@@ -5,11 +5,16 @@
 {% endblock %}
 
 {% block header %}
+    {% if request.user.is_authenticated %}
         {% include 'header_login.html' %}
+    {% else %}
+        {% include 'header_index.html' %}
+    {% endif %}
 {% endblock %}
 
 {% block content %}
 <!--  bat dau code cho phan noi dung  -->
+{% if is_owner %}
 <form method="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="container">
@@ -108,4 +113,77 @@
         </div>
     </div>
 </form>
+{% else %}
+<div class="container">
+    <div class="avatar">
+        <div class="preview-image">
+            {% if otheruserinfo.avatar %}
+                <img src={{otheruserinfo.avatar.url}} id="avatar-img" alt="Ảnh đại diện">
+            {% else %}
+                <img src="/static/User_Picture/avatar_test.jpg" id="avatar-img" alt="Ảnh đại diện">
+            {% endif %}
+        </div>
+        <div>
+            <b>
+                <p class="name">
+                    {{ otheruserinfo.lastname }} 
+                    {{ otheruserinfo.firstname }}
+                </p>
+            </b>
+        </div>
+        
+    </div>
+    <div class="account-profile">
+        <div class="profile-edit">
+            <label>First Name: </label>
+            <div>
+                {% if otheruserinfo.firstname %}
+                    <h2 class="display-input"> {{otheruserinfo.firstname}} </h2>
+                {% else %}
+                <del> unknown </del>
+                {% endif %}
+            </div>
+            <label>Last Name: </label>
+            <div>
+                {% if otheruserinfo.lastname %}
+                    <h2 class="display-input"> {{otheruserinfo.lastname}} </h2>
+                {% else %}
+                    <del> unknown </del>
+                {% endif %}
+            </div>
+            <label>Phone Number: </label>
+            <div>
+                {% if otheruserinfo.phonenumber %}
+                    <h2 class="display-input"> {{otheruserinfo.phonenumber}} </h2>
+                {% else %}
+                    <del> unknown </del>
+                {% endif %}
+            </div>
+            <label>Gender: </label>
+            <div>
+                {% if otheruserinfo.gender %}
+                    <h2 class="display-input"> {{otheruserinfo.gender}} </h2>
+                {% else %}
+                    <del> unknown </del>
+                {% endif %}
+            </div>
+            <div>
+                <label>Introduction</label>
+            </div>
+            <div>
+                <textarea placeholder="Introduce yourself briefly..." name="introduction" readonly>{{otheruserinfo.introduction}}</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .display-input {
+        border: 1px solid #ccc;
+        padding: 5px;
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+        /* Các thuộc tính CSS khác tùy thuộc vào yêu cầu thiết kế */
+    }
+</style>
+{% endif %}
 {% endblock %}

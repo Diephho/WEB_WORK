@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block CSS %}
+<link rel="stylesheet" href="/static/styles_search.css">
+{% endblock %}
+
+{% block header %}
+    {% if user.is_authenticated %}
+        {% include 'header_login.html' %}
+    {% else %}
+        {% include 'header_index.html' %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<!--  bat dau code cho phan noi dung  -->
+<h1 id="monchay"> Món chay </h1>
+    <section class="container">
+        {% if mon_chay_posts %}
+            {% for food in mon_chay_posts %}
+            <a href="{% url 'post' post_id=food.id %}">
+                <img src="{{ food.image.url }}" alt="{{ food.title }}">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.address }}</p>
+            </a>
+            {% endfor %}
+        {% else %}
+            <h2> Chưa có dữ liệu </h2>
+        {% endif %}
+    </section>
+<br><br>
+<h1 id="thucannhanh"> Thức ăn nhanh </h1>
+    <section class="container">
+        {% if thuc_an_nhanh_posts %}
+            {% for food in thuc_an_nhanh_posts %}
+            <a href="{% url 'post' post_id=food.id %}">
+                <img src="{{ food.image.url }}" alt="{{ food.title }}">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.address }}</p>
+            </a>
+            {% endfor %}
+        {% else %}
+            <h2> Chưa có dữ liệu </h2>
+        {% endif %}
+    </section>
+<br><br>
+<h1 id="trasua"> Trà sữa </h1>
+    <section class="container">
+        {% if tra_sua_posts %}
+            {% for food in tra_sua_posts %}
+            <a href="{% url 'post' post_id=food.id %}">
+                <img src="{{ food.image.url }}" alt="{{ food.title }}">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.address }}</p>
+            </a>
+            {% endfor %}
+        {% else %}
+            <h2> Chưa có dữ liệu </h2>
+        {% endif %}
+    </section>
+<br><br>
+<h1 id="ansang"> Ăn sáng </h1>
+    <section class="container">
+        {% if an_sang_posts %}
+            {% for food in an_sang_posts %}
+            <a href="{% url 'post' post_id=food.id %}">
+                <img src="{{ food.image.url }}" alt="{{ food.title }}">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.address }}</p>
+            </a>
+            {% endfor %}
+        {% else %}
+            <h2> Chưa có dữ liệu </h2>
+        {% endif %}
+    </section>
+<br><br>
+{% endblock %}
