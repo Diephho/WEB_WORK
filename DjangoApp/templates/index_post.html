@@ -22,9 +22,13 @@
                     <div class="author-name"><a href="#"><p>{{userpostinfo.firstname}} {{ userpostinfo.lastname }}</p></a></div>
                     <div class="time-post"> {{ post.date }}</div>
                     <div class="rating-content">
-                        <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                        <span><b>{{ post.star }}</b></span>
-                        <span><b>/5.0</b></span>
+                        {% if post.numcreact == 0 %}
+                            Chưa có đánh giá
+                        {% else %}
+                            <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                            <span><b id="starpost">{{ post.star }}</b></span>
+                            <span><b>/5.0</b></span>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -49,28 +53,28 @@
                     <div class="likeandcomment">
                         <span class="like">
                             {% if request.user.is_authenticated %}
-                                <i class="fa-solid fa-star" onclick="setRating(1)" onmouseover="highlightStars(1)" onmouseout="resetStars()"></i>
-                                <i class="fa-solid fa-star" onclick="setRating(2)" onmouseover="highlightStars(2)" onmouseout="resetStars()"></i>
-                                <i class="fa-solid fa-star" onclick="setRating(3)" onmouseover="highlightStars(3)" onmouseout="resetStars()"></i>
-                                <i class="fa-solid fa-star" onclick="setRating(4)" onmouseover="highlightStars(4)" onmouseout="resetStars()"></i>
-                                <i class="fa-solid fa-star" onclick="setRating(5)" onmouseover="highlightStars(5)" onmouseout="resetStars()"></i>
+                                <i class="fa-solid fa-star"  onclick="reactclick1()" mouseenter="highlightStars(1)" mouseleave="resetStars()"></i>
+                                <i class="fa-solid fa-star"  onclick="reactclick2()" mouseenter="highlightStars(2)" mouseleave="resetStars()"></i>
+                                <i class="fa-solid fa-star"  onclick="reactclick3()" mouseenter="highlightStars(3)" mouseleave="resetStars()"></i>
+                                <i class="fa-solid fa-star"  onclick="reactclick4()" mouseenter="highlightStars(4)" mouseleave="resetStars()"></i>
+                                <i class="fa-solid fa-star"  onclick="reactclick5()" mouseenter="highlightStars(5)" mouseleave="resetStars()"></i>
                             {% else %}
-                                <p>Vui lòng đăng nhập để đánh giá</p>
+                                <p>Vui lòng đăng nhập để đánh giá <a href="{% url 'index' %}" style="text-decoration: none;">Trang chủ</a></p>
                             {% endif %}
                         </span>
                         
                         <b class="slcomment">
-                            {% with total=listcommentinfo.count %}
-                                {{ total }} 
-                            {% endwith %}
-                            Bình luận
+                            <p id="slbl">
+                                0 Bình luận
+                            </p> 
                         </b>
                     </div>
                     <br>
                     <div class="line"></div>
+<<<<<<< HEAD
                     <form class="user-comment" id="comment-form" method="POST">
                         {% csrf_token %}
-                        <div class="avatar-img"><a href="#"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
+                        <div class="avatar-img"><a href="{% url 'Profile' user_id=userinfo.id %}"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
                         <input type="hidden" name="form_type" value="formcomment">
                         <textarea class="write" name="content-comment" placeholder="Viết bình luận" ></textarea>
                         <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC;"></i></button>
@@ -88,16 +92,66 @@
                                             newdiv.style.marginLeft="2rem";
                                         {% endif %}
                                         newdiv.innerHTML=`
+=======
+                    {% if request.user.is_authenticated %}
+                        <form class="user-comment" id="comment-form" method="POST">
+                            {% csrf_token %}
+                            <div class="avatar-img"><a href="#"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
+                            <input type="hidden" name="form_type" value="formcomment">
+                            <textarea class="write" name="content-comment" placeholder="Viết bình luận" ></textarea>
+                            <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC;"></i></button>
+                        </form>    
+                        <div class="list-comment" id="comments-container">
+                            {% for comment in listcomment %}
+                                {% if comment.idcommentReply is not None %}
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            let parentid="group-comment-{{comment.idcommentReply.id}}";
+                                            let parentdiv=document.getElementById(parentid);
+                                            let newdiv=document.createElement("div");
+                                            newdiv.id = "group-comment-{{comment.id}}";
+                                            {% if comment.idcommentReply.idcommentReply is None %}
+                                                newdiv.style.marginLeft="2rem";
+                                            {% endif %}
+                                            newdiv.innerHTML=`
+                                                <div class="comment">
+                                                    <div class="avatar-img">
+                                                        <a href="#">
+                                                            <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
+                                                        </a>
+                                                    </div>
+                                                    <div class="summary-comment">
+                                                        <div class="comment-name">    
+                        
+                                                            <a href="#">
+                                                                {{comment.idUsercomment.firstname}}
+                                                                {{comment.idUsercomment.lastname}}
+                                                            </a>
+                                                            <p>{{comment.date}}</p>
+                                                        </div>
+                                                        <div class="content-comment">{{comment.content}}</div>
+                                                        <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                                    </div>
+                                                </div>
+                                                `;
+                                                parentdiv.appendChild(newdiv);
+                                                initializeReplyButtons();
+                                        });
+                                    </script>
+                                    {% else %}
+                                        <div id="group-comment-{{comment.id}}">
+>>>>>>> 02a5981d08c10b16731d146f1f46d7b5f055b66e
                                             <div class="comment">
                                                 <div class="avatar-img">
-                                                    <a href="#">
+                                                    <a href="{% url 'Profile' user_id=comment.idUsercomment.id %}">
                                                         <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
                                                     </a>
                                                 </div>
                                                 <div class="summary-comment">
+<<<<<<< HEAD
                                                     <div class="comment-name">    
                     
-                                                        <a href="#">
+                                                        <a href="{% url 'Profile' user_id=comment.idUsercomment.id %}">
                                                             {{comment.idUsercomment.firstname}}
                                                             {{comment.idUsercomment.lastname}}
                                                         </a>
@@ -105,8 +159,20 @@
                                                     </div>
                                                     <div class="content-comment">{{comment.content}}</div>
                                                     <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+=======
+                                                    <div class="comment-name">
+                                                    <a href="#">
+                                                        {{comment.idUsercomment.firstname}}
+                                                        {{comment.idUsercomment.lastname}}
+                                                    </a>
+                                                    <p>{{comment.date}}</p>
+>>>>>>> 02a5981d08c10b16731d146f1f46d7b5f055b66e
                                                 </div>
+                                                <div class="content-comment">{{comment.content}}</div>
+                                                <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                                
                                             </div>
+<<<<<<< HEAD
                                             `;
                                             parentdiv.appendChild(newdiv);
                                             initializeReplyButtons();
@@ -116,13 +182,13 @@
                                     <div id="group-comment-{{comment.id}}">
                                         <div class="comment">
                                             <div class="avatar-img">
-                                                <a href="#">
+                                                <a href="{% url 'Profile' user_id=comment.idUsercomment.id %}">
                                                     <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
                                                 </a>
                                             </div>
                                             <div class="summary-comment">
                                                 <div class="comment-name">
-                                                <a href="#">
+                                                <a href="{% url 'Profile' user_id=comment.idUsercomment.id %}">
                                                     {{comment.idUsercomment.firstname}}
                                                     {{comment.idUsercomment.lastname}}
                                                 </a>
@@ -131,17 +197,73 @@
                                             <div class="content-comment">{{comment.content}}</div>
                                             <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
                                             
+=======
+>>>>>>> 02a5981d08c10b16731d146f1f46d7b5f055b66e
                                         </div>
                                     </div>
-                                </div>
                                 {% endif %}
                             {% endfor %}
                         </div>
+                    {% else %}
+                        <p>Vui lòng đăng nhập để xem bình luận <a href="{% url 'index' %}" style="text-decoration: none;">Trang chủ</a></p>
+                    {% endif %}
                 </div>
             </div>
         </div>
         <script>
             let checkcomment = [];
+            let countcomment=0;
+            let star=0;
+            function sendstar(){
+                reactsent={
+                    'star': star,
+                    'form_type': 'react',
+                };
+                fetch('', { 
+                    method: 'POST',
+                    headers: {
+                        "X-CSRFToken": "{{csrf_token}}",
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(reactsent)
+                })
+                .then(response=>response.json())
+                .then(data=>{
+                    star=data.star;
+                    star = data.star % 1 === 0 ? data.star.toFixed(1) : data.star;
+                    starprint=document.getElementById("starpost");
+                    starprint.innerHTML=`${star}`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+            function reactclick1(){
+                star=1;
+                highlightStars(star);
+                sendstar();
+            }
+            function reactclick2(){
+                star=2;
+                highlightStars(star);
+                sendstar();
+            }
+            function reactclick3(){
+                star=3;
+                highlightStars(star);
+                sendstar();
+            }
+            function reactclick4(){
+                star=4;
+                highlightStars(star);
+                sendstar();
+            }
+            function reactclick5(){
+                star=5;
+                highlightStars(star);
+                sendstar();
+            }
             function commentform(){
                 const commentForm = document.getElementById('comment-form');
                 commentForm.addEventListener('submit', async (event) => {
@@ -166,6 +288,7 @@
                         const newCommentData = await response.json(); 
                         const newComment = document.createElement('div');
                         newcommentidstr=`${newCommentData.comment.id}`;
+                        newComment.id=`group-comment-${newCommentData.comment.id}`;
                         newComment.innerHTML = 
                         `<div class="comment">
                             <div class="avatar-img">
@@ -191,6 +314,7 @@
                         checkcomment.push(cmid);
                         console.log(checkcomment);
                         initializeReplyButtons();
+                        countcommentfunc();
                     } catch (error) {
                         console.error('Error submitting comment:', error);
                         alert('An error occurred. Please try again later.');
@@ -299,6 +423,7 @@
                         existingForms.forEach(function(form) {
                             form.remove();
                         });
+                        countcommentfunc();
                         initializeReplyButtons();
                     } catch (error) {
                         console.error('Error submitting comment:', error);
@@ -316,64 +441,32 @@
                     {% endif %}
                 {% endfor %}
                 console.log(checkcomment);
+                countcomment={{listcomment.count}};
+                var slc=document.getElementById('slbl');
+                slc.innerHTML = `${countcomment} Bình luận`;
+                {% if request.user.is_authenticated %}
+                    star={{userstar}};
+                    highlightStars(star);
+                {% endif %}
             });
 
-                let currentRating = 0; // Biến này lưu giá trị đánh giá hiện tại
-            
-            function highlightStars(star) {
+            function countcommentfunc(){
+                countcomment++;
+                var slc=document.getElementById('slbl');
+                slc.innerHTML = `${countcomment} Bình luận`;
+            }
+            function highlightStars(starhover) {
                 resetStars();
-                for (let i = 0; i < star; i++) {
+                for (let i = 0; i < starhover; i++) {
                     document.getElementsByClassName('fa-star')[i+2].classList.add('highlighted');
                 }
             }
-            
             function resetStars() {
                 for (let star of document.getElementsByClassName('fa-star')) {
                     star.classList.remove('highlighted');
-                    if (star.dataset.rating <= currentRating) {
-                        star.classList.add('selected');
-                    } else {
-                        star.classList.remove('selected');
-                    }
                 }
             }
-            
-            function setRating(star) {
-                currentRating = star;
-                for (let i = 0; i < star; i++) {
-                    document.getElementsByClassName('fa-star')[i].classList.add('selected');
-                }
-                for (let j = star; j < 5; j++) {
-                    document.getElementsByClassName('fa-star')[j].classList.remove('selected');
-                }
-            }
-            
-    
-
         </script>
-    </div>
-    <div class="container-right">
-        <div class="author-box">
-            <div class="author-info">
-                <div class="avatar-img"><a href="#"><img src="{{userpostinfo.avatar.url}}" alt="Avatar"></a></div>
-                <div class="author-name"><a href="#"><p>{{userpostinfo.firstname}}{{userpostinfo.lastname}}</p></a></div>
-            </div>
-            <div class="line"></div>
-            <div class="activity">
-                <div class="sl-baiviet">
-                    <div class="sl">{{ userinfo.post_set.count }}</div>
-                    <div class="label">Bài viết</div>
-                </div>
-                <div class="sl-nguoitheodoi">
-                    <div class="sl">4</div>
-                    <div class="label">Người theo dõi</div>
-                </div>
-                <div class="sl-dangtheodoi">
-                    <div class="sl">0</div>
-                    <div class="label">Đang theo dõi</div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 {% comment %} <!-- Xong phan noi dung--> {% endcomment %}

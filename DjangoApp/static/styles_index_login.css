@@ -367,6 +367,7 @@ body {
     /* grid-template-rows: 0.5fr 0.5fr 0.5fr; */
     gap: 10px 10px;
     justify-content: center;
+      /* display: flex; */
     flex-wrap: wrap;
 }
 
@@ -850,7 +851,6 @@ ul {
 
     .Add_To_Content {
         text-align: center;
-        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -874,7 +874,7 @@ ul {
         transition: color 0.3s ease 0s;
     }
 
-   
+
 
 
     /*phan cua modal btn close  */
@@ -1092,9 +1092,8 @@ ul {
         right: 8%;
         bottom: 11%;
         font-size: 4.5vw;
-        
     }
-    
+
     /*  ket thuc box_aside max-width 600px  */
 
     /*  bat dau code cho nav_left_vert max-width: 600px */
@@ -1109,6 +1108,7 @@ ul {
     /*  bat dau code css cho phan noi dung gom article_post &  container max-width: 600px */
     .container {
         gap: 15px 5px;
+        display: flex;
     }
 
     .container a {
@@ -1339,6 +1339,9 @@ ul {
     }
 
     /* ket thuc header min-width: 600px */
+    .container{
+        display: flex;
+    }
 
     .Search_Wrapper {
         border-radius: 13px;
@@ -1541,7 +1544,7 @@ ul {
         font-size: 1.5rem;
         position: relative;
         margin: auto;
-        width: 50%;
+        width: 60%;
         height: 96%;
         background-color: #e2d5bd;
         border-radius: 15px;
@@ -1553,6 +1556,7 @@ ul {
         height: 1.8rem;
         border-radius: 5px;
         width: 85%;
+
         justify-content: space-around;
     }
 
@@ -1565,7 +1569,8 @@ ul {
     }
 
     .modal_Post .body_modal_Post>p {
-        padding: 15px;
+        padding: 20px;
+        margin-top: 25px 0;
         border-bottom: 2px solid black;
     }
 
@@ -1593,6 +1598,7 @@ ul {
     }
 
     .box_input_content {
+
         font-size: 16px;
         width: 100%;
         padding-bottom: 15%;
@@ -1606,7 +1612,6 @@ ul {
 
     .Add_To_Content {
         text-align: center;
-        margin-top : 2rem;
     }
 
     .Add_To_Content a {
@@ -1885,7 +1890,7 @@ ul {
         width: 50%;
     }
     .modal_Post .body_modal_Post {
-        width : 40vw ;
+        width : 45vw ;
     }
 }
 
@@ -1906,7 +1911,7 @@ ul {
     }
 
     .modal_Post .body_modal_Post {
-        width: 35vw;
+        width: 37vw;
     }
 
     /*  */
@@ -1948,18 +1953,14 @@ ul {
     .dropdown_Noti {
         width: 40vw;
     }
-    .Add_To_Content {
-        text-align: center;
-        margin-top : 0.5rem;
-    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .modal_Post .body_modal_Post {
-        width: 30vw;
+        width: 32vw;
     }
-
+   
 
     /*  bat dau code css cho phan noi dung gom article_post & container min-width: 1200px */
     :root {
