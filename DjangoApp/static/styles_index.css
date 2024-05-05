@@ -852,9 +852,8 @@ ul {
     .modal .body_modal p {
         font-size: 4rem;
         padding: 19px;
-        margin: 30px 0;
+        margin: 5px 0;
     }
-
     .box_input_text_account,
     .box_input_text_password {
         font-size: 2rem;
@@ -1092,7 +1091,7 @@ ul {
         height: 33vh;
         display: flex;
         justify-content: flex-end;
-        z-index: 12;
+        z-index: 3;
         /* border: 2px solid yellow; */
     }
 
@@ -1121,6 +1120,8 @@ ul {
         font-size: 4.5vw;
 
     }
+    
+    
 
     /*  ket thuc box_aside max-width 600px  */
 
@@ -1237,7 +1238,7 @@ ul {
         height: 33vh;
         display: flex;
         justify-content: flex-end;
-        z-index: 12;
+        z-index: 3;
         /* border: 2px solid yellow; */
     }
 
@@ -1452,7 +1453,7 @@ ul {
     .modal .body_modal p {
         font-size: 4rem;
         padding: 19px;
-        margin: 30px 0;
+        margin: 5px 0;
     }
 
 
@@ -1624,7 +1625,7 @@ ul {
         height: 33vh;
         display: flex;
         justify-content: flex-end;
-        z-index: 12;
+        z-index: 3;
         /* border: 2px solid yellow; */
     }
 
@@ -1676,6 +1677,9 @@ ul {
     .container a {
         width: 47vw;
         height: 23rem;
+    }
+    .container {
+        display: flex;
     }
 
     /*  ket thuc code css cho phan noi dung gom article_post & container min-width: 600px */
