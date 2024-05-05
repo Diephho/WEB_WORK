@@ -61,82 +61,86 @@
                         
                         </span>
                         <b class="slcomment">
-                            {% with total=listcommentinfo.count %}
-                            {{ total }} 
-                            {% endwith %}
-                            Bình luận
+                            <p id="slbl">
+                                <script></script>
+                                Bình luận
+                            </p> 
                         </b>
                     </div>
                     <br>
                     <div class="line"></div>
+                    {% if user.is_authenticated %}
+                        <form class="user-comment" id="comment-form" method="POST">
+                            {% csrf_token %}
+                            <div class="avatar-img"><a href="#"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
+                            <input type="hidden" name="form_type" value="formcomment">
+                            <textarea class="write" name="content-comment" placeholder="Viết bình luận" ></textarea>
+                            <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #3a74d9; font-size:22px;"></i></button>
+                        </form>    
                     
-                    <form class="user-comment" id="comment-form" method="POST">
-                        {% csrf_token %}
-                        <div class="avatar-img"><a href="#"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
-                        <input type="hidden" name="form_type" value="formcomment">
-                        <textarea class="write" name="content-comment" placeholder="Viết bình luận" ></textarea>
-                        <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC;"></i></button>
-                    </form>    
-                    <div class="list-comment" id="comments-container">
-                        {% for comment in listcomment %}
-                            {% if comment.idcommentReply is not None %}
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        let parentid="group-comment-{{comment.idcommentReply.id}}";
-                                        let parentdiv=document.getElementById(parentid);
-                                        let newdiv=document.createElement("div");
-                                        newdiv.id = "group-comment-{{comment.id}}";
-                                        {% if comment.idcommentReply.idcommentReply is None %}
-                                            newdiv.style.marginLeft="2rem";
-                                        {% endif %}
-                                        newdiv.innerHTML=`
-                                            <div class="comment">
-                                                <div class="avatar-img">
-                                                    <a href="#">
-                                                        <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
-                                                    </a>
-                                                </div>
-                                                <div class="summary-comment">
-                                                    <div class="comment-name">
+                        <div class="list-comment" id="comments-container">
+                            {% for comment in listcomment %}
+                                {% if comment.idcommentReply is not None %}
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            let parentid="group-comment-{{comment.idcommentReply.id}}";
+                                            let parentdiv=document.getElementById(parentid);
+                                            let newdiv=document.createElement("div");
+                                            newdiv.id = "group-comment-{{comment.id}}";
+                                            {% if comment.idcommentReply.idcommentReply is None %}
+                                                newdiv.style.marginLeft="7.5rem";
+                                            {% endif %}
+                                            newdiv.innerHTML=`
+                                                <div class="comment">
+                                                    <div class="avatar-img">
                                                         <a href="#">
-                                                            {{comment.idUsercomment.firstname}}
-                                                            {{comment.idUsercomment.lastname}}
+                                                            <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
                                                         </a>
-                                                        <p>{{comment.date}}</p>
                                                     </div>
-                                                    <div class="content-comment">{{comment.content}}</div>
-                                                    <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                                    <div class="summary-comment">
+                                                        <div class="comment-name">
+                                                            <a href="#">
+                                                                {{comment.idUsercomment.firstname}}
+                                                                {{comment.idUsercomment.lastname}}
+                                                            </a>
+                                                            <p>{{comment.date}}</p>
+                                                        </div>
+                                                        <div class="content-comment">{{comment.content}}</div>
+                                                        <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        `;
-                                        parentdiv.appendChild(newdiv);
-                                        initializeReplyButtons();
-                                    });
-                                </script>
-                            {% else %}
-                                <div id="group-comment-{{comment.id}}">
-                                    <div class="comment">
-                                        <div class="avatar-img">
-                                            <a href="#">
-                                                <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
-                                            </a>
-                                        </div>
-                                        <div class="summary-comment">
-                                            <div class="comment-name">
+                                            `;
+                                            parentdiv.appendChild(newdiv);
+                                            initializeReplyButtons();
+                                        });
+                                    </script>
+                                {% else %}
+                                    <div id="group-comment-{{comment.id}}">
+                                        <div class="comment">
+                                            <div class="avatar-img">
                                                 <a href="#">
-                                                    {{comment.idUsercomment.firstname}}
-                                                    {{comment.idUsercomment.lastname}}
+                                                    <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
                                                 </a>
-                                                <p>{{comment.date}}</p>
                                             </div>
-                                            <div class="content-comment">{{comment.content}}</div>
-                                            <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                            <div class="summary-comment">
+                                                <div class="comment-name">
+                                                    <a href="#">
+                                                        {{comment.idUsercomment.firstname}}
+                                                        {{comment.idUsercomment.lastname}}
+                                                    </a>
+                                                    <p>{{comment.date}}</p>
+                                                </div>
+                                                <div class="content-comment">{{comment.content}}</div>
+                                                <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>Vui lòng đăng nhập để xem bình luận</p>
+                    {% endif%}
                 </div>
             </div>
         </div>
@@ -227,7 +231,7 @@
                             <div class="avatar-img"><a href="#"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
                             <input type="hidden" name="form_type_reply" value="formcommentreply">
                             <input type="number" class="idcommentrep" name="idcommentrep" value=${commentidint} style="display:none;"/>
-                            <textarea class="write" name="content-comment-reply" placeholder="Viết bình luận" ></textarea>
+                            <textarea class="write" name="content-comment-reply" placeholder="Viết `" ></textarea>
                             <button type="submit" name="send-comment-reply" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #3a74d9; font-size:22px;"></i></button>
                         </form>
                         `;
@@ -330,14 +334,6 @@
                 <div class="sl-baiviet">
                     <div class="sl">{{ userinfo.post_set.count }}</div>
                     <div class="label">Bài viết</div>
-                </div>
-                <div class="sl-nguoitheodoi">
-                    <div class="sl">4</div>
-                    <div class="label">Người theo dõi</div>
-                </div>
-                <div class="sl-dangtheodoi">
-                    <div class="sl">0</div>
-                    <div class="label">Đang theo dõi</div>
                 </div>
             </div>
         </div>
