@@ -570,6 +570,9 @@ body {
     display: flex;
     justify-content: space-around; 
 }
+.activity .sl-baiviet{
+    width: 30rem;
+}
 .activity .sl{
     flex: 1;
     padding: 1rem; 
