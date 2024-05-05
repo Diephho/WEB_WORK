@@ -33,14 +33,11 @@
                     </button>
 
 
-                    <input class="Search_input" spellcheck="false" type="search"
+                    <input class="Search_input" id="Search_input" spellcheck="false" type="search"
                     placeholder="Tìm kiếm địa điểm món ăn bạn yêu thích" value="" name="searched" />
-
+                
                     <div class="Search_dropdown">
-                        <a href="#" class="dropdown-item">Item 1</a>
-                        <a href="#" class="dropdown-item">Item 2</a>
-                        <a href="#" class="dropdown-item">Item 3</a>
-                        <a href="#" class="dropdown-item">Item 4</a>
+                        <div id="searchSuggestions"></div>
                         <div class="input_textbox_search" id="tagField_search" style="display: flex;">
                             <div class="input_textbox_search_grid">
                                 <input type="checkbox" id="monChay" name="món chay">
@@ -69,48 +66,6 @@
             </div>
 
 
-            <div class="div_notification">
-                <button onclick=showDivNotification() class="btn_notification">
-                    <i class="fa-regular fa-bell" style="color: #f0852d;"></i>
-                </button>
-                <ul id="id_dropdown_Noti" class="dropdown_Noti" style="display: none;">
-                    <li>
-                        <a href="#" class="notification-link">
-                            <img src="{{userinfo.avatar.url}}" alt="Notification Icon">
-                            <span class="notification-content">
-                                <span class="user-name">Khang ddejp try</span>
-                                <span class="notification-text">gnuynuyen angn gnuye nkhang da xt</span>
-                                <span class="notification-time">5 mins ago</span>
-                            </span>
-                            <span class="status-dot"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="notification-link">
-                            <img src="{{userinfo.avatar.url}}" alt="Notification Icon">
-                            <span class="notification-content">
-                                <span class="user-name">Khang ddejp try</span>
-                                <span class="notification-text">Text12</span>
-                                <span class="notification-time">10 mins ago</span>
-                            </span>
-                            <span class="status-dot seen"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="notification-link">
-                            <img src="{{userinfo.avatar.url}}" alt="Notification Icon">
-                            <span class="notification-content">
-                                <span class="user-name">Khang ddejp try</span>
-                                <span class="notification-text">Text1233</span>
-                                <span class="notification-time">1 hour ago</span>
-                            </span>
-                            <span class="status-dot"></span>
-                        </a>
-                    </li>
-                </ul>
-
-
-            </div>
 
             <div class="div_avatar">
 
@@ -121,7 +76,7 @@
                 </button>
                 <ul id="dropdownMenu" class="dropdown-menu" style="display: none;">
 
-                    <li><a href="/editprofile/">Profile</a></li>
+                    <li><a href="{% url 'Edit Profile' user_id=userinfo.id %}">Profile</a></li>
                     <li><a href="#">Settings</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                 </ul>
@@ -187,9 +142,47 @@
 </div>
 
 <script>
+    function fetchSearchSuggestions(inputValue) {
+        // Tạo một đối tượng XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+    
+        // Thiết lập phương thức và URL cho request
+        xhr.open('POST', '/search/suggestions/', true);
+    
+        // Thiết lập header cho request
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('Accept-Charset', 'UTF-8');
+    
+        // Xử lý sự kiện khi request hoàn thành
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    var suggestions = response.suggestions; // Lấy giá trị của 'suggestions' từ JSON response
+                    var postids = response.postids
+                    var suggestionsHTML = '';
+
+                    for (var i = 0; i < suggestions.length; i++) {
+                        var suggestion = suggestions[i];
+                        var postid = postids[i];
+                        var url = '/post/' + postid + '/';
+                        suggestionsHTML += '<a href="' + url + '" class="dropdown-item">' + suggestion + '</a>';
+                    }
+                    
+                    document.getElementById('searchSuggestions').innerHTML = suggestionsHTML;
+                } else {
+                    console.error('Error:', xhr.status);
+                }
+            }
+        };
+        csrftoken = document.querySelector('input[name=csrfmiddlewaretoken]').value;
+        // Gửi request với dữ liệu là giá trị nhập vào thanh tìm kiếm
+        xhr.send('inputValue=' + inputValue + '&csrfmiddlewaretoken=' + csrftoken);
+    }
+
     // bat dau code cho dropdown search
     document.addEventListener('DOMContentLoaded', function () {
-        var searchInput = document.getElementById('id_Search_input');
+        var searchInput = document.getElementById('Search_input');
         var searchDropdown = document.querySelector('.Search_dropdown');
 
         searchInput.addEventListener('click', function (event) {
@@ -208,8 +201,23 @@
                 searchDropdown.style.display = 'none'; // Đóng dropdown nếu click ra ngoài khu vực input và dropdown
             }
         });
+
+        searchInput.addEventListener('input', function(event) {
+            var inputValue = event.target.value.trim();
+
+            if (inputValue === '') {
+                // Nếu trống, xóa gợi ý và không cần hiển thị gì cả
+                document.getElementById('searchSuggestions').innerHTML = '';
+            } else {
+                // Nếu không trống, tiến hành gửi request để lấy gợi ý
+                fetchSearchSuggestions(inputValue);
+            }
+        });
+
+
     });
 
+    
     // ket thuc code cho dropdown search
 
     // bat dau code cho dropdown Noti

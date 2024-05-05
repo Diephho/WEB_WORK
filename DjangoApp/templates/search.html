@@ -15,23 +15,13 @@
 {% block content %}
 <!--  bat dau code cho phan noi dung  -->
 <div class="result_text"> Result search for {{searched}} </div>
-    <div class="container">
-        <div class="listNewFood">
+    <section class="container">
             {% for product in keys %}
-            <a href="{% url 'post' post_id=product.id %}" class="newestfood1">
-                <img class="thumbnail" src="{{ product.image.url }}" alt="{{product.title}}">
-                <a href="#">{{product.title}}</a>
-                <p>{{product.address}}</p>
-                <div class="dongcuoi">
-                    <div class="star-rating">
-                        <i class="fa-solid fa-star" style="color: #FFD43B;"> {{product.star}} / 5.0 </i>
-                    </div>
-                    <div class="time-ago">
-                        <u>{{ product.date|timesince }} ago</u>
-                    </div>
-                </div>
+            <a href="{% url 'post' post_id=product.id %}">
+                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.address }}</p>
             </a>
             {% endfor %}
-        </div>
-    </div>
+        </section>
 {% endblock %}
