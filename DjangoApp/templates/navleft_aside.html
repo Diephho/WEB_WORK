@@ -4,20 +4,21 @@
             <a href="#"><i class="fa-sharp fa-solid fa-arrow-up" style="color: #cf7207;"></i></a>
             
         </button>
+        {% if request.user.is_authenticated %}
+            <button class="Asisstant_box">
+            <i id="chat-icon" class="fa-regular fa-comments ui-draggable ui-draggable-handle" style="
+            z-index: 11111;
+            cursor: pointer;
+            color: rgb(203 65 55);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #e7a414;
 
-        <button class="Asisstant_box">
-        <i id="chat-icon" class="fa-regular fa-comments ui-draggable ui-draggable-handle" style="
-        z-index: 11111;
-        cursor: pointer;
-        color: rgb(203 65 55);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background-color: #e7a414;
-
-        "></i>
-        </button>
+            "></i>
+            </button>
+        {% endif %}
     </div>
 
 </aside>

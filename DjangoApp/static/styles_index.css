@@ -1136,6 +1136,7 @@ ul {
     /*  bat dau code css cho phan noi dung gom article_post &  container max-width: 600px */
     .container {
         gap: 15px 5px;
+        display: flex;
     }
 
     .container a {
@@ -1143,16 +1144,6 @@ ul {
         height: 23rem;
     }
 
-    .article_post {
-        margin: calc(var(--height_header) + 1.9em) calc(var(--width_box_aside)) 0 calc(var(--width_nav_left));
-        align-items: center;
-        justify-content: space-around;
-        display: flex;
-        position: relative;
-        width: 100vw;
-        height: 26rem;
-        flex-wrap: wrap;
-    }
 
     .article_post {
         margin: calc(var(--height_header) + 1.9em) calc(var(--width_box_aside)) 0 calc(var(--width_nav_left));

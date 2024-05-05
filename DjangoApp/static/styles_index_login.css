@@ -367,6 +367,7 @@ body {
     /* grid-template-rows: 0.5fr 0.5fr 0.5fr; */
     gap: 10px 10px;
     justify-content: center;
+      /* display: flex; */
     flex-wrap: wrap;
 }
 
@@ -1109,6 +1110,7 @@ ul {
     /*  bat dau code css cho phan noi dung gom article_post &  container max-width: 600px */
     .container {
         gap: 15px 5px;
+        display: flex;
     }
 
     .container a {
@@ -1339,6 +1341,9 @@ ul {
     }
 
     /* ket thuc header min-width: 600px */
+    .container{
+        display: flex;
+    }
 
     .Search_Wrapper {
         border-radius: 13px;
@@ -1959,7 +1964,7 @@ ul {
     .modal_Post .body_modal_Post {
         width: 30vw;
     }
-
+   
 
     /*  bat dau code css cho phan noi dung gom article_post & container min-width: 1200px */
     :root {
