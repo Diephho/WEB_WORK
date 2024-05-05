@@ -29,7 +29,8 @@ class Post(models.Model):
     image = models.ImageField(null=True, default=None)
     idUser = models.ForeignKey("UserInfo", on_delete=models.CASCADE, null= True)
     tags = models.ManyToManyField(Tag)
-
+    numcreact=models.IntegerField(default=0)
+    totalstar=models.IntegerField(default=0)
     def __str__(self):
         return self.title
 
@@ -40,3 +41,9 @@ class Comment(models.Model):
     idPost=models.ForeignKey("Post",on_delete=models.CASCADE,null=True)
     idUsercomment=models.ForeignKey("UserInfo",on_delete=models.CASCADE,null=True)
     idcommentReply=models.ForeignKey("self",on_delete=models.CASCADE,null=True,blank=True)
+
+class React(models.Model):
+    id=models.AutoField(primary_key=True)
+    star= models.IntegerField(default=0)
+    idpost=models.ForeignKey("Post",on_delete=models.CASCADE,null=True)
+    iduser=models.ForeignKey("UserInfo",on_delete=models.CASCADE,null=True)
