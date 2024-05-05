@@ -198,3 +198,17 @@ def post(request, post_id):
         return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo, 'userinfo': userinfo, 'listcomment':listcomment,'check':check})
     else:
         return render(request, 'index_post.html', {'post': post, 'userpostinfo': userpostinfo,'listcomment':listcomment})
+
+
+def search_suggestions(request):
+    suggestions = []
+    if request.method == 'POST' and 'inputValue' in request.POST:
+        input_value = request.POST['inputValue']
+        # Tìm các bài đăng có tiêu đề chứa từ khóa nhập vào
+        suggestions = Post.objects.filter(title__icontains=input_value)
+        # Lọc các tiêu đề duy nhất và giới hạn số lượng gợi ý
+        unique_suggestions = list(set(suggestions))[:4]
+        # Chuyển đổi các gợi ý thành danh sách
+        suggestions = [post.title for post in unique_suggestions]
+        postids = [post.id for post in unique_suggestions]
+    return JsonResponse({'suggestions': suggestions, 'postids': postids})

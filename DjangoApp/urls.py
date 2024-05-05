@@ -34,6 +34,7 @@ urlpatterns = [
     path('aisuggest/', ai_suggest,name="AI suggest"),
     path('usr/<int:user_id>/editprofile/', views.editprofile, name="Edit Profile"),
     path('logout/',views.logoutPage,name='logout'),
+    path('search/suggestions/', views.search_suggestions, name='search_suggestions'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

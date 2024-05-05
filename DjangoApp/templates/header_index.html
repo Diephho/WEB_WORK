@@ -33,8 +33,25 @@
                         </a>
                     </button>
 
-                    <input class="Search_input" spellcheck="false" type="search"
-                                placeholder="Tìm kiếm địa điểm món ăn bạn yêu thích" value="" name="searched" />
+                    <input class="Search_input" id="Search_input" spellcheck="false" type="search"
+                    placeholder="Tìm kiếm địa điểm món ăn bạn yêu thích" value="" name="searched" />
+                
+                    <div class="Search_dropdown">
+                        <div id="searchSuggestions"></div>
+                        <div class="input_textbox_search" id="tagField_search" style="display: flex;">
+                            <div class="input_textbox_search_grid">
+                                <input type="checkbox" id="monChay" name="món chay">
+                                <label for="monChay"> Món chay </label><br>
+                                <input type="checkbox" id="thucanNhanh" name="thức ăn nhanh">
+                                <label for="thucanNhanh"> Thức ăn nhanh </label><br>
+                                <input type="checkbox" id="traSua" name="trà sữa">
+                                <label for="traSua"> Trà sữa </label><br>
+                                <input type="checkbox" id="anSang" name="ăn sáng">
+                                <label for="anSang"> Ăn sáng </label><br>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -135,3 +152,81 @@
 {% endif %}
 <!--  ket thúc phan modal đăng ký -->
 
+<script>
+    function fetchSearchSuggestions(inputValue) {
+        // Tạo một đối tượng XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+    
+        // Thiết lập phương thức và URL cho request
+        xhr.open('POST', '/search/suggestions/', true);
+    
+        // Thiết lập header cho request
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('Accept-Charset', 'UTF-8');
+    
+        // Xử lý sự kiện khi request hoàn thành
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    var suggestions = response.suggestions; // Lấy giá trị của 'suggestions' từ JSON response
+                    var postids = response.postids
+                    var suggestionsHTML = '';
+
+                    for (var i = 0; i < suggestions.length; i++) {
+                        var suggestion = suggestions[i];
+                        var postid = postids[i];
+                        var url = '/post/' + postid + '/';
+                        suggestionsHTML += '<a href="' + url + '" class="dropdown-item">' + suggestion + '</a>';
+                    }
+                    
+                    document.getElementById('searchSuggestions').innerHTML = suggestionsHTML;
+                } else {
+                    console.error('Error:', xhr.status);
+                }
+            }
+        };
+        csrftoken = document.querySelector('input[name=csrfmiddlewaretoken]').value;
+        // Gửi request với dữ liệu là giá trị nhập vào thanh tìm kiếm
+        xhr.send('inputValue=' + inputValue + '&csrfmiddlewaretoken=' + csrftoken);
+    }
+
+    // bat dau code cho dropdown search
+    document.addEventListener('DOMContentLoaded', function () {
+        var searchInput = document.getElementById('Search_input');
+        var searchDropdown = document.querySelector('.Search_dropdown');
+
+        searchInput.addEventListener('click', function (event) {
+            searchDropdown.style.display = 'block'; // Chỉ mở dropdown, không đóng khi click input
+        });
+
+        document.querySelectorAll('.input_textbox_search input[type="checkbox"]').forEach(function (checkbox) {
+            checkbox.addEventListener('click', function (event) {
+                event.stopPropagation(); // Ngăn chặn sự kiện lan ra ngoài, dropdown không bị ảnh hưởng
+            });
+        });
+
+        // Thêm mã để đóng dropdown khi click ra ngoài
+        document.addEventListener('click', function (event) {
+            if (!searchInput.contains(event.target) && !searchDropdown.contains(event.target)) {
+                searchDropdown.style.display = 'none'; // Đóng dropdown nếu click ra ngoài khu vực input và dropdown
+            }
+        });
+
+        searchInput.addEventListener('input', function(event) {
+            var inputValue = event.target.value.trim();
+
+            if (inputValue === '') {
+                // Nếu trống, xóa gợi ý và không cần hiển thị gì cả
+                document.getElementById('searchSuggestions').innerHTML = '';
+            } else {
+                // Nếu không trống, tiến hành gửi request để lấy gợi ý
+                fetchSearchSuggestions(inputValue);
+            }
+        });
+
+
+    });
+</script>
+    
+    // ket thuc code cho dropdown search
