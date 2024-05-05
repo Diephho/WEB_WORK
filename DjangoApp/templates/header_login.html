@@ -21,7 +21,7 @@
         </h3>
         <div class="navbar_body flex_Search_center">
             <div>
-                <form class="Search_Wrapper flex_Search_center" role="search" method=POST action = "{% url 'search' %}">
+                <form class="Search_Wrapper flex_Search_center" role="search" method=POST action="{% url 'search' %}">
                     {% csrf_token %}
                     <button class="Search_SearchIcon" style="display: block" type="submit">
                         <a href="#">
@@ -34,8 +34,8 @@
 
 
                     <input class="Search_input" spellcheck="false" type="search"
-                    placeholder="Tìm kiếm địa điểm món ăn bạn yêu thích" value="" name="searched" />
-                </form>
+                        placeholder="Tìm kiếm địa điểm món ăn bạn yêu thích" value="" name="searched" />
+
                     <div class="Search_dropdown">
                         <a href="#" class="dropdown-item">Item 1</a>
                         <a href="#" class="dropdown-item">Item 2</a>
@@ -144,13 +144,15 @@
             <img src="{{userinfo.avatar.url}}" alt="avatar_user">
             <p>{{ userinfo.firstname }} {{userinfo.lastname}}</p>
         </div>
-        <form method=POST enctype="multipart/form-data" id="postForm" name="form" action = "{% url 'whilelogin' user_id=request.user.id %}">
+
+        <form method=POST enctype="multipart/form-data" id="postForm" name="form"
+            action="{% url 'whilelogin' user_id=request.user.id %}">
             {% csrf_token %}
             <input class="input_textbox" type="text" name="title" placeholder=" Title" required><br><br>
             <textarea class="box_input_content" placeholder="  Content" name="content"></textarea>
             <!-- Hình ảnh xem trước -->
             <div id="imagePreview" style="display: none;">
-                <img id="preview" src="#" alt="Ảnh xem trước" style="max-width: 100%; max-height: 100vw;">
+                <img id="preview" src="#" alt="Ảnh xem trước" style="max-width: 100%; max-height: 50vw;">
             </div>
             <div id="addressField" style="display: none;">
                 <input class="input_textbox" type="text" name="address" alt="Địa chỉ" placeholder="Địa chỉ" required>
@@ -166,18 +168,12 @@
                 <input type="checkbox" id="anSang" name="ăn sáng" placeholder="Ăn sáng">
                 <label for="anSang"> Ăn sáng </label><br>
             </div>
-            <br><br>
             <div class="Add_To_Content">
-                <!-- Input type file ẩn -->
                 <input type="file" name="image" id="fileInput" style="display: none;">
-                <!-- Biểu tượng icon hình ảnh -->
                 <a href="#" onclick="openFileExplorer()"><i class="fa-solid fa-image" style="color: #cf6d17;"></i></a>
-                <!-- Biểu tượng icon address -->
                 <a href="#" onclick="toggleAddressField()"><i class="fa-solid fa-location-dot"
                         style="color: #cf6d17;"></i></a>
-                <!-- Trường star -->
                 <a href="#" onclick="toggleStarField()"><i class="fa-solid fa-star" style="color: yellow;"></i></a>
-                <!-- Tag -->
                 <a href="#" onclick="toggleTagField()"><i class="fa-solid fa-hashtag" style="color: #cf6d17;"></i></a>
             </div>
             <br>
@@ -185,6 +181,7 @@
                 <button class="btn_post_content" type="submit">Đăng</button>
             </div>
         </form>
+
         <button onclick="CLose_Post()" class="close_btn_Post">
             <i class="fa-solid fa-xmark"></i>
         </button>
@@ -238,7 +235,7 @@
             }
         }
     }
-    
+
 
 
 

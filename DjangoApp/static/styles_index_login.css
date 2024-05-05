@@ -851,6 +851,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -874,7 +875,7 @@ ul {
         transition: color 0.3s ease 0s;
     }
 
-
+   
 
 
     /*phan cua modal btn close  */
@@ -1092,8 +1093,9 @@ ul {
         right: 8%;
         bottom: 11%;
         font-size: 4.5vw;
+        
     }
-
+    
     /*  ket thuc box_aside max-width 600px  */
 
     /*  bat dau code cho nav_left_vert max-width: 600px */
@@ -1540,7 +1542,7 @@ ul {
         font-size: 1.5rem;
         position: relative;
         margin: auto;
-        width: 60%;
+        width: 50%;
         height: 96%;
         background-color: #e2d5bd;
         border-radius: 15px;
@@ -1552,7 +1554,6 @@ ul {
         height: 1.8rem;
         border-radius: 5px;
         width: 85%;
-
         justify-content: space-around;
     }
 
@@ -1565,8 +1566,7 @@ ul {
     }
 
     .modal_Post .body_modal_Post>p {
-        padding: 20px;
-        margin-top: 25px 0;
+        padding: 15px;
         border-bottom: 2px solid black;
     }
 
@@ -1594,7 +1594,6 @@ ul {
     }
 
     .box_input_content {
-
         font-size: 16px;
         width: 100%;
         padding-bottom: 15%;
@@ -1608,6 +1607,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top : 2rem;
     }
 
     .Add_To_Content a {
@@ -1886,7 +1886,7 @@ ul {
         width: 50%;
     }
     .modal_Post .body_modal_Post {
-        width : 45vw ;
+        width : 40vw ;
     }
 }
 
@@ -1907,7 +1907,7 @@ ul {
     }
 
     .modal_Post .body_modal_Post {
-        width: 37vw;
+        width: 35vw;
     }
 
     /*  */
@@ -1949,12 +1949,16 @@ ul {
     .dropdown_Noti {
         width: 40vw;
     }
+    .Add_To_Content {
+        text-align: center;
+        margin-top : 0.5rem;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .modal_Post .body_modal_Post {
-        width: 32vw;
+        width: 30vw;
     }
 
 

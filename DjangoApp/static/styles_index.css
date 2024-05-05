@@ -209,34 +209,6 @@ button {
     padding: 0;
 }
 
-/* ======bat dau  ==phan aside===== */
-.box_aside {
-    position: fixed;
-    right: 0;
-    width: var(--width_box_aside);
-    height: 33vh;
-    display: flex;
-    justify-content: flex-end;
-    /* border: 3px solid red; */
-    z-index: 12;
-}
-
-.Click_ontop {
-    display: block;
-    position: fixed;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
-    border: 3px solid #f0852d;
-    font-size: 2.0rem;
-    bottom: 1em;
-    right: 3em;
-    z-index: 11;
-    background-size: cover;
-    background-color: var(--orange-primary);
-}
-
 /*== left menu ==== */
 
 /*  gom co luoon btn 3 gach ngang tren header code o phan nay  */
@@ -935,7 +907,7 @@ ul {
     .modal_Reg {
         position: fixed;
         inset: 0;
-        /* display: none; */
+        display: none;
         background: rgba(0, 0, 0, 0.5);
         z-index: 12;
     }
@@ -1062,7 +1034,45 @@ ul {
     }
 
     /*  ket thuc code cho nav_left_vert max-width: 600px */
+    /*  bat dau box_aside max-width 600px  */
+    .box_aside {
+        position: fixed;
+        right: 0;
+        width: var(--width_box_aside);
+        height: 33vh;
+        display: flex;
+        justify-content: flex-end;
+        z-index: 12;
+        /* border: 2px solid yellow; */
+    }
 
+    .Click_ontop {
+        display: block;
+        position: fixed;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        border: 3px solid #f0852d;
+        font-size: 2.0rem;
+        bottom: 1em;
+        right: 6vw;
+        z-index: 11;
+        background-size: cover;
+        background-color: var(--orange-primary);
+    }
+
+    #chat-icon {
+        width: 10vw;
+        height: 10vw;
+        position: fixed;
+        right: 8%;
+        bottom: 11%;
+        font-size: 4.5vw;
+
+    }
+
+    /*  ket thuc box_aside max-width 600px  */
 
     /*  bat dau code css cho phan noi dung gom article_post &  container max-width: 600px */
     .container {
@@ -1104,20 +1114,25 @@ ul {
 
     /*  ket thuc code css cho phan noi dung gom article_post & container max-width: 600px */
 }
+
 @media only screen and (max-width: 540px) {
     .navbar_logo_Heading {
         display: none;
     }
 
 }
+
 /* de max-width tu theo thu tu giam dan   */
 @media only screen and (max-width: 500px) {
+
     /* header bat dau */
     .Search_Wrapper {
         border-radius: 13px;
         width: 69%;
     }
-    .login_btn, .register_btn {
+
+    .login_btn,
+    .register_btn {
         font-weight: 500;
         cursor: pointer;
         border-radius: 10px;
@@ -1129,7 +1144,47 @@ ul {
     }
 
 
-/* header ket thuc */
+    /* header ket thuc */
+
+    /* ====== bat dau phan box_aside ===== */
+    .box_aside {
+        position: fixed;
+        right: 0;
+        width: var(--width_box_aside);
+        height: 33vh;
+        display: flex;
+        justify-content: flex-end;
+        z-index: 12;
+        /* border: 2px solid yellow; */
+    }
+
+    .Click_ontop {
+        display: block;
+        position: fixed;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        border: 3px solid #f0852d;
+        font-size: 2.0rem;
+        bottom: 1em;
+        right: 10vw;
+        z-index: 11;
+        background-size: cover;
+        background-color: var(--orange-primary);
+    }
+
+    #chat-icon {
+        width: 10vw;
+        height: 10vw;
+        position: fixed;
+        right: 8%;
+        bottom: 11%;
+        font-size: 4.5vw;
+    }
+
+    /* ket thuc box_aside */
+
     .collum_foot h4 {
         font-size: 1.5rem;
     }
@@ -1168,7 +1223,7 @@ ul {
 
     .body_modal_Reg {
         top: 3rem;
-         border: 3px solid rgba(179, 134, 51, 0.2);
+        border: 3px solid rgba(179, 134, 51, 0.2);
         position: relative;
         width: 27rem;
         margin: auto;
@@ -1183,6 +1238,7 @@ ul {
         width: 70%;
         height: 3rem;
     }
+
     .body_modal_Reg>p {
         padding-top: 10px;
         text-align: center;
@@ -1192,6 +1248,7 @@ ul {
     }
 
 }
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 
@@ -1269,9 +1326,6 @@ ul {
     }
 
     .start_login {
-        /* left: 6rem;
-        top: -6rem;
-        font-size: 23px; */
         width: 20rem;
         height: 4rem;
     }
@@ -1299,7 +1353,7 @@ ul {
     .modal_Reg {
         position: fixed;
         inset: 0;
-        /* display: none; */
+         display: none; 
         background: rgba(0, 0, 0, 0.5);
         z-index: 12;
     }
@@ -1424,6 +1478,44 @@ ul {
     }
 
     /*  ket thuc code cho nav_left_vert min-width: 600px */
+    /*  bat dau box_aside min-width 600px  */
+    .box_aside {
+        position: fixed;
+        right: 0;
+        width: var(--width_box_aside);
+        height: 33vh;
+        display: flex;
+        justify-content: flex-end;
+        z-index: 12;
+        /* border: 2px solid yellow; */
+    }
+
+    .Click_ontop {
+        display: block;
+        position: fixed;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        border: 3px solid #f0852d;
+        font-size: 2.0rem;
+        bottom: 1em;
+        right: 10vw;
+        z-index: 11;
+        background-size: cover;
+        background-color: var(--orange-primary);
+    }
+
+    #chat-icon {
+        width: 7vw;
+        height: 7vw;
+        position: fixed;
+        right: 2%;
+        bottom: 11%;
+        font-size: 3vw;
+    }
+
+    /*  ket thuc box_aside min-width 600px  */
 
     /*  bat dau code css cho phan noi dung gom article_post &  container min-width: 600px */
     .article_post {
@@ -1485,6 +1577,15 @@ ul {
         margin-right: 30px;
     }
 
+    /*  */
+    #chat-icon {
+        width: 6vw;
+        height: 6vw;
+        right: 2%;
+        bottom: 11%;
+        font-size: 3vw;
+    }
+
     /*  bat dau code css cho phan noi dung gom article_post & container min-width: 992px */
     .article_post {
         width: 100vw;
@@ -1507,6 +1608,14 @@ ul {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 
+    /*  */
+    #chat-icon {
+        width: 6vw;
+        height: 6vw;
+        right: 2%;
+        bottom: 11%;
+        font-size: 3vw;
+    }
 
     /*  bat dau code css cho phan noi dung gom article_post & container min-width: 1200px */
     :root {
