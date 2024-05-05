@@ -49,17 +49,16 @@
                     <div class="likeandcomment">
                         <span class="like">
                             {% if request.user.is_authenticated %}
-                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
-                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
-                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
-                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
-                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
+                                <i class="fa-solid fa-star" onclick="setRating(1)" onmouseover="highlightStars(1)" onmouseout="resetStars()"></i>
+                                <i class="fa-solid fa-star" onclick="setRating(2)" onmouseover="highlightStars(2)" onmouseout="resetStars()"></i>
+                                <i class="fa-solid fa-star" onclick="setRating(3)" onmouseover="highlightStars(3)" onmouseout="resetStars()"></i>
+                                <i class="fa-solid fa-star" onclick="setRating(4)" onmouseover="highlightStars(4)" onmouseout="resetStars()"></i>
+                                <i class="fa-solid fa-star" onclick="setRating(5)" onmouseover="highlightStars(5)" onmouseout="resetStars()"></i>
                             {% else %}
-                            <p> Vui lòng đăng nhập để đánh giá </p>
+                                <p>Vui lòng đăng nhập để đánh giá</p>
                             {% endif %}
-                            
-                        
                         </span>
+                        
                         <b class="slcomment">
                             {% with total=listcommentinfo.count %}
                                 {{ total }} 
@@ -318,6 +317,39 @@
                 {% endfor %}
                 console.log(checkcomment);
             });
+
+                let currentRating = 0; // Biến này lưu giá trị đánh giá hiện tại
+            
+            function highlightStars(star) {
+                resetStars();
+                for (let i = 0; i < star; i++) {
+                    document.getElementsByClassName('fa-star')[i+2].classList.add('highlighted');
+                }
+            }
+            
+            function resetStars() {
+                for (let star of document.getElementsByClassName('fa-star')) {
+                    star.classList.remove('highlighted');
+                    if (star.dataset.rating <= currentRating) {
+                        star.classList.add('selected');
+                    } else {
+                        star.classList.remove('selected');
+                    }
+                }
+            }
+            
+            function setRating(star) {
+                currentRating = star;
+                for (let i = 0; i < star; i++) {
+                    document.getElementsByClassName('fa-star')[i].classList.add('selected');
+                }
+                for (let j = star; j < 5; j++) {
+                    document.getElementsByClassName('fa-star')[j].classList.remove('selected');
+                }
+            }
+            
+    
+
         </script>
     </div>
     <div class="container-right">
@@ -346,3 +378,5 @@
 </div>
 {% comment %} <!-- Xong phan noi dung--> {% endcomment %}
 {% endblock %}
+
+

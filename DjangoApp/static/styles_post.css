@@ -1952,8 +1952,8 @@ ul {
     .container-left {
         display: flex;
         flex-wrap: wrap;
-        color: #000;
-        background-color: #e2ab76;
+        color:#135de5;
+        background-color: #fff;
         border-radius: 8px;
         box-shadow: 10px 10px 5px 0px rgba(154, 148, 148, 0.75);
     }
@@ -2020,16 +2020,24 @@ ul {
     
 
     .line {
-        border: solid black 1px;
+        border: solid blue 1px;
     }
     .post-content .active {
         display: block;
         margin-top: 1rem;
     }
 
-    .like:hover {
+    .like .fa-star {
+        color: #d7c7a6; /* màu mặc định */
+        margin : 0px 10px;
         cursor: pointer;
     }
+    
+    .like .fa-star.highlighted,
+    .like .fa-star.selected {
+        color: yellow; /* màu vàng khi hover hoặc chọn */
+    }
+    
 
     .likeandcomment .slcomment {
         float: right;
