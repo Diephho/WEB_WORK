@@ -314,282 +314,6 @@ body {
     font-size: 1.7rem;
 }
 
-/*  bat dau code css cho phan noi dung */
-/* Bắt đầu nội dung*/
-.container{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    min-height: 100%;
-    width: 70vw;
-    margin-left: 30rem;
-    margin-top: 8rem;
-    border-radius: 8px;
-    flex-wrap: wrap;
-}
-.container div{
-    font-size: 1.5rem;
-}
-.container-left{
-    position: relative;
-    top:2rem;
-    display: flex;
-    flex-wrap: wrap;
-    z-index: 0;
-    box-sizing: border-box;
-    width: 60rem;
-    height: 100%;
-    color: #24262b;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 10px 10px 5px 0px rgba(154, 148, 148, 0.75);
-}
-.post-item{
-    position: relative;
-    font-size: 1rem;
-    font-weight: 400;
-    text-align: left;
-    width: 60rem;
-    height: 100%;
-}
-.author{
-    position: relative;
-    margin-left:3rem;
-    display: flex !important;
-    align-items: center !important;
-    max-width: 100%;
-}
-.container .avatar-img{
-    border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
-    margin-right: 1rem;
-}
-.container img{
-    object-fit: cover;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-}
-.author{
-    margin-top: 5rem;
-}
-.author .summary-post {
-    display: flex;
-    flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
-}
-.author .author-name {
-    display: flex; /* Sử dụng flexbox để căn chỉnh nội dung */
-    align-items: center; /* Căn chỉnh nội dung theo chiều dọc */
-}
-
-.author .time-post {
-    margin-left: auto; /* Đẩy .time-post sang phải cùng mức với nội dung bên phải */
-    white-space: nowrap;
-    padding-top: 0.5rem;
-}
-.author div a{
-    font-weight: 600;
-    text-decoration: none;
-    align-items: center;
-    font-size: 2rem;
-}
-.img-dishes{
-    width: 100%;
-    height: 30%;
-    position: relative;
-    align-items:center;
-}
-.rating-content{
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1.5;
-    float: right;
-}
-.post-content{
-    display: block;
-    margin: auto;
-    box-sizing: border-box;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    margin-bottom: 3rem;
-    margin: 0rem 3rem 3rem 3rem;
-}
-.post-content .title-content{
-    font-weight: 600;
-    font-size: 2.5rem;
-}
-
-.line{
-    border: solid black 1px;
-}
-.post-content .active{
-    display: block;
-    margin-top: 1rem;
-}
-.likeandcomment{
-    font-size: 1.4rem;
-}
-.like:hover{
-    cursor: pointer;
-}
-
-.likeandcomment .slcomment{
-    float:right;
-}
-.user-comment,.user-comment-reply{
-    position:relative;
-    align-items: center;
-    display: flex;
-    box-sizing: border-box;
-    margin-top: 1rem;
-}
-
-.write{
-    resize: none;
-    background-color: #f4f5f8;
-    height: 8rem;
-    width: 100%;
-    font-size: 1.5rem;
-    border-radius: 10px;
-}
-.send-comment{
-    position: relative;
-    top: 2.2rem;
-    right: 2.6rem;
-    border-radius: 10px;
-    background-color: #f4f5f8;
-}
-.send-comment:hover{
-    cursor: pointer;
-}
-.list-comment{
-    margin-top: 2rem;
-}
-.comment{
-    position: relative;
-    margin-top: 2rem;
-    display: flex !important;
-    align-items: center !important;
-    max-width: 100%;
-}
-.comment a{
-    font-weight: 600;
-    text-decoration: none;
-    align-items: center;
-    background-color: transparent;
-    display: flex;
-    box-sizing: border-box;
-    float: left;
-    font-size: 1.5rem;
-}
-.comment .summary-comment {
-    display: flex;
-    margin-left: 1rem;
-    flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
-}
-.comment .comment-name {
-    display: flex; /* Sử dụng flexbox để căn chỉnh nội dung */
-    align-items: center; /* Căn chỉnh nội dung theo chiều dọc */
-}
-.comment .comment-name p{
-    color: gray;
-    margin-left: 1rem;
-}
-.comment .content-comment{
-    margin-top: 0.5rem;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-.comment .reply-comment{
-    color: gray;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-.reply-comment:hover{
-    cursor: pointer;
-    color: #000;
-}
-.container-right{
-    margin-left: 3rem;
-    width: 40;
-    height: 100;
-    top:2rem;
-}
-.container-right .author-info{
-    position: relative;
-    margin-left:3rem;
-    display: flex !important;
-    align-items: center !important;
-    max-width: 100%;
-    display: table-cell;
-}
-.author-box{
-    background-color: #ffffff;
-    position: relative;
-    border-radius: 8px;
-    height: 18rem;
-    align-items: center;
-}
-.author-info{
-    margin-top: 2rem;
-    align-items: center;
-}
-.author-info .avatar-img{
-    border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
-    margin-right: 1rem;
-    margin-top: 3rem;
-}
-.author-info img{
-    border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
-}
-.author-info div a{
-    font-weight: 600;
-    text-decoration: none;
-    align-items: center;
-    background-color: transparent;
-    display: flex;
-    box-sizing: border-box;
-    float: left;
-    font-size: 2rem;
-}
-.author-info .author-name{
-    margin-top: 3rem;
-}
-.author-box .line{
-    border-top: 1px solid #a5a7a8;
-    margin:10px 15px;
-    width: calc(100%-30px);
-}
-.activity {
-    display: flex;
-    justify-content: space-around; 
-}
-.activity .sl{
-    flex: 1;
-    padding: 1rem; 
-    text-align: center; 
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-.activity .label {
-    flex: 1;
-    padding: 1rem; 
-    text-align: center; 
-    font-size: 1.4rem;
-    font-weight: 500;
-    color:gray;
-}
-
-
-/*  ket thuc code css cho phan noi dung  */
-
-
 /* bat dau code cho footer  */
 .row {
     justify-content: center;
@@ -1263,37 +987,249 @@ ul {
 
     /*  ket thuc code cho nav_left_vert max-width: 600px */
 
-
-    /*  bat dau code css cho phan noi dung gom article_post &  container max-width: 600px */
+/*  bat dau code css cho phan noi dung max-width : 600px */
+    /* Bắt đầu nội dung*/
     .container {
-        gap: 15px 5px;
+        margin-top: calc(var(--height_header) + 2em);
+        width: 100vw;
+        height: auto;
     }
 
-    .container a {
-        width: 90vw;
-        height: 23rem;
-    }
-
-
-    .article_post {
-        margin: calc(var(--height_header) + 1.9em) calc(var(--width_box_aside)) 0 calc(var(--width_nav_left));
-        align-items: center;
-        justify-content: space-around;
+    .container-left {
         display: flex;
-        position: relative;
-        width: 96vw;
-        height: 26rem;
-        /* border: 2px solid red; */
         flex-wrap: wrap;
-        /* justify-content: center; */
+        color: #000;
+        background-color: #e2ab76;
+        border-radius: 8px;
+        box-shadow: 10px 10px 5px 0px rgba(154, 148, 148, 0.75);
     }
 
-    .article_post a h3 {
-        font-size: 15px;
+    .post-item {
+        position: relative;
+        font-size: 1.5rem;
+        font-weight: 400;
+        text-align: left;
+        width: 100%;
+        height: 100%;
     }
 
-    /*  ket thuc code css cho phan noi dung gom article_post & container max-width: 600px */
+    .author {
+        margin: 2rem 0px 0px;
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+    }
+    .avatar-img img:first-child{
+        margin: 1rem;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+    }
+    .img-dishes img{
+        width: 100%;
+        height: 30%;
+        position: relative;
+        align-items: center;
+    }
 
+    .post-content {
+        margin: 0px 2rem;
+    }
+    .title-content {
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: 2.5rem;
+    }
+
+    .likeandcomment {
+        font-size: 1.4rem;
+    }
+    .author .summary-post {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .author div a {
+        font-weight: 600;
+        text-decoration: none;
+        align-items: center;
+        font-size: 2rem;
+    }
+
+    .rating-content {
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1.5;
+        float: right;
+    }
+    
+
+    .line {
+        border: solid black 1px;
+    }
+    .post-content .active {
+        display: block;
+        margin-top: 1rem;
+    }
+
+    .like:hover {
+        cursor: pointer;
+    }
+
+    .likeandcomment .slcomment {
+        float: right;
+    }
+
+    .user-comment {
+        justify-content: space-around;
+        align-items: center;
+        display: flex;
+        margin-top: 1rem;
+    }
+
+    /*  */
+    .write {
+        resize: none;
+        background-color: #f4f5f8;
+        height: 3rem;
+        width: 80%;
+        font-size: 1.3rem;
+        border-radius: 4px;
+    }
+    .fa-solid.fa-paper-plane {
+        color: #3a74d9; /* Màu của icon */
+        font-size: 22px; /* Kích cỡ của icon */
+        background-color: transparent; /* Nền trong suốt */
+    }
+    
+
+    .send-comment {
+        cursor: pointer;
+    }
+
+    .comment {
+        display: flex ;
+        justify-content: space-around;
+    }
+
+    .summary-comment{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none ;
+        font-size: 1.2rem;
+
+    }
+    .comment-name {
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .comment-name a {
+        margin-right: 4rem;
+        font-size: 1.5rem;
+        text-decoration: none;
+        color : rgb(90, 115, 198) ;
+    }
+    .comment-name p {
+        font-style: black;
+        color: #000;
+        font-size: 100%;
+    }
+    .content-comment {
+        width: 100%; 
+        max-height: 200px; 
+        overflow-y: auto; 
+        overflow-x: hidden; 
+        word-wrap: break-word; 
+    }
+    
+    .container-right {
+        display: none;
+    }
+
+    .container-right .author-info {
+        position: relative;
+        margin-left: 3rem;
+        display: flex !important;
+        align-items: center !important;
+        max-width: 100%;
+        display: table-cell;
+    }
+
+    .author-box {
+        background-color: #ffffff;
+        position: relative;
+        border-radius: 8px;
+        height: 18rem;
+        align-items: center;
+    }
+
+    .author-info {
+        margin-top: 2rem;
+        align-items: center;
+    }
+
+    .author-info .avatar-img {
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+        margin-right: 1rem;
+        margin-top: 3rem;
+    }
+
+    .author-info img {
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .author-info div a {
+        font-weight: 600;
+        text-decoration: none;
+        align-items: center;
+        background-color: transparent;
+        display: flex;
+        box-sizing: border-box;
+        float: left;
+        font-size: 2rem;
+    }
+
+    .author-info .author-name {
+        margin-top: 3rem;
+    }
+
+    .author-box .line {
+        border-top: 1px solid #a5a7a8;
+        margin: 10px 15px;
+        width: calc(100%-30px);
+    }
+
+    .activity {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .activity .sl {
+        flex: 1;
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .activity .label {
+        flex: 1;
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: gray;
+    }
+
+
+    /*  ket thuc code css cho phan noi dung  */
     .collum_foot h4 {
         font-size: 1.5rem;
     }
@@ -1398,6 +1334,7 @@ ul {
 
     /* header ket thuc */
 
+    
 
     /* ====== bat dau phan box_aside ===== */
     .box_aside {
@@ -2001,10 +1938,252 @@ ul {
 
     /*  ket thuc code cho nav_left_vert min-width: 600px */
 
-    /*  bat dau code css cho phan noi dung gom article_post &  container min-width: 600px */
 
-    /*  ket thuc code css cho phan noi dung gom article_post & container min-width: 600px */
 
+        /*  bat dau code css cho phan noi dung min-width : 600px */
+    /* Bắt đầu nội dung*/
+    .container {
+        margin :auto;
+        margin-top: calc(var(--height_header) + 2em);
+        width: 70vw;
+        height: auto;
+    }
+
+    .container-left {
+        display: flex;
+        flex-wrap: wrap;
+        color: #000;
+        background-color: #e2ab76;
+        border-radius: 8px;
+        box-shadow: 10px 10px 5px 0px rgba(154, 148, 148, 0.75);
+    }
+
+    .post-item {
+        position: relative;
+        font-size: 1.5rem;
+        font-weight: 400;
+        text-align: left;
+        width: 100%;
+        height: 100%;
+    }
+
+    .author {
+        margin: 2rem 0px 0px;
+        display: flex;
+        justify-content:flex-start;
+        align-items: center;
+    }
+    .avatar-img img:first-child{
+        margin: 1rem;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+    }
+    .img-dishes img{
+        width: 100%;
+        height: 30%;
+        position: relative;
+        align-items: center;
+    }
+
+    .post-content {
+        margin: 0px 2rem;
+    }
+    .title-content {
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: 2.5rem;
+    }
+
+    .likeandcomment {
+        font-size: 1.4rem;
+    }
+    .author .summary-post {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .author div a {
+        font-weight: 600;
+        text-decoration: none;
+        align-items: center;
+        font-size: 2rem;
+    }
+
+    .rating-content {
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1.5;
+        float: right;
+    }
+    
+
+    .line {
+        border: solid black 1px;
+    }
+    .post-content .active {
+        display: block;
+        margin-top: 1rem;
+    }
+
+    .like:hover {
+        cursor: pointer;
+    }
+
+    .likeandcomment .slcomment {
+        float: right;
+    }
+
+    .user-comment {
+        justify-content: space-around;
+        align-items: center;
+        display: flex;
+        margin-top: 1rem;
+    }
+
+    /*  */
+    .write {
+        resize: none;
+        background-color: #f4f5f8;
+        height: 3rem;
+        width: 80%;
+        font-size: 1.3rem;
+        border-radius: 4px;
+    }
+    .fa-solid.fa-paper-plane {
+        color: #3a74d9; /* Màu của icon */
+        font-size: 22px; /* Kích cỡ của icon */
+        background-color: transparent; /* Nền trong suốt */
+    }
+    
+
+    .send-comment {
+        cursor: pointer;
+    }
+
+    .comment {
+        display: flex ;
+        justify-content: space-around;
+    }
+
+    .summary-comment{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none ;
+        font-size: 1.2rem;
+
+    }
+    .comment-name {
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .comment-name a {
+        margin-right: 4rem;
+        font-size: 1.5rem;
+        text-decoration: none;
+        color : rgb(90, 115, 198) ;
+    }
+    .comment-name p {
+        font-style: black;
+        color: #000;
+        font-size: 100%;
+    }
+    .content-comment {
+        width: 100%; 
+        max-height: 200px; 
+        overflow-y: auto; 
+        overflow-x: hidden; 
+        word-wrap: break-word; 
+    }
+    
+    .container-right {
+        display: none;
+    }
+
+    .container-right .author-info {
+        position: relative;
+        margin-left: 3rem;
+        display: flex !important;
+        align-items: center !important;
+        max-width: 100%;
+        display: table-cell;
+    }
+
+    .author-box {
+        background-color: #ffffff;
+        position: relative;
+        border-radius: 8px;
+        height: 18rem;
+        align-items: center;
+    }
+
+    .author-info {
+        margin-top: 2rem;
+        align-items: center;
+    }
+
+    .author-info .avatar-img {
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+        margin-right: 1rem;
+        margin-top: 3rem;
+    }
+
+    .author-info img {
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .author-info div a {
+        font-weight: 600;
+        text-decoration: none;
+        align-items: center;
+        background-color: transparent;
+        display: flex;
+        box-sizing: border-box;
+        float: left;
+        font-size: 2rem;
+    }
+
+    .author-info .author-name {
+        margin-top: 3rem;
+    }
+
+    .author-box .line {
+        border-top: 1px solid #a5a7a8;
+        margin: 10px 15px;
+        width: calc(100%-30px);
+    }
+
+    .activity {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .activity .sl {
+        flex: 1;
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .activity .label {
+        flex: 1;
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: gray;
+    }
+
+
+    /*  ket thuc code css cho phan noi dung min-width : 600px */
 
 }
 
@@ -2026,8 +2205,13 @@ ul {
     .dropdown_Noti {
         width: 50%;
     }
+
     .modal_Post .body_modal_Post {
-        width : 45vw ;
+        width: 45vw;
+    }
+    .container{
+        margin:auto;
+        width : 50vw;
     }
 }
 
@@ -2078,6 +2262,10 @@ ul {
     .dropdown_Noti {
         width: 40vw;
     }
+    .container{
+        margin:auto;
+        width : 60vw;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -2116,15 +2304,22 @@ ul {
         display: inline-block;
         padding: 5px 10px;
         margin-right: 5px;
-        background-color: #f0f0f0; /* Màu nền của tag */
-        border: 1px solid #333; /* Màu border của tag */
-        border-radius: 5px; /* Bo tròn viền */
-        color: #333; /* Màu chữ của tag */
+        background-color: #f0f0f0;
+        /* Màu nền của tag */
+        border: 1px solid #333;
+        /* Màu border của tag */
+        border-radius: 5px;
+        /* Bo tròn viền */
+        color: #333;
+        /* Màu chữ của tag */
     }
-    
+
     .tag span:hover {
         background-color: #929190;
     }
-
+    .container{
+        margin:auto;
+        width : 60vw;
+    }
     /*  ket thuc code css cho phan noi dung gom article_post & container min-width: 1200px */
 }

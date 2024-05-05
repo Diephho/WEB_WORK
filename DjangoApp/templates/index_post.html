@@ -31,7 +31,6 @@
             <div class="img-dishes">
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
             </div>
-            <br>
             <div class="post-content">
                 <div class="title-content">
                     <p>{{ post.title }}</p>
@@ -41,7 +40,6 @@
                         <span class="tag-item">#{{ tag.name }}</span>
                     {% endfor %}
                 </div>
-                <br>
                 <div class="content">
                     {{ post.content }}
                 </div>            
@@ -50,29 +48,33 @@
                 <div class="active">
                     <div class="likeandcomment">
                         <span class="like">
-                            {% if like is True %}
-                            <i class="fa-solid fa-thumbs-up" style="color: #2f72e4;"></i>
+                            {% if request.user.is_authenticated %}
+                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
+                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
+                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
+                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
+                                <i class="fa-solid fa-star" style="color: #beb9ac;"></i>
                             {% else %}
-                            <i class="fa-regular fa-thumbs-up" style="color: #c3c2c7;"></i>
+                            <p> Vui lòng đăng nhập để đánh giá </p>
                             {% endif %}
-                            15 người yêu thích - Đang làm
+                            
+                        
                         </span>
                         <b class="slcomment">
                             {% with total=listcommentinfo.count %}
-                            {{ total }} 
+                                {{ total }} 
                             {% endwith %}
                             Bình luận
                         </b>
                     </div>
                     <br>
                     <div class="line"></div>
-                    
                     <form class="user-comment" id="comment-form" method="POST">
                         {% csrf_token %}
                         <div class="avatar-img"><a href="#"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
                         <input type="hidden" name="form_type" value="formcomment">
                         <textarea class="write" name="content-comment" placeholder="Viết bình luận" ></textarea>
-                        <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #3a74d9; font-size:22px;"></i></button>
+                        <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC;"></i></button>
                     </form>    
                     <div class="list-comment" id="comments-container">
                         {% for comment in listcomment %}
@@ -84,7 +86,7 @@
                                         let newdiv=document.createElement("div");
                                         newdiv.id = "group-comment-{{comment.id}}";
                                         {% if comment.idcommentReply.idcommentReply is None %}
-                                            newdiv.style.marginLeft="7.5rem";
+                                            newdiv.style.marginLeft="2rem";
                                         {% endif %}
                                         newdiv.innerHTML=`
                                             <div class="comment">
@@ -94,7 +96,8 @@
                                                     </a>
                                                 </div>
                                                 <div class="summary-comment">
-                                                    <div class="comment-name">
+                                                    <div class="comment-name">    
+                    
                                                         <a href="#">
                                                             {{comment.idUsercomment.firstname}}
                                                             {{comment.idUsercomment.lastname}}
@@ -105,21 +108,21 @@
                                                     <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
                                                 </div>
                                             </div>
-                                        `;
-                                        parentdiv.appendChild(newdiv);
-                                        initializeReplyButtons();
-                                    });
-                                </script>
-                            {% else %}
-                                <div id="group-comment-{{comment.id}}">
-                                    <div class="comment">
-                                        <div class="avatar-img">
-                                            <a href="#">
-                                                <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
-                                            </a>
-                                        </div>
-                                        <div class="summary-comment">
-                                            <div class="comment-name">
+                                            `;
+                                            parentdiv.appendChild(newdiv);
+                                            initializeReplyButtons();
+                                        });
+                                    </script>
+                                {% else %}
+                                    <div id="group-comment-{{comment.id}}">
+                                        <div class="comment">
+                                            <div class="avatar-img">
+                                                <a href="#">
+                                                    <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
+                                                </a>
+                                            </div>
+                                            <div class="summary-comment">
+                                                <div class="comment-name">
                                                 <a href="#">
                                                     {{comment.idUsercomment.firstname}}
                                                     {{comment.idUsercomment.lastname}}
@@ -128,12 +131,13 @@
                                             </div>
                                             <div class="content-comment">{{comment.content}}</div>
                                             <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                 </div>
             </div>
         </div>
@@ -216,7 +220,7 @@
                             }
                         }
                         if(check==true){
-                            newdiv.style.marginLeft='7.5rem';
+                            newdiv.style.marginLeft='2rem';
                         }
                         newdiv.innerHTML=`
                         <form class="user-comment-reply" id="reply-comment-form" method="POST">
@@ -268,7 +272,7 @@
                             }
                         }
                         if(check==true){
-                            newComment.style.marginLeft='7.5rem';
+                            newComment.style.marginLeft='2rem';
                         }
                         newComment.innerHTML = 
                         `<div class="comment">
