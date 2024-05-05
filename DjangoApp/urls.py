@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 from DjangoApp import views
 from DjangoApp.views import ai_suggest,CustomPasswordResetView,CustomPasswordResetDoneView,CustomPasswordConfirmView,CustomPasswordResetCompleteView
+from DjangoApp.views import changepass,changepassdone
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -35,6 +36,8 @@ urlpatterns = [
     path('usr/<int:user_id>/profile/', views.profile, name="Profile"),
     path('logout/',views.logoutPage,name='logout'),
     path('search/suggestions/', views.search_suggestions, name='search_suggestions'),
+    path('usr/<int:user_id>/changepass/', changepass, name='Change Pass'),
+    path('usr/<int:user_id>/changepass/done', changepassdone, name='Change Pass Done'),
     path('category/', views.category, name="category"),
     path('daily/', views.daily, name="daily"),
     path('ranking/', views.ranking, name='ranking'),

@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm
+from django.contrib.auth.forms import PasswordResetForm,SetPasswordForm,PasswordChangeForm
 from .models import Post, Tag
 
 
@@ -22,6 +22,14 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content', 'address', 'image', 'tags']
 
-    
-    
+class CustomSetPasswordChange(PasswordChangeForm):
+    old_password = forms.CharField(
+        label="",widget=forms.PasswordInput(attrs={'autocomplete': 'password','class':'custom-password-input','placeholder': 'Please Input Old Password'}),
+    )
+    new_password1 = forms.CharField(
+        label="",widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'custom-password-input', 'placeholder': 'Please Input Password'}),
+    )
+    new_password2 = forms.CharField(
+        label="",widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'custom-password-input', 'placeholder': 'Please Input Password Again'}),
+    )
     
