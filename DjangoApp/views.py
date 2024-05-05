@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomPasswordResetForm
-from .forms import CustomSetPasswordForm
+from .forms import CustomSetPasswordForm,CustomSetPasswordChange
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.views import PasswordResetView
@@ -16,8 +16,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.utils.timezone import localtime
-
-        
+    
+    
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'Forget_password.html'
     success_url='done'
@@ -96,6 +96,23 @@ def whilelogin(request, user_id):
         else:
             return redirect('index')
 
+@login_required
+def changepass(request, user_id):
+    if request.user.id == user_id and request.user.is_authenticated:
+        if request.method == 'POST' and "changepass-btn" in request.POST:
+            formchangepass = CustomSetPasswordChange(data=request.POST, user=request.user)
+            if formchangepass.is_valid():
+                formchangepass.save()
+                return redirect('/usr/{}/changepass/done'.format(request.user.id))
+            else:
+                return render(request, 'passwordchange.html', {'formchangepass': formchangepass})
+        else:
+            formchangepass = CustomSetPasswordChange(user=request.user)
+            return render(request, 'passwordchange.html', {'formchangepass': formchangepass})
+    return redirect('index')
+@login_required
+def changepassdone(request,user_id):
+    return redirect('/usr/{}/'.format(request,user_id))
 def search(request):
     searched = ""
     keys = []
