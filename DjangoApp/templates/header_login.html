@@ -64,7 +64,7 @@
                 </button>
                 <ul id="dropdownMenu" class="dropdown-menu" style="display: none;">
 
-                    <li><a href="{% url 'Edit Profile' user_id=userinfo.id %}">Profile</a></li>
+                    <li><a href="{% url 'Profile' user_id=userinfo.id %}">Profile</a></li>
                     <li><a href="{% url 'Change Pass' user_id=request.user.id %}">Change Pass</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                 </ul>
