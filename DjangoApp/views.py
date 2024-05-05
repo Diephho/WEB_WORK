@@ -158,7 +158,6 @@ def post(request, post_id):
     
     post = get_object_or_404(Post, pk=post_id)
     userpostinfo = post.idUser
-    userinfo=get_object_or_404(UserInfo,id=request.user.id)
     listcomment= Comment.objects.filter(idPost=post_id)
     check = {}
     for comment in listcomment:
@@ -166,6 +165,7 @@ def post(request, post_id):
             check[comment.id] = 1
     if request.user.is_authenticated:
         userstar=0
+        userinfo=get_object_or_404(UserInfo,id=request.user.id)
         if React.objects.filter(idpost= post.id, iduser=userinfo.id).exists() is True:
             userstarobj=get_object_or_404(React,idpost= post, iduser=userinfo)
             userstar=userstarobj.star
