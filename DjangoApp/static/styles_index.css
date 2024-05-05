@@ -89,14 +89,12 @@ body {
 
 }
 
-
-
-
-
 .navbar_body {
     flex: 1 1;
 }
 
+
+/*  bau dau phan search  */
 .flex_Search_center {
     align-items: center;
     display: flex;
@@ -155,6 +153,9 @@ body {
     outline: none;
     padding: 0 4px;
 }
+
+/* ket thuc phan search */
+
 
 .navbar_action {
     flex: 1 1;
@@ -405,7 +406,7 @@ button {
     /* grid-template-rows: 0.5fr 0.5fr 0.5fr; */
     gap: 10px 10px;
     justify-content: center;
-    display: flex;
+    /* display: flex; */
     flex-wrap: wrap;
 }
 
@@ -470,37 +471,6 @@ button {
 
 /*  ket thuc code css cho phan noi dung  */
 
-/*Phan chuyen page*/
-.center {
-    text-align: center;
-    margin-top: 50px;
-    margin-left: 200px;
-}
-
-.pagination {
-    display: inline-block;
-}
-
-.pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #000;
-}
-
-.pagination a.active {
-    background-color: #f0852d;
-    color: white;
-    border: 1px solid #f0852d;
-}
-
-.pagination a:hover:not(.active) {
-    background-color: #a2a2a2;
-}
-
-/* kết thúc nội dung các dòng khác*/
 
 /* bat dầu code cho nút form đăng nhập  */
 
@@ -849,6 +819,21 @@ ul {
         margin: 5px;
     }
 
+    /* header bat dau */
+    .Search_Wrapper {
+        border-radius: 13px;
+        width: 64%;
+        justify-content: flex-start;
+    }
+
+    .Search_SearchIcon {
+        width: 2rem;
+    }
+
+    .flex_Search_center {
+        justify-content: flex-start;
+    }
+
     .login_btn {
         border-radius: 11px;
         margin: 0px 8px;
@@ -884,6 +869,7 @@ ul {
         width: 20rem;
         height: 4rem;
     }
+
 
     .start_create_new_account {
         font-size: 1.7rem;
@@ -921,6 +907,15 @@ ul {
         height: 54rem;
         background-color: #f5eeea;
         border-radius: 10px;
+    }
+
+    .input_textbox {
+        font-size: 15px;
+        height: 1.8rem;
+        border-radius: 5px;
+        width: 85%;
+
+        justify-content: space-around;
     }
 
     .body_modal_Reg>p {
@@ -1025,7 +1020,62 @@ ul {
 
     /* ket thuc mobile modal resgister max-width: 600px */
 
+    .Search_dropdown {
+        top: 5.5rem;
+        display: none;
+        position: absolute;
+        background-color: #f4e6cb;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 1.1);
+        width: 55%;
+        border-radius: 8px;
+        z-index: 100;
+        height: auto;
+    }
 
+    .dropdown-item {
+        padding: 8px 8px;
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        border-bottom: 1px solid #eee;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .dropdown-item:hover,
+    .dropdown-item:active {
+        background-color: #f7f7f7;
+    }
+
+    .dropdown-item:active {
+        transform: scale(1.09);
+        background-color: gray;
+    }
+
+    .Search_input:active+.Search_dropdown,
+    .Search_input:focus+.Search_dropdown {
+        display: block;
+    }
+
+    .input_textbox_search label {
+        cursor: pointer;
+        /* Makes the label also clickable */
+        white-space: nowrap;
+        /* Prevents the label text from wrapping */
+    }
+
+
+    /* ket thuc search dropdown  */
+
+
+    .input_textbox_search input[type="checkbox"] {
+        margin-left: 5px;
+        /* Space between checkbox and its label */
+    }
 
     /*  bat dau code cho nav_left_vert max-width: 600px */
     :root {
@@ -1074,6 +1124,15 @@ ul {
 
     /*  ket thuc box_aside max-width 600px  */
 
+    /*  bat dau code cho nav_left_vert max-width: 600px */
+    :root {
+        --width_nav_left: 0px;
+        --width_box_aside: 0em;
+    }
+
+    /*  ket thuc code cho nav_left_vert max-width: 600px */
+
+
     /*  bat dau code css cho phan noi dung gom article_post &  container max-width: 600px */
     .container {
         gap: 15px 5px;
@@ -1113,6 +1172,21 @@ ul {
     }
 
     /*  ket thuc code css cho phan noi dung gom article_post & container max-width: 600px */
+
+    .collum_foot h4 {
+        font-size: 1.5rem;
+    }
+
+    .collum_foot {
+        width: 21%;
+        padding: 0px 15px;
+    }
+
+    .footer {
+        font-size: 2rem;
+    }
+
+    /* ket thuc footer max-width: 600px */
 }
 
 @media only screen and (max-width: 540px) {
@@ -1125,11 +1199,28 @@ ul {
 /* de max-width tu theo thu tu giam dan   */
 @media only screen and (max-width: 500px) {
 
-    /* header bat dau */
+    /* bat dau header bat dau max-width: 500px */
+
+
+    /* bat dau cho phan search dropdown */
     .Search_Wrapper {
         border-radius: 13px;
-        width: 69%;
+        width: 64%;
+        justify-content: flex-start;
     }
+
+    .Search_SearchIcon {
+        width: 2rem;
+    }
+
+    .flex_Search_center {
+        justify-content: flex-start;
+    }
+
+    /* bat dau search dropdown  */
+
+
+    /* ket thuc cho phan search dropdown */
 
     .login_btn,
     .register_btn {
@@ -1142,6 +1233,7 @@ ul {
         padding: 9px 8px;
         transition: 0.3 ease-in-out;
     }
+
 
 
     /* header ket thuc */
@@ -1291,6 +1383,7 @@ ul {
     }
 
 
+
     .register_btn {
         border-radius: 11px;
         padding: 5px 12px;
@@ -1303,6 +1396,60 @@ ul {
         padding: 8px 16px;
     }
 
+    .Search_Wrapper {
+        border-radius: 13px;
+        width: 64%;
+        justify-content: flex-start;
+    }
+
+    .Search_SearchIcon {
+        width: 2rem;
+    }
+
+    .flex_Search_center {
+        justify-content: flex-start;
+    }
+
+    .Search_dropdown {
+        top: 5.5rem;
+        display: none;
+        position: absolute;
+        background-color: #f4e6cb;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 1.1);
+        width: 47vw;
+        border-radius: 8px;
+        z-index: 100;
+        height: auto;
+    }
+
+    .dropdown-item {
+        padding: 8px 8px;
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        border-bottom: 1px solid #eee;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .input_textbox_search input[type="checkbox"] {
+        margin-left: 5px;
+        /* Space between checkbox and its label */
+    }
+
+    .input_textbox_search label {
+        cursor: pointer;
+        /* Makes the label also clickable */
+        white-space: nowrap;
+        /* Prevents the label text from wrapping */
+    }
+
+
+    /* ket thuc search dropdown  */
     /* ket thuc cho header minwidth 600px */
     /* bat dau mobile modal login min-width: 600px */
     .modal .body_modal {
@@ -1353,7 +1500,7 @@ ul {
     .modal_Reg {
         position: fixed;
         inset: 0;
-         display: none; 
+        display: none;
         background: rgba(0, 0, 0, 0.5);
         z-index: 12;
     }
@@ -1516,6 +1663,14 @@ ul {
     }
 
     /*  ket thuc box_aside min-width 600px  */
+
+    /*  bat dau code cho nav_left_vert min-width: 600px */
+    :root {
+        --width_nav_left: 0px;
+        --width_box_aside: 0em;
+    }
+
+    /*  ket thuc code cho nav_left_vert min-width: 600px */
 
     /*  bat dau code css cho phan noi dung gom article_post &  container min-width: 600px */
     .article_post {
