@@ -1531,18 +1531,12 @@ ul {
     }
 
     .fa-solid.fa-paper-plane {
-<<<<<<< HEAD
-        color: #3a74d9; /* Màu của icon */
-        font-size: 22px; /* Kích cỡ của icon */
-        background-color: whitesmoke; /* Nền trong suốt */
-=======
         color: #3a74d9;
         /* Màu của icon */
         font-size: 22px;
         /* Kích cỡ của icon */
         background-color: transparent;
         /* Nền trong suốt */
->>>>>>> 02a5981d08c10b16731d146f1f46d7b5f055b66e
     }
 
 

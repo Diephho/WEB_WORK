@@ -367,7 +367,7 @@ body {
     /* grid-template-rows: 0.5fr 0.5fr 0.5fr; */
     gap: 10px 10px;
     justify-content: center;
-      /* display: flex; */
+    /* display: flex; */
     flex-wrap: wrap;
 }
 
@@ -851,6 +851,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -1092,6 +1093,7 @@ ul {
         right: 8%;
         bottom: 11%;
         font-size: 4.5vw;
+
     }
 
     /*  ket thuc box_aside max-width 600px  */
@@ -1103,6 +1105,127 @@ ul {
     }
 
     /*  ket thuc code cho nav_left_vert max-width: 600px */
+
+    /* bat dau code AI max-width: 600px */
+    .modal_AI {
+        inset: 0;
+        align-items: center;
+        text-align: center;
+        position: fixed;
+        display: flex;
+        z-index: 11;
+    }
+
+    .body_modal_AI {
+        position: relative;
+        margin: auto;
+        width: 29rem;
+        background-color: #f3c17a;
+        border-radius: 15px;
+        padding: 1rem;
+    }
+
+    .body_modal_AI p {
+        margin: 0 0 0 4px;
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+
+    #messageContainer {
+        height: 20rem;
+        overflow-y: auto;
+        background: #faf6f1;
+        border-radius: 5px;
+        margin-bottom: 8px;
+    }
+
+    .input_text_AI {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .box_input_text_AI {
+        flex-grow: 1;
+        /* Makes input grow to use all available space */
+        margin-right: 10px;
+        /* Spacing between input and button */
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .send_AI {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .send_AI:hover {
+        background-color: #0056b3;
+    }
+
+    /* Styles for the close button */
+    .close_btn_AI {
+        position: absolute;
+        top: 5px;
+        right: 9px;
+        background: #dbdad3;
+        border: none;
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .close_btn_AI:hover {
+        background: #a4a39e;
+    }
+
+    .close_btn_AI i {
+        color: #000;
+        font-size: 20px;
+    }
+    /*  bắt đầu phần message bettween AI and User  */
+
+    .message {
+        padding: 8px 10px;
+        margin: 5px;
+        border-radius: 10px;
+        max-width: 80%;
+        word-wrap: break-word;
+    }
+    
+    .user-message {
+        background-color: #007BFF;
+        color: white;
+        margin-left: auto; /* Đẩy tin nhắn về phía bên phải */
+        border-top-right-radius: 0; /* Làm phẳng góc trên bên phải */
+    }
+    
+    .ai-message {
+        background-color: #eeeeee;
+        color: black;
+        margin-right: auto; /* Đẩy tin nhắn về phía bên trái */
+        border-top-left-radius: 0; /* Làm phẳng góc trên bên trái */
+    }
+    
+    #messageContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    /*  kết thúc  phần message bettween AI and User  */
+
+
+    /* ket thuc code AI max-width: 600px */
 
 
     /*  bat dau code css cho phan noi dung gom article_post &  container max-width: 600px */
@@ -1339,7 +1462,7 @@ ul {
     }
 
     /* ket thuc header min-width: 600px */
-    .container{
+    .container {
         display: flex;
     }
 
@@ -1544,7 +1667,7 @@ ul {
         font-size: 1.5rem;
         position: relative;
         margin: auto;
-        width: 60%;
+        width: 50%;
         height: 96%;
         background-color: #e2d5bd;
         border-radius: 15px;
@@ -1556,7 +1679,6 @@ ul {
         height: 1.8rem;
         border-radius: 5px;
         width: 85%;
-
         justify-content: space-around;
     }
 
@@ -1569,8 +1691,7 @@ ul {
     }
 
     .modal_Post .body_modal_Post>p {
-        padding: 20px;
-        margin-top: 25px 0;
+        padding: 15px;
         border-bottom: 2px solid black;
     }
 
@@ -1598,7 +1719,6 @@ ul {
     }
 
     .box_input_content {
-
         font-size: 16px;
         width: 100%;
         padding-bottom: 15%;
@@ -1612,6 +1732,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -1835,7 +1956,128 @@ ul {
         font-size: 3vw;
     }
 
+
     /*  ket thuc box_aside min-width 600px  */
+
+    /* bat dau code AI min-width: 600px */
+    .modal_AI {
+        inset: 6% 0% 0% 31%;
+        align-items: center;
+        text-align: center;
+        position: fixed;
+        display: flex;
+        z-index: 11;
+    }
+
+    .body_modal_AI {
+        position: relative;
+        margin: auto;
+        width: 29rem;
+        background-color: #f3c17a;
+        border-radius: 15px;
+        padding: 1rem;
+    }
+
+    .body_modal_AI p {
+        margin: 0 0 0 4px;
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+
+    #messageContainer {
+        height: 20rem;
+        overflow-y: auto;
+        background: #faf6f1;
+        border-radius: 5px;
+        margin-bottom: 8px;
+    }
+
+    .input_text_AI {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .box_input_text_AI {
+        flex-grow: 1;
+        /* Makes input grow to use all available space */
+        margin-right: 10px;
+        /* Spacing between input and button */
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .send_AI {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .send_AI:hover {
+        background-color: #0056b3;
+    }
+
+    /* Styles for the close button */
+    .close_btn_AI {
+        position: absolute;
+        top: 5px;
+        right: 9px;
+        background: #dbdad3;
+        border: none;
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .close_btn_AI:hover {
+        background: #a4a39e;
+    }
+
+    .close_btn_AI i {
+        color: #000;
+        font-size: 20px;
+    }
+    /*  bắt đầu phần message bettween AI and User  */
+
+    .message {
+        padding: 8px 10px;
+        margin: 5px;
+        border-radius: 10px;
+        max-width: 80%;
+        word-wrap: break-word;
+    }
+    
+    .user-message {
+        background-color: #007BFF;
+        color: white;
+        margin-left: auto; /* Đẩy tin nhắn về phía bên phải */
+        border-top-right-radius: 0; /* Làm phẳng góc trên bên phải */
+    }
+    
+    .ai-message {
+        background-color: #eeeeee;
+        color: black;
+        margin-right: auto; /* Đẩy tin nhắn về phía bên trái */
+        border-top-left-radius: 0; /* Làm phẳng góc trên bên trái */
+    }
+    
+    #messageContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    /*  kết thúc  phần message bettween AI and User  */
+
+    /* ket thuc code AI min-width: 600px */
 
 
     /*  bat dau code cho nav_left_vert min-width: 600px */
@@ -1889,8 +2131,13 @@ ul {
     .dropdown_Noti {
         width: 50%;
     }
+
     .modal_Post .body_modal_Post {
-        width : 45vw ;
+        width: 40vw;
+    }
+
+    .modal_AI {
+        inset: 6% 0% 0% 45%;
     }
 }
 
@@ -1911,7 +2158,7 @@ ul {
     }
 
     .modal_Post .body_modal_Post {
-        width: 37vw;
+        width: 35vw;
     }
 
     /*  */
@@ -1934,6 +2181,10 @@ ul {
         font-size: 3vw;
     }
 
+    .modal_AI {
+        inset: 6% 0% 0% 54%;
+    }
+
     /*  bat dau code css cho phan noi dung gom article_post & container min-width: 992px */
     .article_post {
         width: 100vw;
@@ -1953,14 +2204,19 @@ ul {
     .dropdown_Noti {
         width: 40vw;
     }
+
+    .Add_To_Content {
+        text-align: center;
+        margin-top: 0.5rem;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .modal_Post .body_modal_Post {
-        width: 32vw;
+        width: 30vw;
     }
-   
+
 
     /*  bat dau code css cho phan noi dung gom article_post & container min-width: 1200px */
     :root {
@@ -1997,8 +2253,13 @@ ul {
         width: calc(45vw - var(--width_nav_left) - var(--width_box_aside));
         height: 17rem;
     }
+
     .modal_Post .body_modal_Post {
         width: 32vw;
+    }
+
+    .modal_AI {
+        inset: 6% 0% 0% 68%;
     }
 
     /*  ket thuc code css cho phan noi dung gom article_post & container min-width: 1200px */

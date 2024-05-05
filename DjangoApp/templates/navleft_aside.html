@@ -1,25 +1,53 @@
+
 <aside>
     <div class="box_aside">
         <button class="Click_ontop">
             <a href="#"><i class="fa-sharp fa-solid fa-arrow-up" style="color: #cf7207;"></i></a>
-            
-        </button>
-        {% if request.user.is_authenticated %}
-            <button class="Asisstant_box">
-            <i id="chat-icon" class="fa-regular fa-comments ui-draggable ui-draggable-handle" style="
-            z-index: 11111;
-            cursor: pointer;
-            color: rgb(203 65 55);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: #e7a414;
 
-            "></i>
-            </button>
-        {% endif %}
+        </button>
+        
     </div>
+
+    {% if request.user.is_authenticated %}
+
+        <button class="Asisstant_box" onclick="toggleChat()">
+            <i id="chat-icon" class="fa-regular fa-comments ui-draggable ui-draggable-handle" style="
+                z-index: 11111;
+                cursor: pointer;
+                color: rgb(203 65 55);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background-color: #e7a414;
+            "></i>
+        </button>
+
+        <div class="modal_AI">
+            <div class="body_modal_AI">
+                <p>AI Chat</p>
+                <div id="messageContainer">
+                    <div class="message ai-message">Xin chào, tôi có thể giúp gì cho bạn?</div>
+                    <div class="message user-message">Tôi cần thông tin về sản phẩm mới nhất.</div>
+                    <div class="message ai-message">Sản phẩm mới nhất của chúng tôi là...</div>
+                    <div class="message ai-message">thuốc trị bệnh xạo chó </div>
+                    <div class="message ai-message">xin mời bạn ún thử heheh</div>
+                    <div class="message user-message">cmm cuts, :]hehe </div>
+
+                </div>
+                
+                <form id="chatForm_AI" class="input_text_AI">
+                    <input type="text" id="userInput" class="box_input_text_AI" placeholder="Type a message..." />
+                    <button type="button" onclick="sendMessage()" class="send_AI">Send</button>
+                </form>
+                <button onclick="closeModal()" class="close_btn_AI">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        
+
+        {% endif %}
 
 </aside>
 <!--  xong phan ben phai -->

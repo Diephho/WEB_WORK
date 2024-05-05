@@ -71,32 +71,10 @@
                     </div>
                     <br>
                     <div class="line"></div>
-<<<<<<< HEAD
-                    <form class="user-comment" id="comment-form" method="POST">
-                        {% csrf_token %}
-                        <div class="avatar-img"><a href="{% url 'Profile' user_id=userinfo.id %}"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
-                        <input type="hidden" name="form_type" value="formcomment">
-                        <textarea class="write" name="content-comment" placeholder="Viết bình luận" ></textarea>
-                        <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC;"></i></button>
-                    </form>    
-                    <div class="list-comment" id="comments-container">
-                        {% for comment in listcomment %}
-                            {% if comment.idcommentReply is not None %}
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        let parentid="group-comment-{{comment.idcommentReply.id}}";
-                                        let parentdiv=document.getElementById(parentid);
-                                        let newdiv=document.createElement("div");
-                                        newdiv.id = "group-comment-{{comment.id}}";
-                                        {% if comment.idcommentReply.idcommentReply is None %}
-                                            newdiv.style.marginLeft="2rem";
-                                        {% endif %}
-                                        newdiv.innerHTML=`
-=======
                     {% if request.user.is_authenticated %}
                         <form class="user-comment" id="comment-form" method="POST">
                             {% csrf_token %}
-                            <div class="avatar-img"><a href="#"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
+                            <div class="avatar-img"><a href="{% url 'Profile' user_id=userinfo.id %}"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
                             <input type="hidden" name="form_type" value="formcomment">
                             <textarea class="write" name="content-comment" placeholder="Viết bình luận" ></textarea>
                             <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC;"></i></button>
@@ -138,46 +116,6 @@
                                                 initializeReplyButtons();
                                         });
                                     </script>
-                                    {% else %}
-                                        <div id="group-comment-{{comment.id}}">
->>>>>>> 02a5981d08c10b16731d146f1f46d7b5f055b66e
-                                            <div class="comment">
-                                                <div class="avatar-img">
-                                                    <a href="{% url 'Profile' user_id=comment.idUsercomment.id %}">
-                                                        <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
-                                                    </a>
-                                                </div>
-                                                <div class="summary-comment">
-<<<<<<< HEAD
-                                                    <div class="comment-name">    
-                    
-                                                        <a href="{% url 'Profile' user_id=comment.idUsercomment.id %}">
-                                                            {{comment.idUsercomment.firstname}}
-                                                            {{comment.idUsercomment.lastname}}
-                                                        </a>
-                                                        <p>{{comment.date}}</p>
-                                                    </div>
-                                                    <div class="content-comment">{{comment.content}}</div>
-                                                    <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
-=======
-                                                    <div class="comment-name">
-                                                    <a href="#">
-                                                        {{comment.idUsercomment.firstname}}
-                                                        {{comment.idUsercomment.lastname}}
-                                                    </a>
-                                                    <p>{{comment.date}}</p>
->>>>>>> 02a5981d08c10b16731d146f1f46d7b5f055b66e
-                                                </div>
-                                                <div class="content-comment">{{comment.content}}</div>
-                                                <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
-                                                
-                                            </div>
-<<<<<<< HEAD
-                                            `;
-                                            parentdiv.appendChild(newdiv);
-                                            initializeReplyButtons();
-                                        });
-                                    </script>
                                 {% else %}
                                     <div id="group-comment-{{comment.id}}">
                                         <div class="comment">
@@ -197,10 +135,9 @@
                                             <div class="content-comment">{{comment.content}}</div>
                                             <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
                                             
-=======
->>>>>>> 02a5981d08c10b16731d146f1f46d7b5f055b66e
                                         </div>
                                     </div>
+                                </div>
                                 {% endif %}
                             {% endfor %}
                         </div>
