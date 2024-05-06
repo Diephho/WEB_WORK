@@ -27,13 +27,6 @@
             <div class="body_modal_AI">
                 <p>AI Chat</p>
                 <div id="messageContainer">
-                    <div class="message ai-message">Xin chào, tôi có thể giúp gì cho bạn?</div>
-                    <div class="message user-message">Tôi cần thông tin về sản phẩm mới nhất.</div>
-                    <div class="message ai-message">Sản phẩm mới nhất của chúng tôi là...</div>
-                    <div class="message ai-message">thuốc trị bệnh xạo chó </div>
-                    <div class="message ai-message">xin mời bạn ún thử heheh</div>
-                    <div class="message user-message">cmm cuts, :]hehe </div>
-
                 </div>
                 
                 <form id="chatForm_AI" class="input_text_AI">
@@ -45,7 +38,68 @@
                 </button>
             </div>
         </div>
-        
+        <script>
+            function sendMessage(){
+                let inputtext=document.getElementById("userInput");
+                content=inputtext.value;
+                content=content.trim();
+                if(content ===''){
+                    alert('Không thể gửi nội dung rỗng.');
+                }
+                else{
+                    AddMessageUser(content);
+                    datasend={
+                        'content' : content,
+                        'form_type' : 'chatbot',
+                    };
+                    fetch('/aisuggest/',{
+                        method: 'POST',
+                    headers: {
+                        "X-CSRFToken": "{{csrf_token}}",
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(datasend)
+                    })
+                    .then(response => response.json())
+                    .then(data =>{
+                        let aicontent=data.ai_response;
+                        AddMessageAI(aicontent);
+                    })
+                    .catch(error=>{
+                        console.error('Error',error);
+                    });
+                }
+            }
+            function scrollToBottom() {
+                messageContainer.scrollTop = messageContainer.scrollHeight;
+                let inputtext=document.getElementById("userInput");
+                inputtext.value='';
+            }
+            function AddMessageAI(message) {
+                var aiMessageDiv = document.createElement("div");
+                aiMessageDiv.classList.add("message", "ai-message");
+                aiMessageDiv.textContent = message;
+                document.getElementById("messageContainer").appendChild(aiMessageDiv);
+                scrollToBottom();
+            }
+            
+            function AddMessageUser(message) {
+                var userMessageDiv = document.createElement("div");
+                userMessageDiv.classList.add("message", "user-message");
+                userMessageDiv.textContent = message;
+                document.getElementById("messageContainer").appendChild(userMessageDiv);
+                scrollToBottom();
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                {% for message in ListHistorychat %}
+                    {% if message.fromAI %}
+                        AddMessageAI(  `{{message.content}}`); 
+                    {% else %}
+                        AddMessageUser('{{message.content}}'); 
+                    {% endif %}
+                {% endfor %}
+            });
+        </script>
 
         {% endif %}
 
