@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os,json
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -140,3 +140,7 @@ MEDIA_URL = '/post_images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'post_images')
 
 LOGIN_URL = '/'
+api_key = os.environ.get('OPENAI_API_KEY')
+with open('config.json') as f:
+    config=json.load(f)
+    OPENAI_API_KEY=config.get('OPENAI_API_KEY')
