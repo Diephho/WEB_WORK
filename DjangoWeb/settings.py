@@ -140,7 +140,3 @@ MEDIA_URL = '/post_images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'post_images')
 
 LOGIN_URL = '/'
-api_key = os.environ.get('OPENAI_API_KEY')
-with open('config.json') as f:
-    config=json.load(f)
-    OPENAI_API_KEY=config.get('OPENAI_API_KEY')
