@@ -27,6 +27,13 @@
             <div class="body_modal_AI">
                 <p>AI Chat</p>
                 <div id="messageContainer">
+                    <div class="message ai-message">Xin chào, tôi có thể giúp gì cho bạn?</div>
+                    <div class="message user-message">Tôi cần thông tin về sản phẩm mới nhất.</div>
+                    <div class="message ai-message">Sản phẩm mới nhất của chúng tôi là...</div>
+                    <div class="message ai-message">thuốc trị bệnh</div>
+                    <div class="message ai-message">xin mời bạn ún thử heheh</div>
+                    <div class="message user-message">hehe </div>
+
                 </div>
                 
                 <form id="chatForm_AI" class="input_text_AI">
@@ -83,6 +90,7 @@
                 scrollToBottom();
             }
             
+            
             function AddMessageUser(message) {
                 var userMessageDiv = document.createElement("div");
                 userMessageDiv.classList.add("message", "user-message");
@@ -99,6 +107,22 @@
                     {% endif %}
                 {% endfor %}
             });
+
+            let chatbox = false;
+            function toggleChat() {
+                var chat = document.querySelector(".modal_AI");
+                chatbox = !chatbox;
+                if (chatbox) {
+                    chat.style.display = "none"; 
+                } else {
+                    chat.style.display = "flex"; 
+                }
+            }
+            
+            function closeModal() {
+                var chat = document.querySelector(".modal_AI");
+                chat.style.display = "none";
+            }
         </script>
 
         {% endif %}
