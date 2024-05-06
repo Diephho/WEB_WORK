@@ -33,3 +33,4 @@ class CustomSetPasswordChange(PasswordChangeForm):
         label="",widget=forms.PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'custom-password-input', 'placeholder': 'Please Input Password Again'}),
     )
     
+    
