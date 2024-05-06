@@ -81,6 +81,7 @@ def logoutPage(request):
 def whilelogin(request, user_id):
     if request.user.id==user_id:
         userinfo=get_object_or_404(UserInfo,id=user_id)
+        ListHistorychat=HistoryChat.objects.filter(iduser=userinfo)
         top_posts = Post.objects.order_by('-star')[:2]  # Lấy 2 bài đăng có star lớn nhất
         other_posts = Post.objects.exclude(pk__in=[post.pk for post in top_posts])  # Lấy các bài đăng không thuộc top_posts
         form = PostForm()
@@ -89,7 +90,7 @@ def whilelogin(request, user_id):
             if form.is_valid():
                 post = form.save()
                 return redirect('/post/{}/'.format(post.id))
-        return render(request,'index_login.html', {'form': form,'top_posts': top_posts, 'other_posts': other_posts, 'userinfo': userinfo})
+        return render(request,'index_login.html', {'form': form,'top_posts': top_posts, 'other_posts': other_posts, 'userinfo': userinfo,'ListHistorychat': ListHistorychat})
     else:
         if request.user.is_authenticated:
             return redirect('/usr/{}/'.format(request.user.id))
@@ -121,33 +122,53 @@ def search(request):
         searched = request.POST.get("searched", "")
         keys = Post.objects.filter(title__contains=searched)
     return render(request, 'search.html', {"searched": searched, "keys": keys, "user": user})
+
+@login_required
 def ai_suggest(request):
-    result=''
-    if request.method=="POST":
-        question=request.POST.get('question')
-        allpost= Post.objects.all()
-        trainning=""
-        for post in allpost:
-            trainning+=f'{post.title}, địa chỉ: {post.address}, đánh giá: {post.star} sao; \n'
-        question= f'Bạn tên là FoodieFriend, nhiệm vụ của bạn chỉ là tư vấn về món ăn, không trả lời câu hỏi không liên quan đến món ăn và không trả lời những câu hỏi mà bạn không rõ yêu cầu, hãy đọc câu hỏi sau: "{question}". Nếu câu hỏi hợp lệ hãy trả lời ngắn gọn và thật thông minh phù hợp với câu hỏi của người dùng dựa theo các dữ liệu sau(bạn không cần liệt kê hết, chỉ đưa ra những gì phù hợp, và đừng nhầm lẫn giữa quán ăn và quán bán nước): {trainning}. Nếu không hợp lệ thì trả lời là: Tôi là chuyên gia về món ăn, tôi không thể trả lời những câu hỏi liên quan đến món ăn. Bạn không được dùng kí tự đặc biệt trong câu trả lời.'
-        api_key = os.environ.get('OPENAI_API_KEY')
-        client = OpenAI(api_key=api_key)
-        stream = client.chat.completions.create(
-            model='gpt-3.5-turbo-0125',
-            messages=[
-                {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": question},
-                ],
-                }
-            ],
-            stream=True,
-        )
-        for chunk in stream:
-            if chunk.choices[0].delta.content is not None:
-                result += chunk.choices[0].delta.content
-    return render(request, 'ai_suggest.html', {'result': result})
+    print("vô được hàm")
+    if request.user.is_authenticated:
+        userinfo=get_object_or_404(UserInfo,id=request.user.id)
+        ListHistorychat=HistoryChat.objects.filter(iduser=userinfo)
+        if request.method=="POST":
+            data=json.loads(request.body.decode('utf-8'))
+            form_type=data.get('form_type')
+            if form_type == 'chatbot':
+                question=data.get('content')
+                newChat=HistoryChat.objects.create(iduser=userinfo)
+                newChat.content=question
+                newChat.fromAI=0
+                newChat.save()
+                allpost= Post.objects.all()
+                trainning=""
+                for post in allpost:
+                    trainning+=f'{post.title}, địa chỉ: {post.address}, đánh giá: {post.star} sao; \n'
+                question= f'Bạn tên là FoodieFriend, nhiệm vụ của bạn chỉ là tư vấn về món ăn, không trả lời câu hỏi không liên quan đến món ăn và không trả lời những câu hỏi mà bạn không rõ yêu cầu, hãy đọc câu hỏi sau: "{question}". Nếu câu hỏi hợp lệ hãy trả lời ngắn gọn và thật thông minh phù hợp với câu hỏi của người dùng dựa theo các dữ liệu sau(bạn không cần liệt kê hết, chỉ đưa ra những gì phù hợp, và đừng nhầm lẫn giữa quán ăn và quán bán nước): {trainning}. Nếu không hợp lệ thì không trả lời. Bạn không được dùng kí tự đặc biệt trong câu trả lời.'
+                api_key = os.environ.get('OPENAI_API_KEY')
+                client = OpenAI(api_key=api_key)
+                response = client.chat.completions.create(
+                    model='gpt-3.5-turbo-0125',
+                    messages=[
+                        {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": question},
+                        ],
+                        }
+                    ],
+                    stream=True,
+                )
+                ai_response = ""
+                for chunk in response:
+                    if chunk.choices[0].delta.content is not None:
+                        ai_response += chunk.choices[0].delta.content
+                newChat1=HistoryChat.objects.create(iduser=userinfo)
+                newChat1.content=ai_response
+                newChat1.fromAI=1
+                newChat1.save()
+                return JsonResponse({'ai_response': ai_response})
+        return render(request, 'index_login.html', {'ListHistorychat': ListHistorychat})
+    else:
+        return redirect('index')
 
 def profile(request, user_id):
     if request.user.id==user_id:

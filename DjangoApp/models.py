@@ -47,3 +47,10 @@ class React(models.Model):
     star= models.IntegerField(default=0)
     idpost=models.ForeignKey("Post",on_delete=models.CASCADE,null=True)
     iduser=models.ForeignKey("UserInfo",on_delete=models.CASCADE,null=True)
+    
+class HistoryChat(models.Model):
+    id=models.AutoField(primary_key=True)
+    content=models.CharField(max_length=1000)
+    iduser=models.ForeignKey("UserInfo",on_delete=models.CASCADE,null=True)
+    fromAI=models.BooleanField(default=0)
+    

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from .models import Post,UserInfo, Tag,Comment,React
+from .models import Post,UserInfo, Tag,Comment,React,HistoryChat
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):
@@ -29,3 +29,5 @@ class CustomReact(admin.ModelAdmin):
     ordering = ('id',)
     
 admin.site.register(React,CustomReact)
+
+admin.site.register(HistoryChat)
