@@ -1,3 +1,5 @@
+@import url("Styles_AI_max-width600.css") screen and (max-width: 600px);
+@import url("Styles_AI_min-width600.css") screen and (min-width: 600px);
 * {
     margin: 0;
     padding: 0;
@@ -2661,5 +2663,24 @@ ul {
     #trasua, #ansang, #thucannhanh, .container h2 {
         margin-left: 25rem;
         font-size: 25px;
+    }
+}
+
+/*  code media modal AI minwidth */
+@media only screen and (min-width: 768px) {
+    .modal_AI {
+        inset: 6% 0% 0% 45%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .modal_AI {
+        inset: 6% 0% 0% 54%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .modal_AI {
+        inset: 6% 0% 0% 68%;
     }
 }
