@@ -27,7 +27,6 @@
             <div class="body_modal_AI">
                 <p>AI Chat</p>
                 <div id="messageContainer">
-<<<<<<< HEAD
                     <div class="message ai-message">Xin chào, tôi có thể giúp gì cho bạn?</div>
                     <div class="message user-message">Tôi cần thông tin về sản phẩm mới nhất.</div>
                     <div class="message ai-message">Sản phẩm mới nhất của chúng tôi là...</div>
@@ -35,8 +34,6 @@
                     <div class="message ai-message">xin mời bạn ún thử heheh</div>
                     <div class="message user-message">hehe </div>
 
-=======
->>>>>>> 930d8349afed4674d19c10d75d9a46cc2d3c0f79
                 </div>
                 
                 <form id="chatForm_AI" class="input_text_AI">
@@ -110,6 +107,22 @@
                     {% endif %}
                 {% endfor %}
             });
+
+            let chatbox = false;
+            function toggleChat() {
+                var chat = document.querySelector(".modal_AI");
+                chatbox = !chatbox;
+                if (chatbox) {
+                    chat.style.display = "none"; 
+                } else {
+                    chat.style.display = "flex"; 
+                }
+            }
+            
+            function closeModal() {
+                var chat = document.querySelector(".modal_AI");
+                chat.style.display = "none";
+            }
         </script>
 
         {% endif %}

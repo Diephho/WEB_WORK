@@ -674,7 +674,7 @@ ul {
 .footer {
     position: relative;
     left: 0;
-    top: 0.5rem;
+    top: 35vh;
     width: 100%;
     background-color: #011548;
     padding: 1.4em 0;
