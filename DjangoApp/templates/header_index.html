@@ -75,7 +75,8 @@
             </div>
             <div class="start_opt">
                 {% load socialaccount %}
-                <a href="{% provider_login_url 'facebook' method='oauth2' %}?next=/"><img src="/static/Image_web_offical/fb_icon_login.png" alt="iconFB" /></a>
+                {% providers_media_js %}
+                <a href="{% provider_login_url 'facebook' method='js_sdk' %}"><img src="/static/Image_web_offical/fb_icon_login.png" alt="iconFB" /></a>
                 <a href="#"><img src="/static/Image_web_offical/icon_google.jpg" alt="iconGG" /></a>
                 <button type="submit" class="start_login" name="button-login">Login</button>
 
