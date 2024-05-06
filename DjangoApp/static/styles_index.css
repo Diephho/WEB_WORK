@@ -1780,6 +1780,7 @@ ul {
     }
 
     .container {
+        display: grid;
         margin-left: calc(var(--width_nav_left) + 6em);
     }
 
