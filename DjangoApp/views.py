@@ -100,8 +100,8 @@ def whilelogin(request, user_id):
             return redirect('index')
 
 def logingoogle(request):
-    checkusersocailregister=UserInfo.objects.get(id=request.user.id)
-    if(checkusersocailregister is None):
+    checkusersocailregisters=UserInfo.objects.filter(id=request.user.id)
+    if(checkusersocailregisters is None):
         social_accounts = SocialAccount.objects.filter(user=request.user)
         google_account = social_accounts.filter(provider='google').first()
         if google_account:
