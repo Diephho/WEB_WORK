@@ -82,7 +82,7 @@ def logoutPage(request):
 @login_required
 def whilelogin(request, user_id):
     checkusersocailregisters=UserInfo.objects.filter(id=request.user.id)
-    if checkusersocailregisters.exists() is True:
+    if checkusersocailregisters.exists() is False:
         social_accounts = SocialAccount.objects.filter(user=request.user)
         google_account = social_accounts.filter(provider='google').first()
         if google_account:
