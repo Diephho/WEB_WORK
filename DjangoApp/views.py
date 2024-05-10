@@ -81,6 +81,19 @@ def logoutPage(request):
 
 @login_required
 def whilelogin(request, user_id):
+    checkusersocailregisters=UserInfo.objects.filter(id=request.user.id)
+    if(checkusersocailregisters is None):
+        social_accounts = SocialAccount.objects.filter(user=request.user)
+        google_account = social_accounts.filter(provider='google').first()
+        if google_account:
+            google_given_name = google_account.extra_data.get('given_name', None)
+            google_family_name = google_account.extra_data.get('family_name', None)
+            google_picture=google_account.extra_data.get('picture', None)
+            newuser=UserInfo.objects.create()
+            newuser.firstname=google_given_name
+            newuser.lastname=google_family_name
+            newuser.avatar=google_picture
+            newuser.save()
     if request.user.id==user_id:
         userinfo=get_object_or_404(UserInfo,id=user_id)
         ListHistorychat=HistoryChat.objects.filter(iduser=userinfo)
@@ -98,22 +111,7 @@ def whilelogin(request, user_id):
             return redirect('/usr/{}/'.format(request.user.id))
         else:
             return redirect('index')
-
-def logingoogle(request):
-    checkusersocailregisters=UserInfo.objects.filter(id=request.user.id)
-    if(checkusersocailregisters is None):
-        social_accounts = SocialAccount.objects.filter(user=request.user)
-        google_account = social_accounts.filter(provider='google').first()
-        if google_account:
-            google_given_name = google_account.extra_data.get('given_name', None)
-            google_family_name = google_account.extra_data.get('family_name', None)
-            google_picture=google_account.extra_data.get('picture', None)
-            newuser=UserInfo.objects.create()
-            newuser.firstname=google_given_name
-            newuser.lastname=google_family_name
-            newuser.avatar=google_picture
-            newuser.save()
-    return redirect('/usr/{}/'.format(request.user.id))
+    
 @login_required
 def changepass(request, user_id):
     if request.user.id == user_id and request.user.is_authenticated:
