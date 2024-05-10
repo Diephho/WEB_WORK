@@ -16,6 +16,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.utils.timezone import localtime
+from allauth.socialaccount.models import SocialAccount
+
     
     
 class CustomPasswordResetView(PasswordResetView):
@@ -80,6 +82,17 @@ def logoutPage(request):
 @login_required
 def whilelogin(request, user_id):
     if request.user.id==user_id:
+        checkusersocailregister=UserInfo.objects.get(id=user_id)
+        if(checkusersocailregister is not None):
+            social_accounts = SocialAccount.objects.filter(user=request.user)
+            google_account = social_accounts.filter(provider='google').first()
+            if google_account:
+                google_given_name = google_account.extra_data.get('given_name', None)
+                google_family_name = google_account.extra_data.get('family_name', None)
+                newuser=UserInfo.objects.create()
+                newuser.firstname=google_given_name
+                newuser.lastname=google_family_name
+                newuser.save()
         userinfo=get_object_or_404(UserInfo,id=user_id)
         ListHistorychat=HistoryChat.objects.filter(iduser=userinfo)
         top_posts = Post.objects.order_by('-star')[:2]  # Lấy 2 bài đăng có star lớn nhất
