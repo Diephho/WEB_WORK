@@ -92,7 +92,7 @@ def whilelogin(request, user_id):
             newuser=UserInfo.objects.create()
             newuser.firstname=google_given_name
             newuser.lastname=google_family_name
-            newuser.avatar=google_picture
+            newuser.avatar.url=google_picture
             newuser.save()
     if request.user.id==user_id:
         userinfo=get_object_or_404(UserInfo,id=user_id)
