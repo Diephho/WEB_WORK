@@ -41,6 +41,7 @@ urlpatterns = [
     path('category/', views.category, name="category"),
     path('daily/', views.daily, name="daily"),
     path('ranking/', views.ranking, name='ranking'),
+    path('accounts/google/login/callback/', views.logingoogle,name='logingoogle'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
