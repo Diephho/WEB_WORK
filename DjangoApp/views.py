@@ -61,7 +61,7 @@ def index(request):
                 return render(request,"index.html",{'error_message_reg_2': 'Your password is invalid', 'reg_check': True,'top_posts': top_posts, 'other_posts': other_posts})
             confirm_password = request.POST.get('input-reg-repassword')
             if User.objects.filter(username=email).exists():
-                return render(request,"index.html",{'error_message_reg_1': 'Your email is exits', 'reg_check': True,'top_posts': top_posts, 'other_posts': other_posts})
+                return render(request,"index.html",{'error_message_reg_1': 'Your email is exists', 'reg_check': True,'top_posts': top_posts, 'other_posts': other_posts})
             elif password != confirm_password:
                 return render(request, 'index.html', {'error_message_reg': 'Passwords do not match', 'reg_check': True,'top_posts': top_posts, 'other_posts': other_posts})
             else: 
@@ -82,7 +82,7 @@ def logoutPage(request):
 @login_required
 def whilelogin(request, user_id):
     checkusersocailregisters=UserInfo.objects.filter(id=request.user.id)
-    if(checkusersocailregisters is None):
+    if checkusersocailregisters.exists() is True:
         social_accounts = SocialAccount.objects.filter(user=request.user)
         google_account = social_accounts.filter(provider='google').first()
         if google_account:
