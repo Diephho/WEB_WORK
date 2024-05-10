@@ -153,7 +153,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 LOGIN_REDIRECT='/usr/'
-LOGOUT_REDIRECT='/usr/'
+LOGOUT_REDIRECT='/'
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
