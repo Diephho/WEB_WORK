@@ -103,8 +103,10 @@ def whilelogin(request, user_id):
         if request.method == 'POST' and 'dangbai' in request.POST:
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                post = form.save()
-                return redirect('/post/{}/'.format(post.id))
+                post = form.save(commit=False)
+                post.idUser = userinfo
+                post.save()
+                return redirect('/post/{}/'.format(post.id))    
         return render(request,'index_login.html', {'form': form,'top_posts': top_posts, 'other_posts': other_posts, 'userinfo': userinfo,'ListHistorychat': ListHistorychat})
     else:
         if request.user.is_authenticated:

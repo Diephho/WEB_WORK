@@ -78,7 +78,6 @@
         </div>
 
 </header> <!-- xong phan header -->
-
 <!-- bat dau phan modal post -->
 <div class="modal_Post" style="display: none;">
     <div class="body_modal_Post" style="overflow-y: auto;">
@@ -98,7 +97,11 @@
             <div id="addressField" style="display: none;">
                 <input class="input_textbox" type="text" name="address" alt="Địa chỉ" placeholder="Địa chỉ" required>
             </div>
-
+            <div id="googlemapField" style="display: none;">
+                <input type="hidden" id="id_latitude" name="lat">
+                <input type="hidden" id="id_longitude" name="lng">
+                <div id="map"></div>
+            </div>
             <div class="input_textbox" id="TagField" style="display: none;">
                 <input type="checkbox" id="monChay" name="món chay" placeholder="Món chay">
                 <label for="monChay"> Món chay </label><br>
@@ -114,6 +117,7 @@
                 <a href="#" onclick="openFileExplorer()"><i class="fa-solid fa-image" style="color: #cf6d17;"></i></a>
                 <a href="#" onclick="toggleAddressField()"><i class="fa-solid fa-location-dot"
                         style="color: #cf6d17;"></i></a>
+                <a href="#" onclick="toggleGooglemapField()"><i class="fa-solid fa-earth-americas" style="color: #cf6d17;"></i></a>
                 <a href="#" onclick="toggleStarField()"><i class="fa-solid fa-star" style="color: yellow;"></i></a>
                 <a href="#" onclick="toggleTagField()"><i class="fa-solid fa-hashtag" style="color: #cf6d17;"></i></a>
             </div>
@@ -257,6 +261,15 @@
         }
     }
 
+    function toggleGooglemapField() {
+        var googlemapField = document.getElementById('googlemapField');
+        if (googlemapField.style.display === 'none') {
+            googlemapField.style.display = 'block';
+        } else {
+            googlemapField.style.display = 'none';
+        }
+    }
+
     function toggleTagField() {
         var TagField = document.getElementById('TagField');
         if (TagField.style.display === 'none') {
@@ -282,6 +295,65 @@
 
     // Gắn sự kiện onchange vào input type file
     document.getElementById('fileInput').addEventListener('change', previewImage);
+
+    var map;
+    function initMap() {
+        // Initialize Google Map
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 10.870266262909315, lng: 106.80280265263463},
+            zoom: 16
+        });
+        // Add click event listener to the map
+        google.maps.event.addListener(map, 'click', function(event) {
+            saveLocation(event.latLng); // Save location when clicking on the map
+        });
+        // Tạo marker mặc định
+        marker = new google.maps.Marker({
+            position: {lat: 10.870266262, lng: 106.802802652}, // Vị trí mặc định
+            map: map,
+            draggable: true, // Cho phép kéo marker
+            title: "Here",
+        });
+
+        // Sự kiện khi marker được kéo
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+            saveLocation(event.latLng); // Lưu vị trí mới khi marker được kéo
+        });
+    }
+
+    
+
+    // Save location when clicking on the map
+    function saveLocation(location) {
+        var latitude = location.lat();
+        var longitude = location.lng();
+        // Save latitude and longitude to hidden inputs in the form
+        document.getElementById('id_latitude').value = latitude;
+        document.getElementById('id_longitude').value = longitude;
+    }
+
+    // Sự kiện khi bản đồ được nhấp
+    google.maps.event.addListener(map, 'click', function(event) {
+        createMarker(event.latLng); // Tạo marker mới khi bản đồ được nhấp
+    });
+
+    // Function to create a new marker
+    function createMarker(location) {
+        if (marker) {
+            marker.setMap(null); // Xóa marker cũ (nếu có)
+        }
+        marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            draggable: true // Cho phép kéo marker
+        });
+        saveLocation(location); // Lưu vị trí mới khi tạo marker mới
+        // Sự kiện khi marker được kéo
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+            saveLocation(event.latLng); // Lưu vị trí mới khi marker được kéo
+        });
+    }
+
 </script>
 
 
