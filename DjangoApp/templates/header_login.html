@@ -303,10 +303,7 @@
             center: {lat: 10.870266262909315, lng: 106.80280265263463},
             zoom: 16
         });
-        // Add click event listener to the map
-        google.maps.event.addListener(map, 'click', function(event) {
-            saveLocation(event.latLng); // Save location when clicking on the map
-        });
+        
         // Tạo marker mặc định
         marker = new google.maps.Marker({
             position: {lat: 10.870266262, lng: 106.802802652}, // Vị trí mặc định
@@ -332,27 +329,6 @@
         document.getElementById('id_longitude').value = longitude;
     }
 
-    // Sự kiện khi bản đồ được nhấp
-    google.maps.event.addListener(map, 'click', function(event) {
-        createMarker(event.latLng); // Tạo marker mới khi bản đồ được nhấp
-    });
-
-    // Function to create a new marker
-    function createMarker(location) {
-        if (marker) {
-            marker.setMap(null); // Xóa marker cũ (nếu có)
-        }
-        marker = new google.maps.Marker({
-            position: location,
-            map: map,
-            draggable: true // Cho phép kéo marker
-        });
-        saveLocation(location); // Lưu vị trí mới khi tạo marker mới
-        // Sự kiện khi marker được kéo
-        google.maps.event.addListener(marker, 'dragend', function(event) {
-            saveLocation(event.latLng); // Lưu vị trí mới khi marker được kéo
-        });
-    }
 
 </script>
 

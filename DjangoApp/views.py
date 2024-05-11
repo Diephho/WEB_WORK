@@ -102,10 +102,8 @@ def whilelogin(request, user_id):
         if request.method == 'POST' and 'dangbai' in request.POST:
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                post = form.save(commit=False)
-                
+                post = form.save(commit=False)          
                 post.idUser = userinfo
-                post.image=form.cleaned_data['image'],
                 post.save()
                 selected_tags = []
 
