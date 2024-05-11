@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
+from django_resized  import ResizedImageField
 # Create your models here.
 class UserInfo(models.Model):
     id=models.IntegerField(primary_key=True)
@@ -26,7 +27,7 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     star = models.FloatField(default=0)
     address = models.CharField(max_length=100)
-    image = models.ImageField(null=True, default=None)
+    image = ResizedImageField(size=[700, 400], blank=True, null=True,quality=90)
     idUser = models.ForeignKey("UserInfo", on_delete=models.CASCADE, null= True)
     tags = models.ManyToManyField(Tag)
     numcreact=models.IntegerField(default=0)

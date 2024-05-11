@@ -21,11 +21,11 @@
                 <div class="summary-post">
                     <div class="author-name"><a href="#"><p>{{userpostinfo.firstname}} {{ userpostinfo.lastname }}</p></a></div>
                     <div class="time-post"> {{ post.date }}</div>
-                    <div class="rating-content">
+                    <div class="rating-content" id="rating-content">
                         {% if post.numcreact == 0 %}
                             Chưa có đánh giá
                         {% else %}
-                            <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                            <i class="fa-solid fa-ranking-star" style="color: #FFD43B;"></i>
                             <span><b id="starpost">{{ post.star }}</b></span>
                             <span><b>/5.0</b></span>
                         {% endif %}
@@ -168,8 +168,12 @@
                 .then(data=>{
                     star=data.star;
                     star = data.star % 1 === 0 ? data.star.toFixed(1) : data.star;
-                    starprint=document.getElementById("starpost");
-                    starprint.innerHTML=`${star}`;
+                    starprint=document.getElementById("rating-content");
+                    starprint.innerHTML=`
+                    <i class="fa-solid fa-ranking-star" style="color: #FFD43B;"></i>
+                        <span><b id="starpost">${star}</b></span>
+                        <span><b>/5.0</b></span>
+                    `;        
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -395,7 +399,7 @@
             function highlightStars(starhover) {
                 resetStars();
                 for (let i = 0; i < starhover; i++) {
-                    document.getElementsByClassName('fa-star')[i+2].classList.add('highlighted');
+                    document.getElementsByClassName('fa-star')[i+1].classList.add('highlighted');
                 }
             }
             function resetStars() {

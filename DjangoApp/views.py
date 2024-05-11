@@ -88,11 +88,10 @@ def whilelogin(request, user_id):
         if google_account:
             google_given_name = google_account.extra_data.get('given_name', None)
             google_family_name = google_account.extra_data.get('family_name', None)
-            google_picture=google_account.extra_data.get('picture', None)
             newuser=UserInfo.objects.create()
             newuser.firstname=google_given_name
             newuser.lastname=google_family_name
-            newuser.avatar.url=google_picture
+            newuser.avatar='avatar_test.jpg'
             newuser.save()
     if request.user.id==user_id:
         userinfo=get_object_or_404(UserInfo,id=user_id)
@@ -103,15 +102,34 @@ def whilelogin(request, user_id):
         if request.method == 'POST' and 'dangbai' in request.POST:
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                post = form.save()
+                title = form.cleaned_data['title']
+                content = form.cleaned_data['content']
+                address = form.cleaned_data['address']
+                image = form.cleaned_data['image']
+                tags = form.cleaned_data['tags']
+                post = Post(
+                    title=title,
+                    content=content,
+                    address=address,
+                    image=image,
+                    idUser=userinfo,
+                )
+                post.save()
+                for tag in tags:
+                    post.tags.add(tag)
                 return redirect('/post/{}/'.format(post.id))
+            else:
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        print(f"{field}: {error}")
         return render(request,'index_login.html', {'form': form,'top_posts': top_posts, 'other_posts': other_posts, 'userinfo': userinfo,'ListHistorychat': ListHistorychat})
     else:
         if request.user.is_authenticated:
             return redirect('/usr/{}/'.format(request.user.id))
         else:
             return redirect('index')
-    
+
+
 @login_required
 def changepass(request, user_id):
     if request.user.id == user_id and request.user.is_authenticated:
