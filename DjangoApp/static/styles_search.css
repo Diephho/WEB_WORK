@@ -1,5 +1,6 @@
 @import url("Styles_AI_max-width600.css") screen and (max-width: 600px);
 @import url("Styles_AI_min-width600.css") screen and (min-width: 600px);
+
 * {
     margin: 0;
     padding: 0;
@@ -28,6 +29,7 @@ html {
 }
 
 .webapp {
+    min-height: 100vh;
     position: relative;
     background-color: var(--color-page);
     margin: 0;
@@ -674,6 +676,9 @@ ul {
 }
 
 .footer {
+    /* clear: both;
+    position: fixed;
+    bottom: 0; */
     position: relative;
     left: 0;
     top: 35vh;
@@ -805,12 +810,13 @@ ul {
         align-items: center;
         justify-content: center;
     }
-    
+
     .register_btn {
         border-radius: 11px;
         padding: 5px 12px;
         margin: 5px;
     }
+
     /* header bat dau */
     .Search_Wrapper {
         border-radius: 13px;
@@ -867,12 +873,14 @@ ul {
     .flex_Search_center {
         justify-content: flex-start;
     }
+
     .login_btn {
         border-radius: 11px;
         margin: 0px 8px;
         padding: 5px 20px;
     }
-        /* ket thuc cho header maxwidth 600px */
+
+    /* ket thuc cho header maxwidth 600px */
 
     /*  bat dau mobile modal login max-width: 600px */
     .modal .body_modal {
@@ -886,12 +894,14 @@ ul {
         padding: 19px;
         margin: 30px 0;
     }
+
     .box_input_text_account,
     .box_input_text_password {
         font-size: 2rem;
         width: 26rem;
         height: 2.5rem;
     }
+
     .start_login {
         /* left: 6rem;
         top: -6rem;
@@ -899,18 +909,20 @@ ul {
         width: 20rem;
         height: 4rem;
     }
-    
+
     .start_create_new_account {
         font-size: 1.7rem;
         width: 25rem;
         height: 4rem;
         font-weight: 500;
     }
+
     .start_opt img {
         margin-top: -1rem;
         width: 4rem;
     }
-        .forgot_password {
+
+    .forgot_password {
         top: 7rem;
     }
 
@@ -924,6 +936,7 @@ ul {
         background: rgba(0, 0, 0, 0.5);
         z-index: 12;
     }
+
     .body_modal_Reg {
         top: 3rem;
         border: 20px solid rgba(179, 134, 51, 0.2);
@@ -1175,6 +1188,7 @@ ul {
         white-space: nowrap;
         /* Prevents the label text from wrapping */
     }
+
     .input_textbox_search input[type="checkbox"] {
         margin-left: 5px;
         /* Space between checkbox and its label */
@@ -1204,18 +1218,23 @@ ul {
         margin: auto;
         width: 76%;
         height: 96%;
-        background-color: #e2d5bd;
+        background-color: #fef6f0;
         border-radius: 15px;
         z-index: 123;
     }
 
     .input_textbox {
+        margin: 12px 0px;
         font-size: 15px;
         height: 1.8rem;
         border-radius: 5px;
-        width: 85%;
+        width: 100%;
 
         justify-content: space-around;
+    }
+
+    .input_textbox label {
+        margin-left: 3px;
     }
 
     .modal_Post .body_modal_Post p {
@@ -1270,6 +1289,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -1282,6 +1302,7 @@ ul {
     }
 
     .btn_post_content {
+        margin: 15px 0px;
         justify-content: center;
         display: flex;
         font-size: 17px;
@@ -1527,6 +1548,7 @@ ul {
     /*  bat dau code css cho phan noi dung gom article_post &  container max-width: 600px */
     .container {
         gap: 15px 5px;
+        display: flex;
     }
 
     .container a {
@@ -1721,6 +1743,7 @@ ul {
     .footer {
         font-size: 2rem;
     }
+
     .modal .body_modal p {
         font-size: 3rem;
         padding: 19px;
@@ -1813,6 +1836,7 @@ ul {
         align-items: center;
         justify-content: center;
     }
+
     .register_btn {
         border-radius: 11px;
         padding: 5px 12px;
@@ -1824,8 +1848,9 @@ ul {
         margin: 0px 5px;
         padding: 8px 16px;
     }
+
     /* ket thuc header min-width: 600px */
-    
+
     .Search_Wrapper {
         border-radius: 13px;
         width: 64%;
@@ -1928,6 +1953,7 @@ ul {
         height: 4rem;
         font-weight: 500;
     }
+
     .start_opt img {
         margin-top: -1rem;
         width: 4rem;
@@ -1936,6 +1962,7 @@ ul {
     .forgot_password {
         top: 7rem;
     }
+
     /* ket thuc mobile modal login min-width: 600px */
 
     /* bat dau mobile modal resgister min-width: 600px */
@@ -2055,6 +2082,7 @@ ul {
     .start_create_new_account_Reg:hover {
         background-color: #1b63bb;
     }
+
     .btn_upfile {
         display: block;
         font-weight: 500;
@@ -2184,20 +2212,24 @@ ul {
         font-size: 1.5rem;
         position: relative;
         margin: auto;
-        width: 60%;
+        width: 50%;
         height: 96%;
-        background-color: #e2d5bd;
+        background-color: #fef6f0;
         border-radius: 15px;
         z-index: 123;
     }
 
     .input_textbox {
+        margin: 1rem 0px;
         font-size: 15px;
-        height: 1.8rem;
+        height: 2.8rem;
         border-radius: 5px;
-        width: 85%;
-
+        width: 100%;
         justify-content: space-around;
+    }
+
+    .input_textbox label {
+        margin-left: 3px;
     }
 
     .modal_Post .body_modal_Post p {
@@ -2209,8 +2241,7 @@ ul {
     }
 
     .modal_Post .body_modal_Post>p {
-        padding: 20px;
-        margin-top: 25px 0;
+        padding: 15px;
         border-bottom: 2px solid black;
     }
 
@@ -2238,7 +2269,6 @@ ul {
     }
 
     .box_input_content {
-
         font-size: 16px;
         width: 100%;
         padding-bottom: 15%;
@@ -2252,6 +2282,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -2264,6 +2295,7 @@ ul {
     }
 
     .btn_post_content {
+        margin-bottom: 2rem;
         justify-content: center;
         display: flex;
         font-size: 17px;
@@ -2495,7 +2527,9 @@ ul {
     .article_post a h3 {
         font-size: 2rem;
     }
-
+    .container {
+        display: flex;
+    }
     .container a {
         width: 47vw;
         height: 23rem;
@@ -2534,8 +2568,9 @@ ul {
     .dropdown_Noti {
         width: 50%;
     }
+
     .modal_Post .body_modal_Post {
-        width : 45vw ;
+        width: 45vw;
     }
 }
 
@@ -2547,13 +2582,14 @@ ul {
         --width_nav_left: 0px;
         --width_box_aside: 0em;
     }
+
     .register_btn,
     .login_btn {
         height: 4rem;
         width: 11rem;
         margin-right: 30px;
     }
-    
+
     /*  ket thuc code cho nav_left_vert min-width: 992px */
     .avatar_user_page {
         width: 4rem;
@@ -2641,6 +2677,7 @@ ul {
     }
 
     .container {
+        display: grid ;
         margin-left: calc(var(--width_nav_left) + 6em);
     }
 
@@ -2648,6 +2685,7 @@ ul {
         width: calc(45vw - var(--width_nav_left) - var(--width_box_aside));
         height: 17rem;
     }
+
     .modal_Post .body_modal_Post {
         width: 32vw;
     }
@@ -2660,7 +2698,11 @@ ul {
         font-size: 25px;
         padding: 2rem;
     }
-    #trasua, #ansang, #thucannhanh, .container h2 {
+
+    #trasua,
+    #ansang,
+    #thucannhanh,
+    .container h2 {
         margin-left: 25rem;
         font-size: 25px;
     }
@@ -2684,3 +2726,15 @@ ul {
         inset: 6% 0% 0% 68%;
     }
 }
+
+/* bat dau code point gg map */
+#googlemapField {
+    height: 300px;
+    min-width: 100%;
+}
+
+#map {
+    height: 100%;
+}
+
+/* ket thuc code point gg map */

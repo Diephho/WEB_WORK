@@ -3047,3 +3047,15 @@ ul {
 
     /*  ket thuc code css cho phan noi dung gom article_post & container min-width: 1200px */
 }
+#googlemapField {
+    height: 300px;
+    width: 300px;
+}
+
+#map {
+    height: 100%;
+}
+
+#mapPost {
+    height: 100%;
+}

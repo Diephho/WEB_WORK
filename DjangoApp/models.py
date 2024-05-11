@@ -28,6 +28,8 @@ class Post(models.Model):
     star = models.FloatField(default=0)
     address = models.CharField(max_length=100)
     image = ResizedImageField(size=[700, 400], blank=True, null=True,quality=90)
+    lat = models.CharField(max_length=200,blank=True,null=True)
+    lng = models.CharField(max_length=200,blank=True,null=True)
     idUser = models.ForeignKey("UserInfo", on_delete=models.CASCADE, null= True)
     tags = models.ManyToManyField(Tag)
     numcreact=models.IntegerField(default=0)

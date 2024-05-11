@@ -102,26 +102,23 @@ def whilelogin(request, user_id):
         if request.method == 'POST' and 'dangbai' in request.POST:
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                title = form.cleaned_data['title']
-                content = form.cleaned_data['content']
-                address = form.cleaned_data['address']
-                image = form.cleaned_data['image']
-                tags = form.cleaned_data['tags']
-                post = Post(
-                    title=title,
-                    content=content,
-                    address=address,
-                    image=image,
-                    idUser=userinfo,
-                )
+                post = form.save(commit=False)
+                
+                post.idUser = userinfo
+                post.image=form.cleaned_data['image'],
                 post.save()
-                for tag in tags:
-                    post.tags.add(tag)
-                return redirect('/post/{}/'.format(post.id))
-            else:
-                for field, errors in form.errors.items():
-                    for error in errors:
-                        print(f"{field}: {error}")
+                selected_tags = []
+
+                # Xác định các tag được chọn từ request.POST
+                for key, value in request.POST.items():
+                    if value == 'on':  # Nếu checkbox được chọn
+                        tag_name = key.replace('_', ' ')  # Chuyển tên trường thành tên tag
+                        tag = Tag.objects.get_or_create(name=tag_name)[0]
+                        selected_tags.append(tag)
+
+                # Lưu các tag vào bài đăng
+                post.tags.add(*selected_tags)
+                return redirect('/post/{}/'.format(post.id))    
         return render(request,'index_login.html', {'form': form,'top_posts': top_posts, 'other_posts': other_posts, 'userinfo': userinfo,'ListHistorychat': ListHistorychat})
     else:
         if request.user.is_authenticated:
@@ -175,9 +172,7 @@ def ai_suggest(request):
                 for post in allpost:
                     trainning+=f'{post.title}, địa chỉ: {post.address}, đánh giá: {post.star} sao; \n'
                 question= f'Bạn tên là FoodieFriend, nhiệm vụ của bạn chỉ là tư vấn về món ăn, không trả lời câu hỏi không liên quan đến món ăn và không trả lời những câu hỏi mà bạn không rõ yêu cầu, hãy đọc câu hỏi sau: "{question}". Nếu câu hỏi hợp lệ hãy trả lời ngắn gọn và thật thông minh phù hợp với câu hỏi của người dùng dựa theo các dữ liệu sau(bạn không cần liệt kê hết, chỉ đưa ra những gì phù hợp, và đừng nhầm lẫn giữa quán ăn và quán bán nước): {trainning}. Nếu không hợp lệ thì không trả lời. Bạn không được dùng kí tự đặc biệt trong câu trả lời.'
-                api_key = None
-                with open("env","r") as file:
-                    api_key=file.read()
+                api_key = os.environ.get('OPENAI_API_KEY')
                 client = OpenAI(api_key=api_key)
                 response = client.chat.completions.create(
                     model='gpt-3.5-turbo-0125',
@@ -332,7 +327,7 @@ def category(request):
     an_sang_tag = Tag.objects.get(name="ăn sáng")
     an_sang_posts = Post.objects.filter(tags=an_sang_tag)[:9]
 
-    return render(request, 'category.html', {'mon_chay_posts': mon_chay_posts, 'thuc_an_nhanh_posts': thuc_an_nhanh_posts, 'tra_sua_post': tra_sua_posts, 'an_sang_post': an_sang_posts})
+    return render(request, 'category.html', {'mon_chay_posts': mon_chay_posts, 'thuc_an_nhanh_posts': thuc_an_nhanh_posts, 'tra_sua_posts': tra_sua_posts, 'an_sang_posts': an_sang_posts})
 
 from datetime import date
 def daily(request):

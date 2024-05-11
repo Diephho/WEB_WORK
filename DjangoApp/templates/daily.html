@@ -29,3 +29,12 @@
         {% endif %}
     </section>
 {% endblock %}
+
+{% block footer %}
+    {% if daily_posts %}
+        {% include 'footer.html' %}
+    {% else %}
+        {% include 'footerNoArticle.html' %}
+    {% endif %}
+{% endblock %}
+
