@@ -90,17 +90,8 @@ def whilelogin(request, user_id):
         if request.method == 'POST' and 'dangbai' in request.POST:
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                title = form.cleaned_data['title']
-                content = form.cleaned_data['content']
-                address = form.cleaned_data['address']
-                image = form.cleaned_data['image']
-                post = Post(
-                    title=title,
-                    content=content,
-                    address=address,
-                    image=image,
-                    idUser=userinfo,
-                )
+                post = form.save(commit=False)          
+                post.idUser = userinfo
                 post.save()
                 selected_tags = []
                 for key, value in request.POST.items():
