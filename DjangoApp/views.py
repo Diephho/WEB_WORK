@@ -81,18 +81,6 @@ def logoutPage(request):
 
 @login_required
 def whilelogin(request, user_id):
-    checkusersocailregisters=UserInfo.objects.filter(id=request.user.id)
-    if checkusersocailregisters.exists() is False:
-        social_accounts = SocialAccount.objects.filter(user=request.user)
-        google_account = social_accounts.filter(provider='google').first()
-        if google_account:
-            google_given_name = google_account.extra_data.get('given_name', None)
-            google_family_name = google_account.extra_data.get('family_name', None)
-            newuser=UserInfo.objects.create()
-            newuser.firstname=google_given_name
-            newuser.lastname=google_family_name
-            newuser.avatar='avatar_test.jpg'
-            newuser.save()
     if request.user.id==user_id:
         userinfo=get_object_or_404(UserInfo,id=user_id)
         ListHistorychat=HistoryChat.objects.filter(iduser=userinfo)
@@ -102,14 +90,19 @@ def whilelogin(request, user_id):
         if request.method == 'POST' and 'dangbai' in request.POST:
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
-                post = form.save(commit=False)
-                
-                post.idUser = userinfo
-                post.image=form.cleaned_data['image'],
+                title = form.cleaned_data['title']
+                content = form.cleaned_data['content']
+                address = form.cleaned_data['address']
+                image = form.cleaned_data['image']
+                post = Post(
+                    title=title,
+                    content=content,
+                    address=address,
+                    image=image,
+                    idUser=userinfo,
+                )
                 post.save()
                 selected_tags = []
-
-                # Xác định các tag được chọn từ request.POST
                 for key, value in request.POST.items():
                     if value == 'on':  # Nếu checkbox được chọn
                         tag_name = key.replace('_', ' ')  # Chuyển tên trường thành tên tag
@@ -118,7 +111,11 @@ def whilelogin(request, user_id):
 
                 # Lưu các tag vào bài đăng
                 post.tags.add(*selected_tags)
-                return redirect('/post/{}/'.format(post.id))    
+                return redirect('/post/{}/'.format(post.id))
+            else:
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        print(f"{field}: {error}")
         return render(request,'index_login.html', {'form': form,'top_posts': top_posts, 'other_posts': other_posts, 'userinfo': userinfo,'ListHistorychat': ListHistorychat})
     else:
         if request.user.is_authenticated:
