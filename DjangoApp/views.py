@@ -327,7 +327,7 @@ def category(request):
     an_sang_tag = Tag.objects.get(name="ăn sáng")
     an_sang_posts = Post.objects.filter(tags=an_sang_tag)[:9]
 
-    return render(request, 'category.html', {'mon_chay_posts': mon_chay_posts, 'thuc_an_nhanh_posts': thuc_an_nhanh_posts, 'tra_sua_post': tra_sua_posts, 'an_sang_post': an_sang_posts})
+    return render(request, 'category.html', {'mon_chay_posts': mon_chay_posts, 'thuc_an_nhanh_posts': thuc_an_nhanh_posts, 'tra_sua_posts': tra_sua_posts, 'an_sang_posts': an_sang_posts})
 
 from datetime import date
 def daily(request):
