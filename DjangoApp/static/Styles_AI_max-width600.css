@@ -4,7 +4,8 @@
     align-items: center;
     text-align: center;
     position: fixed;
-    display: flex;
+    /* display: flex; */
+    display: none;
     z-index: 11;
 }
 

@@ -1206,18 +1206,23 @@ ul {
         margin: auto;
         width: 76%;
         height: 96%;
-        background-color: #e2d5bd;
+        background-color: #fef6f0;
         border-radius: 15px;
         z-index: 123;
     }
 
     .input_textbox {
+        margin: 12px 0px;
         font-size: 15px;
         height: 1.8rem;
         border-radius: 5px;
-        width: 85%;
+        width: 100%;
 
         justify-content: space-around;
+    }
+
+    .input_textbox label {
+        margin-left: 3px;
     }
 
     .modal_Post .body_modal_Post p {
@@ -1272,6 +1277,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -1284,6 +1290,7 @@ ul {
     }
 
     .btn_post_content {
+        margin: 15px 0px;
         justify-content: center;
         display: flex;
         font-size: 17px;
@@ -1326,7 +1333,6 @@ ul {
     }
 
     /* ket thuc cho modal post max-width : 600px */
-
     .btn_upfile {
         display: block;
         font-weight: 500;
@@ -2186,20 +2192,24 @@ ul {
         font-size: 1.5rem;
         position: relative;
         margin: auto;
-        width: 60%;
+        width: 50%;
         height: 96%;
-        background-color: #e2d5bd;
+        background-color: #fef6f0;
         border-radius: 15px;
         z-index: 123;
     }
 
     .input_textbox {
+        margin: 1rem 0px;
         font-size: 15px;
-        height: 1.8rem;
+        height: 2.8rem;
         border-radius: 5px;
-        width: 85%;
-
+        width: 100%;
         justify-content: space-around;
+    }
+
+    .input_textbox label {
+        margin-left: 3px;
     }
 
     .modal_Post .body_modal_Post p {
@@ -2211,8 +2221,7 @@ ul {
     }
 
     .modal_Post .body_modal_Post>p {
-        padding: 20px;
-        margin-top: 25px 0;
+        padding: 15px;
         border-bottom: 2px solid black;
     }
 
@@ -2240,7 +2249,6 @@ ul {
     }
 
     .box_input_content {
-
         font-size: 16px;
         width: 100%;
         padding-bottom: 15%;
@@ -2254,6 +2262,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -2266,6 +2275,7 @@ ul {
     }
 
     .btn_post_content {
+        margin-bottom: 2rem;
         justify-content: center;
         display: flex;
         font-size: 17px;
@@ -2909,3 +2919,14 @@ ul {
         inset: 6% 0% 0% 68%;
     }
 }
+
+/* bat dau code point gg map */
+#googlemapField {
+    height: 300px;
+    min-width: 100% ;
+}
+#map {
+    height: 100%;
+}
+
+/* ket thuc code point gg map */
