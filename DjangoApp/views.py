@@ -170,9 +170,7 @@ def ai_suggest(request):
                 for post in allpost:
                     trainning+=f'{post.title}, địa chỉ: {post.address}, đánh giá: {post.star} sao; \n'
                 question= f'Bạn tên là FoodieFriend, nhiệm vụ của bạn chỉ là tư vấn về món ăn, không trả lời câu hỏi không liên quan đến món ăn và không trả lời những câu hỏi mà bạn không rõ yêu cầu, hãy đọc câu hỏi sau: "{question}". Nếu câu hỏi hợp lệ hãy trả lời ngắn gọn và thật thông minh phù hợp với câu hỏi của người dùng dựa theo các dữ liệu sau(bạn không cần liệt kê hết, chỉ đưa ra những gì phù hợp, và đừng nhầm lẫn giữa quán ăn và quán bán nước): {trainning}. Nếu không hợp lệ thì không trả lời. Bạn không được dùng kí tự đặc biệt trong câu trả lời.'
-                api_key = None
-                with open("env","r") as file:
-                    api_key=file.read()
+                api_key = os.environ.get('OPENAI_API_KEY')
                 client = OpenAI(api_key=api_key)
                 response = client.chat.completions.create(
                     model='gpt-3.5-turbo-0125',
