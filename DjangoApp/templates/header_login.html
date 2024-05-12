@@ -1,7 +1,7 @@
 <header>
     <div></div>
     <div class="navbar_Wrapper_fulltab">
-        <button onclick="toggleSidebar()" class="tab_opt" name="btnsidebar">
+        <button class="Search_SearchIcon" style="display: block" type="submit" name="btnSearch" aria-label="Search">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
@@ -23,7 +23,8 @@
             <div>
                 <form class="Search_Wrapper flex_Search_center" role="search" method=POST action="{% url 'search' %}">
                     {% csrf_token %}
-                    <button class="Search_SearchIcon" name="Search" style="display: block" type="submit">
+                    <button class="Search_SearchIcon" style="display: block" type="submit" name="Search" aria-label="Search">
+
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
                                 <path fill="#da9a72"
