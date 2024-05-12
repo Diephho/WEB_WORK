@@ -1,7 +1,7 @@
 <header>
     <div></div>
     <div class="navbar_Wrapper_fulltab">
-        <button onclick="toggleSidebar()" class="tab_opt">
+        <button onclick="toggleSidebar()" class="tab_opt" name="btnsidebar">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
@@ -9,20 +9,20 @@
             </svg>
         </button>
 
-        <div class="navbar_logo_web">
+        <h1 class="navbar_logo_web">
             <a href="/">
                 <img src="/static/Image_web_offical/LOGO_OFFICIAL.jpg" alt="logoweb" />
             </a>
-        </div>
-        <h3 class="navbar_logo_Heading">
+        </h1>
+        <h2 class="navbar_logo_Heading">
             Ăn sập làng<br />
             Đại học
-        </h3>
+        </h2>
         <div class="navbar_body flex_Search_center">
             <div>
                 <form class="Search_Wrapper flex_Search_center" role="search" method=POST action = "{% url 'search' %}">
                     {% csrf_token %}
-                    <button class="Search_SearchIcon" style="display: block" type="submit">
+                    <button class="Search_SearchIcon" style="display: block" type="submit" name="btnSearch">
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20"
                                 height="20">
@@ -84,7 +84,7 @@
                 </button>
             </div>
         </form>
-        <button onclick="CLose_login()" class="close_btn">
+        <button onclick="CLose_login()" class="close_btn" name="btnClose">
             <i class="fa-solid fa-xmark"></i>
         </button>
     </div>

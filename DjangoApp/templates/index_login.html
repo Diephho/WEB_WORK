@@ -11,7 +11,7 @@
 {% block content %}
 <!--  bat dau code cho phan noi dung  -->
 <div class="article_post">
-    {% for post in top_posts %}
+    {% for post in top_posts %} 
     <a href="{% url 'post' post_id=post.id %}">
         {% if request.user_agent.is_mobile %}
         <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
@@ -24,6 +24,7 @@
 </div>
 <!-- Các trường dữ liệu khác của bài đăng -->
 <section class="container">
+    <h1></h1>
     {% for post in other_posts %}
     <a href="{% url 'post' post_id=post.id %}">
         {% if request.user_agent.is_mobile %}
