@@ -1,2 +1,4 @@
 user-agent: *
 disallow: /admin/
+
+sitemap: https://ansaplangdaihoc.azurewebsites.net/sitemap.xml
