@@ -1417,27 +1417,36 @@ ul {
     /*  bat dau code css cho phan noi dung max-width : 600px */
     /* Bắt đầu nội dung*/
     .container {
-        margin-top: calc(var(--height_header) + 2em);
-        width: 100vw;
-        height: auto;
+        margin-top: calc(var(--height_header) + 3em);
+        margin-left: 1rem;
+        width: 90%;
+        height: 100%;
     }
 
     .container-left {
         display: flex;
         flex-wrap: wrap;
         color: #000;
-        background-color: #e2ab76;
+        background-color: #f8d8b8;
         border-radius: 8px;
         box-shadow: 10px 10px 5px 0px rgba(154, 148, 148, 0.75);
     }
+    
+    #map {
+        height: 100%;
+    }
+    
+    #mapPost {
 
+        height: 25rem;
+    }
     .post-item {
         position: relative;
         font-size: 1.5rem;
         font-weight: 400;
         text-align: left;
         width: 100%;
-        height: 100%;
+        height: 90%;
     }
 
     .author {
@@ -1449,6 +1458,7 @@ ul {
 
     .avatar-img img:first-child {
         margin: 1rem;
+        border: 3px solid #f0ac31;
         border-radius: 50%;
         width: 3rem;
         height: 3rem;
@@ -1466,7 +1476,7 @@ ul {
     }
 
     .title-content {
-        margin-bottom: 1rem;
+        margin: 1rem 0px;
         font-weight: 600;
         font-size: 2.5rem;
     }
@@ -1484,7 +1494,7 @@ ul {
         font-weight: 600;
         text-decoration: none;
         align-items: center;
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
 
     .rating-content {
@@ -1514,10 +1524,67 @@ ul {
     }
 
     .user-comment {
-        justify-content: space-around;
-        align-items: center;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-top: 1rem;
+    }
+    
+    .user-comment .first-child,
+    .user-comment .second-child {
+        flex-grow: 1; /* Căn chỉnh kích thước của các phần tử */
+        flex-shrink: 1;
+    }
+    
+    .user-comment .third-child {
+        flex-shrink: 0; /* Không co lại phần tử cuối cùng */
+        margin-left: auto; /* Đẩy phần tử cuối cùng sang bên phải */
+    }
+    
+    .user-comment-reply{
+        display: flex ;
+
+    }
+    .user-comment-reply {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    
+    .user-comment-reply .first-child,
+    .user-comment-reply .second-child {
+        flex-grow: 1; /* Căn chỉnh kích thước của các phần tử */
+        flex-shrink: 1;
+    }
+    
+    .user-comment-reply .third-child {
+        flex-shrink: 0; /* Không co lại phần tử cuối cùng */
+        margin-left: auto; /* Đẩy phần tử cuối cùng sang bên phải */
+    }
+    .reply-comment{
+        cursor: pointer;
+    }
+    .reply-comment:hover {
+        color :red ;
+    }
+    
+    .show_map{
+        cursor: pointer;
+        background-color: rgb(55, 55, 215);
+        transition: 0.3 ease-in-out;
+        border-radius: 5px;
+        color : #fefefe ;
+        font-size: 12px;
+        font-weight: 500;
+        text-align: center;
+
+        margin: 1rem 0; 
+        width : 6rem ;
+        height: 3rem ;
+    }
+    .show_map:active{
+        background-color: red;
     }
 
     /*  */
@@ -1525,18 +1592,15 @@ ul {
         resize: none;
         background-color: #f4f5f8;
         height: 3rem;
-        width: 80%;
+        width: 70%;
         font-size: 1.3rem;
         border-radius: 4px;
     }
 
     .fa-solid.fa-paper-plane {
         color: #3a74d9;
-        /* Màu của icon */
         font-size: 22px;
-        /* Kích cỡ của icon */
-        background-color: transparent;
-        /* Nền trong suốt */
+        background-color: #f8d8b8;;
     }
 
 
@@ -1566,7 +1630,7 @@ ul {
 
     .comment-name a {
         margin-right: 4rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         text-decoration: none;
         color: rgb(90, 115, 198);
     }
@@ -1578,6 +1642,7 @@ ul {
     }
 
     .content-comment {
+        font-size : 16px;
         width: 100%;
         max-height: 200px;
         overflow-y: auto;
@@ -1668,8 +1733,37 @@ ul {
         color: gray;
     }
 
+    .line {
+        border: solid blue 1px;
+    }
+
+    .post-content .active {
+        display: block;
+        margin-top: 1rem;
+    }
+
+    .like .fa-star {
+        color: #d7c7a6;
+        /* màu mặc định */
+        margin: 0px 10px;
+        cursor: pointer;
+    }
+
+    .like .fa-star.highlighted,
+    .like .fa-star.selected {
+        color: yellow;
+        /* màu vàng khi hover hoặc chọn */
+    }
+
+
+    .likeandcomment .slcomment {
+        float: right;
+    }
 
     /*  ket thuc code css cho phan noi dung  */
+
+
+
     .collum_foot h4 {
         font-size: 1.5rem;
     }
@@ -2632,27 +2726,36 @@ ul {
     /*  bat dau code css cho phan noi dung min-width : 600px */
     /* Bắt đầu nội dung*/
     .container {
-        margin: calc(var(--height_header) + 2em) auto auto auto;
-        width: 70vw;
-        height: auto;
+        margin-top: calc(var(--height_header) + 0em);
+        margin-left: 1rem;
+        width: 90%;
+        height: 100%;
     }
 
     .container-left {
         display: flex;
         flex-wrap: wrap;
-        color: #135de5;
-        background-color: #fff;
+        color: #000;
+        background-color: #f8d8b8;
         border-radius: 8px;
         box-shadow: 10px 10px 5px 0px rgba(154, 148, 148, 0.75);
     }
+    
+    #map {
+        height: 100%;
+    }
+    
+    #mapPost {
 
+        height: 25rem;
+    }
     .post-item {
         position: relative;
         font-size: 1.5rem;
         font-weight: 400;
         text-align: left;
         width: 100%;
-        height: 100%;
+        height: 90%;
     }
 
     .author {
@@ -2664,6 +2767,7 @@ ul {
 
     .avatar-img img:first-child {
         margin: 1rem;
+        border: 3px solid #f0ac31;
         border-radius: 50%;
         width: 3rem;
         height: 3rem;
@@ -2681,7 +2785,7 @@ ul {
     }
 
     .title-content {
-        margin-bottom: 1rem;
+        margin: 1rem 0px;
         font-weight: 600;
         font-size: 2.5rem;
     }
@@ -2699,7 +2803,7 @@ ul {
         font-weight: 600;
         text-decoration: none;
         align-items: center;
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
 
     .rating-content {
@@ -2712,7 +2816,7 @@ ul {
 
 
     .line {
-        border: solid blue 1px;
+        border: solid black 1px;
     }
 
     .post-content .active {
@@ -2720,29 +2824,75 @@ ul {
         margin-top: 1rem;
     }
 
-    .like .fa-star {
-        color: #d7c7a6;
-        /* màu mặc định */
-        margin: 0px 10px;
+    .like:hover {
         cursor: pointer;
     }
-
-    .like .fa-star.highlighted,
-    .like .fa-star.selected {
-        color: yellow;
-        /* màu vàng khi hover hoặc chọn */
-    }
-
 
     .likeandcomment .slcomment {
         float: right;
     }
 
     .user-comment {
-        justify-content: space-around;
-        align-items: center;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-top: 1rem;
+    }
+    
+    .user-comment .first-child,
+    .user-comment .second-child {
+        flex-grow: 1; /* Căn chỉnh kích thước của các phần tử */
+        flex-shrink: 1;
+    }
+    
+    .user-comment .third-child {
+        flex-shrink: 0; /* Không co lại phần tử cuối cùng */
+        margin-left: auto; /* Đẩy phần tử cuối cùng sang bên phải */
+    }
+    
+    .user-comment-reply{
+        display: flex ;
+
+    }
+    .user-comment-reply {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    
+    .user-comment-reply .first-child,
+    .user-comment-reply .second-child {
+        flex-grow: 1; /* Căn chỉnh kích thước của các phần tử */
+        flex-shrink: 1;
+    }
+    
+    .user-comment-reply .third-child {
+        flex-shrink: 0; /* Không co lại phần tử cuối cùng */
+        margin-left: auto; /* Đẩy phần tử cuối cùng sang bên phải */
+    }
+    .reply-comment{
+        cursor: pointer;
+    }
+    .reply-comment:hover {
+        color :red ;
+    }
+    
+    .show_map {
+        cursor: pointer;
+        background-color: rgb(55, 55, 215);
+        transition: 0.3 ease-in-out;
+        border-radius: 5px;
+        color: #fefefe;
+        font-size: 15px;
+        font-weight: 600;
+        text-align: center;
+        margin: 1rem 0;
+        width: 12rem;
+        height: 3rem;
+    }
+    .show_map:active{
+        background-color: red;
     }
 
     /*  */
@@ -2750,18 +2900,15 @@ ul {
         resize: none;
         background-color: #f4f5f8;
         height: 3rem;
-        width: 80%;
+        width: 70%;
         font-size: 1.3rem;
         border-radius: 4px;
     }
 
     .fa-solid.fa-paper-plane {
         color: #3a74d9;
-        /* Màu của icon */
         font-size: 22px;
-        /* Kích cỡ của icon */
-        background-color: transparent;
-        /* Nền trong suốt */
+        background-color: #f8d8b8;;
     }
 
 
@@ -2791,7 +2938,7 @@ ul {
 
     .comment-name a {
         margin-right: 4rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         text-decoration: none;
         color: rgb(90, 115, 198);
     }
@@ -2803,6 +2950,7 @@ ul {
     }
 
     .content-comment {
+        font-size : 16px;
         width: 100%;
         max-height: 200px;
         overflow-y: auto;
@@ -2892,10 +3040,37 @@ ul {
         font-weight: 500;
         color: gray;
     }
+    .line {
+        border: solid blue 1px;
+    }
+
+    .post-content .active {
+        display: block;
+        margin-top: 1rem;
+    }
+
+    .like .fa-star {
+        color: #d7c7a6;
+        /* màu mặc định */
+        margin: 0px 10px;
+        cursor: pointer;
+    }
+
+    .like .fa-star.highlighted,
+    .like .fa-star.selected {
+        color: yellow;
+        /* màu vàng khi hover hoặc chọn */
+    }
 
 
-    /*  ket thuc code css cho phan noi dung min-width : 600px */
+    .likeandcomment .slcomment {
+        float: right;
+    }
 
+
+    /*  ket thuc code css cho phan noi dung  */
+
+    
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -3046,16 +3221,4 @@ ul {
     }
 
     /*  ket thuc code css cho phan noi dung gom article_post & container min-width: 1200px */
-}
-#googlemapField {
-    height: 300px;
-    width: 300px;
-}
-
-#map {
-    height: 100%;
-}
-
-#mapPost {
-    height: 100%;
 }
