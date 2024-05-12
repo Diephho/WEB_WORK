@@ -1,7 +1,7 @@
 <header>
     <div></div>
     <div class="navbar_Wrapper_fulltab">
-        <button onclick="toggleSidebar()" class="tab_opt" name="btnsidebar">
+        <button onclick="toggleSidebar()" class="tab_opt" name="btnsidebar" aria-label="Toggle Sidebar">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
@@ -11,7 +11,7 @@
 
         <h1 class="navbar_logo_web">
             <a href="/">
-                <img src="/static/Image_web_offical/LOGO_OFFICIAL.jpg" alt="logoweb" />
+                <img src="/static/Image_web_offical/LOGO_OFFICIAL.webp" alt="logoweb" />
             </a>
         </h1>
         <h2 class="navbar_logo_Heading">
@@ -23,7 +23,7 @@
                 <form class="Search_Wrapper flex_Search_center" role="search" method=POST action = "{% url 'search' %}">
                     {% csrf_token %}
                     <button class="Search_SearchIcon" style="display: block" type="submit" name="btnSearch">
-                        <a href="#">
+                        <a href="#" aria-label="Search">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20"
                                 height="20">
                                 <path fill="#da9a72"
@@ -75,8 +75,8 @@
             <div class="start_opt">
                 {% load socialaccount %}
                 {% providers_media_js %}
-                <a href="{% provider_login_url 'facebook' method='js_sdk' %}"><img src="/static/Image_web_offical/fb_icon_login.png" alt="iconFB" /></a>
-                <a href="{% provider_login_url 'google'%}"><img src="/static/Image_web_offical/icon_google.jpg" alt="iconGG" /></a>
+                <a href=""><img src="/static/Image_web_offical/fb_icon_login.webp" alt="iconFB" /></a>
+                <a href=""><img src="/static/Image_web_offical/icon_google.webp" alt="iconGG" /></a>
                 <button type="submit" class="start_login" name="button-login">Login</button>
 
                 <button onclick="handleButtonClick()" class="start_create_new_account">
@@ -84,7 +84,7 @@
                 </button>
             </div>
         </form>
-        <button onclick="CLose_login()" class="close_btn" name="btnClose">
+        <button onclick="CLose_login()" class="close_btn" name="btnClose" aria-label="Close Modal">
             <i class="fa-solid fa-xmark"></i>
         </button>
     </div>
