@@ -1,4 +1,3 @@
-
 @import url("Styles_AI_max-width600.css") screen and (max-width: 600px);
 @import url("Styles_AI_min-width600.css") screen and (min-width: 600px);
 
@@ -395,77 +394,6 @@ button {
     width: calc(100% - 2rem);
 }
 
-/* bat dau code cho phan container  */
-.container {
-    margin-top: 1rem;
-    margin-left: calc(var(--width_nav_left));
-    margin-right: var(--width_box_aside);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    /* grid-template-rows: 0.5fr 0.5fr 0.5fr; */
-    gap: 10px 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.container a {
-    display: block;
-    position: relative;
-    /* border: 2px solid black; */
-    width: 31rem;
-    height: 17rem;
-    /*  chu y la neu de don vi la % thi height cac cells se tang dan theo moi hang */
-}
-
-.container a::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    z-index: 1;
-}
-
-
-.container img {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    object-fit: cover;
-    border-radius: 15px;
-
-}
-
-.container a h3,
-.container a p {
-    position: absolute;
-    margin: 15px;
-    font-family: inherit;
-    color: white;
-    text-decoration: none;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: calc(100% - 30px);
-    z-index: 2;
-}
-
-.container a h3 {
-    font-size: 2.5em;
-    bottom: 23%;
-
-}
-
-.container a p {
-    font-size: 1.5em;
-    bottom: 0;
-}
-
-
-/*  ket thuc code css cho phan noi dung  */
 
 
 /* bat dầu code cho nút form đăng nhập  */
@@ -758,7 +686,6 @@ ul {
 
 
 
-
 /*  =                   =               =           thick media  =          =           =       */
 
 
@@ -807,12 +734,13 @@ ul {
         align-items: center;
         justify-content: center;
     }
-    
+
     .register_btn {
         border-radius: 11px;
         padding: 5px 12px;
         margin: 5px;
     }
+
     /* header bat dau */
     .Search_Wrapper {
         border-radius: 13px;
@@ -869,12 +797,14 @@ ul {
     .flex_Search_center {
         justify-content: flex-start;
     }
+
     .login_btn {
         border-radius: 11px;
         margin: 0px 8px;
         padding: 5px 20px;
     }
-        /* ket thuc cho header maxwidth 600px */
+
+    /* ket thuc cho header maxwidth 600px */
 
     /*  bat dau mobile modal login max-width: 600px */
     .modal .body_modal {
@@ -888,12 +818,14 @@ ul {
         padding: 19px;
         margin: 30px 0;
     }
+
     .box_input_text_account,
     .box_input_text_password {
         font-size: 2rem;
         width: 26rem;
         height: 2.5rem;
     }
+
     .start_login {
         /* left: 6rem;
         top: -6rem;
@@ -901,18 +833,20 @@ ul {
         width: 20rem;
         height: 4rem;
     }
-    
+
     .start_create_new_account {
         font-size: 1.7rem;
         width: 25rem;
         height: 4rem;
         font-weight: 500;
     }
+
     .start_opt img {
         margin-top: -1rem;
         width: 4rem;
     }
-        .forgot_password {
+
+    .forgot_password {
         top: 7rem;
     }
 
@@ -926,6 +860,7 @@ ul {
         background: rgba(0, 0, 0, 0.5);
         z-index: 12;
     }
+
     .body_modal_Reg {
         top: 3rem;
         border: 20px solid rgba(179, 134, 51, 0.2);
@@ -1177,6 +1112,7 @@ ul {
         white-space: nowrap;
         /* Prevents the label text from wrapping */
     }
+
     .input_textbox_search input[type="checkbox"] {
         margin-left: 5px;
         /* Space between checkbox and its label */
@@ -1532,36 +1468,6 @@ ul {
     /*  ket thuc code cho nav_left_vert max-width: 600px */
 
 
-    /*  bat dau code css cho phan noi dung gom article_post &  container max-width: 600px */
-    .container {
-        gap: 15px 5px;
-    }
-
-    .container a {
-        width: 90vw;
-        height: 23rem;
-    }
-
-
-    .article_post {
-        margin: calc(var(--height_header) + 1.9em) calc(var(--width_box_aside)) 0 calc(var(--width_nav_left));
-        align-items: center;
-        justify-content: space-around;
-        display: flex;
-        position: relative;
-        width: 96vw;
-        height: 26rem;
-        /* border: 2px solid red; */
-        flex-wrap: wrap;
-        /* justify-content: center; */
-    }
-
-    .article_post a h3 {
-        font-size: 15px;
-    }
-
-    /*  ket thuc code css cho phan noi dung gom article_post & container max-width: 600px */
-
     .collum_foot h4 {
         font-size: 1.5rem;
     }
@@ -1717,6 +1623,7 @@ ul {
     /* ket thuc box_aside */
 
     /* bat dau footer max-width: 500px */
+
     .collum_foot h4 {
         font-size: 1.5rem;
     }
@@ -1729,6 +1636,8 @@ ul {
     .footer {
         font-size: 2rem;
     }
+
+
     .modal .body_modal p {
         font-size: 3rem;
         padding: 19px;
@@ -1821,6 +1730,7 @@ ul {
         align-items: center;
         justify-content: center;
     }
+
     .register_btn {
         border-radius: 11px;
         padding: 5px 12px;
@@ -1832,8 +1742,9 @@ ul {
         margin: 0px 5px;
         padding: 8px 16px;
     }
+
     /* ket thuc header min-width: 600px */
-    
+
     .Search_Wrapper {
         border-radius: 13px;
         width: 64%;
@@ -1936,6 +1847,7 @@ ul {
         height: 4rem;
         font-weight: 500;
     }
+
     .start_opt img {
         margin-top: -1rem;
         width: 4rem;
@@ -1944,6 +1856,7 @@ ul {
     .forgot_password {
         top: 7rem;
     }
+
     /* ket thuc mobile modal login min-width: 600px */
 
     /* bat dau mobile modal resgister min-width: 600px */
@@ -2063,6 +1976,7 @@ ul {
     .start_create_new_account_Reg:hover {
         background-color: #1b63bb;
     }
+
     .btn_upfile {
         display: block;
         font-weight: 500;
@@ -2497,25 +2411,11 @@ ul {
     }
 
     /*  ket thuc code cho nav_left_vert min-width: 600px */
-
-    /*  bat dau code css cho phan noi dung gom article_post &  container min-width: 600px */
-    .article_post {
-        width: 100vw;
-
+    /* bat dau footer */
+    .footer{
+        margin-top : 22rem;
     }
-
-    .article_post a h3 {
-        font-size: 2rem;
-    }
-
-    .container a {
-        width: 47vw;
-        height: 23rem;
-    }
-
-    /*  ket thuc code css cho phan noi dung gom article_post & container min-width: 600px */
-
-
+    /* ket thuc footer */
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -2525,11 +2425,6 @@ ul {
     .Search_Wrapper {
         border-radius: 13px;
         width: 36vw;
-    }
-
-    .container a {
-        width: 31vw;
-        height: 23rem;
     }
 
     /* ket thuc header min-width 768px */
@@ -2546,8 +2441,9 @@ ul {
     .dropdown_Noti {
         width: 50%;
     }
+
     .modal_Post .body_modal_Post {
-        width : 45vw ;
+        width: 45vw;
     }
 }
 
@@ -2559,13 +2455,14 @@ ul {
         --width_nav_left: 0px;
         --width_box_aside: 0em;
     }
+
     .register_btn,
     .login_btn {
         height: 4rem;
         width: 11rem;
         margin-right: 30px;
     }
-    
+
     /*  ket thuc code cho nav_left_vert min-width: 992px */
     .avatar_user_page {
         width: 4rem;
@@ -2597,22 +2494,6 @@ ul {
         font-size: 3vw;
     }
 
-    /*  bat dau code css cho phan noi dung gom article_post & container min-width: 992px */
-    .article_post {
-        width: 100vw;
-        height: 26rem;
-    }
-
-    .article_post a h3 {
-        font-size: 3rem;
-    }
-
-    .container a {
-        width: 31vw;
-        height: 23rem;
-    }
-
-    /*  ket thuc code css cho phan noi dung gom article_post & container min-width: 992px */
     .dropdown_Noti {
         width: 40vw;
     }
@@ -2624,8 +2505,6 @@ ul {
         width: 32vw;
     }
 
-
-    /*  bat dau code css cho phan noi dung gom article_post & container min-width: 1200px */
     :root {
         --width_nav_left: 15em;
         --width_box_aside: 15em;
@@ -2646,25 +2525,11 @@ ul {
         font-size: 2.5vw;
     }
 
-    .article_post {
-        width: calc(95vw - var(--width_nav_left) - var(--width_box_aside));
-        height: 26rem;
-        margin: calc(var(--height_header) + 1.9em) calc(var(--width_box_aside)) 0 calc(var(--width_nav_left) + 6em);
-    }
 
-    .container {
-        margin-left: calc(var(--width_nav_left) + 6em);
-    }
-
-    .container a {
-        width: calc(45vw - var(--width_nav_left) - var(--width_box_aside));
-        height: 17rem;
-    }
     .modal_Post .body_modal_Post {
         width: 32vw;
     }
 
-    /*  ket thuc code css cho phan noi dung gom article_post & container min-width: 1200px */
     .result_text,
     #monchay {
         margin-top: 6rem;
@@ -2672,234 +2537,16 @@ ul {
         font-size: 25px;
         padding: 2rem;
     }
-    #trasua, #ansang, #thucannhanh, .container h2 {
+
+    #trasua,
+    #ansang,
+    #thucannhanh,
+    .container h2 {
         margin-left: 25rem;
         font-size: 25px;
     }
 }
 
-
-/*bat dau noi dung*/
-.container{
-    margin-top: 8rem;
-    margin-left:25rem;
-    display: grid;
-    grid-template-columns: 23% 60%;
-}
-.avatar{
-    border-right: 1px solid #000;
-    margin-left: -6rem;
-}
-@media (max-width : 1400px) {
-    .avatar{
-        display: none;
-    }
-}
-@media (max-width:1000px){
-    .account-profile{
-        align-items: center;
-        justify-content: center;
-    }
-}
-.avatar .name{
-    font-size: 25px;
-    font-weight: 700;
-    margin-left: 2rem;
-}
-.avatar .email{
-    font-size: 20px;
-    margin-left: 2rem;
-    color: rgb(139, 133, 133);
-}
-.account-profile{
-    margin-left: 25rem;
-}
-.preview-image{
-    position: relative;
-    margin-left: 0rem;
-    border-radius: 50%;
-    width: 18rem;
-    height: 18rem;
-    border: 4px solid rgb(248, 174, 71);
-    z-index: 0;
-
-}
-.preview-image img{
-   border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    object-fit: cover;
-}
-.container div{
-    margin-top: 0.5rem;
-}
-.container label{
-    font-size: 17px;
-    font-weight: 700;
-}
-.container .savediv{
-    display: inline-block;
-}
-.container .canceldiv{
-    margin-left:4rem;
-    display: inline-block;
-}
-.container .save, .container .image-avatar{
-    margin-top: 1.5rem;
-    border-radius: 7px;
-    background-color: rgb(91, 109, 252);
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    height: 3rem;
-    width: 10rem;
-    border: 1px blue;
-}
-
-.container .cancel{
-    margin-top: 1.5rem;
-    border-radius: 7px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    height: 3rem;
-    width: 10rem;
-    border: 1px blue;
-    background-color: rgb(252, 35, 35);
-}
-.container .save:hover, .container .image-avatar:hover{
-    cursor: pointer;
-    background-color: rgb(6, 102, 186);
-}
-.container .cancel:hover{
-    cursor: pointer;
-    background-color: rgb(200, 35, 35);
-}
-.container .image-avatar{
-    position: relative;
-    margin-left:3.5rem;
-}
-.container input[type="text"],.container select{
-    border-radius: 7px;
-    font-size: 17px;
-    width: 40rem;
-    height: 3.5rem;
-    border: 1.5px solid #000;
-}
-.container textarea{
-    border-radius: 7px;
-    font-size: 17px;
-    width: 40rem;
-    height: 10rem;
-    border: 1.5px solid #000;
-    resize: none;
-}
-.container select:hover{
-    cursor: pointer;
-    background-color: #b1afaf;
-}
-/*ket thuc noi dung*/
-/* bat dau code cho footer  */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-ul {
-    list-style: none;
-}
-
-.footer {
-    position: relative;
-    margin-top: 10rem;
-    left: 0;
-    width: 100%;
-    background-color: #011548;
-    padding: 70px 0px;
-    z-index: 10;
-    font-size: 4rem;
-    font-weight: 500;
-}
-
-
-
-.collum_foot {
-    width: 25%;
-    padding: 0 15px;
-}
-
-.collum_foot h4 {
-    font-size: 18px;
-    color: #ffffff;
-    text-transform: capitalize;
-    margin-bottom: 35px;
-    font-weight: 500;
-    position: relative;
-}
-
-.collum_foot h4::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    background-color: #e6a571;
-    height: 2px;
-    box-sizing: border-box;
-    width: 50px;
-}
-
-.collum_foot ul li:not(:last-child) {
-    margin-bottom: 10px;
-}
-
-.collum_foot ul li a {
-    font-size: 16px;
-    text-transform: capitalize;
-    color: #ffff;
-    text-decoration: none;
-    font-weight: 300;
-    color: #bbbbbb;
-    display: block;
-    transition: all 0.3s ease;
-}
-
-.collum_foot ul li a:hover {
-    color: #ffffff;
-    padding-left: 8px;
-}
-
-.collum_foot .Online a {
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin: 0 10px 10px 0;
-    text-align: center;
-    line-height: 40px;
-    border-radius: 50%;
-    color: #ffffff;
-    transition: all 0.5s ease;
-}
-
-.collum_foot .Online a:hover {
-    color: #24262b;
-    background-color: #ffffff;
-}
-
-/*responsive*/
-@media(max-width: 767px) {
-    .collum_foot {
-        width: 50%;
-        margin-bottom: 30px;
-    }
-}
-
-@media(max-width: 574px) {
-    .collum_foot {
-        width: 100%;
-    }
-}
 
 /* media cho AI minwidth */
 @media only screen and (min-width: 768px) {
@@ -2923,10 +2570,278 @@ ul {
 /* bat dau code point gg map */
 #googlemapField {
     height: 300px;
-    min-width: 100% ;
+    min-width: 100%;
 }
+
 #map {
     height: 100%;
 }
 
 /* ket thuc code point gg map */
+
+/*  bat dau code container max-width : 600px */
+@media only screen and (max-width : 600px) {
+
+    .container {
+        margin-top: calc(var(--height_header) + 4em);
+        margin-left: 0rem;
+        display: flex;
+        /* grid-template-columns: 1fr 1fr; */
+        /* gap: 5px 0px; */
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .avatar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .avatar .name {
+        font-size: 25px;
+        font-weight: 700;
+        margin-top: 2rem;
+    }
+
+    .avatar .email {
+        font-size: 20px;
+        color: rgb(139, 133, 133);
+    }
+
+    .preview-image {
+        margin-left: 0rem;
+        border-radius: 50%;
+        width: 8rem;
+        height: 8rem;
+        border: 4px solid rgb(248, 174, 71);
+    }
+
+    .preview-image img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    /*  phan thong tin */
+    .account-profile {
+        width: 90%;
+        height: 100%;
+    }
+
+
+    .profile-edit input[type="text"],
+    .profile-edit select {
+        border-radius: 7px;
+        font-size: 17px;
+        width: 97%;
+        height: 3.5rem;
+        border: 1.5px solid #000;
+    }
+
+    .container label {
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .saveAndCancel {
+        display: flex;
+        margin-top: 2rem;
+        justify-content: space-around;
+
+    }
+
+    .container .image-avatar {
+        margin-top: 1.5rem;
+        border-radius: 7px;
+        background-color: rgb(91, 109, 252);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        height: 3rem;
+        width: 10rem;
+        border: 1px blue;
+    }
+
+    .container .save,
+    .container .cancel {
+        margin-top: 1.5rem;
+        border-radius: 7px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        height: 3rem;
+        width: 10rem;
+        background-color: rgb(252, 35, 35);
+    }
+
+    .container .save {
+        background-color: blue;
+    }
+
+    .container .save:hover,
+    .container .image-avatar:hover {
+        cursor: pointer;
+        background-color: rgb(6, 102, 186);
+    }
+
+    .container .cancel:hover {
+        cursor: pointer;
+        background-color: rgb(200, 35, 35);
+    }
+
+
+    .container textarea {
+        border-radius: 7px;
+        font-size: 17px;
+        width: 99%;
+        height: 6rem;
+        border: 1.5px solid #000;
+        resize: none;
+    }
+
+    .container select:hover {
+        cursor: pointer;
+        background-color: #b1afaf;
+    }
+
+}
+
+/*  ket thuc code container max-width : 600px */
+
+/*  bat dau code container min-width : 600px */
+
+@media only screen and (min-width : 600px) {
+
+    .container {
+        margin-top: calc(var(--height_header) + 4em);
+        margin-left: 0rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* gap: 5px 0px; */
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .avatar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .avatar .name {
+        font-size: 25px;
+        font-weight: 700;
+        margin-top: 2rem;
+    }
+
+    .avatar .email {
+        font-size: 20px;
+        color: rgb(139, 133, 133);
+    }
+
+    .preview-image {
+        margin-left: 0rem;
+        border-radius: 50%;
+        width: 25rem;
+        height: 25rem;
+        border: 6px solid rgb(248, 174, 71);
+    }
+
+    .preview-image img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    /*  phan thong tin */
+    .account-profile {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .profile-edit input[type="text"],
+    .profile-edit select {
+        border-radius: 7px;
+        font-size: 17px;
+        width: 97%;
+        height: 3.5rem;
+        border: 1.5px solid #000;
+    }
+
+    .container label {
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .saveAndCancel {
+        display: flex;
+        margin-top: 2rem;
+        justify-content: space-around;
+
+    }
+
+    .container .image-avatar {
+        margin-top: 1.5rem;
+        border-radius: 7px;
+        background-color: rgb(91, 109, 252);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        height: 4rem;
+        width: 14rem;
+    }
+
+    .container .save,
+    .container .cancel {
+        margin-top: 1.5rem;
+        border-radius: 7px;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        height: 3rem;
+        width: 10rem;
+        background-color: rgb(252, 35, 35);
+    }
+
+    .container .save {
+        background-color: blue;
+    }
+
+    .container .save:hover,
+    .container .image-avatar:hover {
+        cursor: pointer;
+        background-color: rgb(6, 102, 186);
+    }
+
+    .container .cancel:hover {
+        cursor: pointer;
+        background-color: rgb(200, 35, 35);
+    }
+
+
+    .container textarea {
+        border-radius: 7px;
+        font-size: 17px;
+        width: 99%;
+        height: 6rem;
+        border: 1.5px solid #000;
+        resize: none;
+    }
+
+    .container select:hover {
+        cursor: pointer;
+        background-color: #b1afaf;
+    }
+
+}
+
+
+/*  ket thuc code container min-width : 600px */
