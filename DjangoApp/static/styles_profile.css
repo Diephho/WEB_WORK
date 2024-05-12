@@ -2632,7 +2632,6 @@ ul {
         height: 100%;
     }
 
-    .profile-edit div {}
 
     .profile-edit input[type="text"],
     .profile-edit select {
@@ -2693,9 +2692,6 @@ ul {
         cursor: pointer;
         background-color: rgb(200, 35, 35);
     }
-
-    .container .image-avatar {}
-
 
 
     .container textarea {
@@ -2770,7 +2766,6 @@ ul {
         height: 100%;
     }
 
-    .profile-edit div {}
 
     .profile-edit input[type="text"],
     .profile-edit select {
@@ -2830,9 +2825,6 @@ ul {
         cursor: pointer;
         background-color: rgb(200, 35, 35);
     }
-
-    .container .image-avatar {}
-
 
 
     .container textarea {
