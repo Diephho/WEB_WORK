@@ -149,7 +149,7 @@ MEDIA_URL = '/post_images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'post_images')
 
 LOGIN_URL = '/'
-SITE_ID=1
+SITE_ID=2
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
