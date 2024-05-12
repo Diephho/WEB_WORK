@@ -33,7 +33,11 @@
                 </div>
             </div>
             <div class="img-dishes">
+                {% if request.user_agent.is_mobile %}
+                <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
+                {% else %}
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% endif %}
             </div>
             <br>
             <button class="show_map"onclick="toggleMapField()">Ẩn/Hiện Bản Đồ</button>

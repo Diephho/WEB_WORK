@@ -21,7 +21,11 @@
         {% if mon_chay_posts %}
             {% for food in mon_chay_posts %}
             <a href="{% url 'post' post_id=food.id %}">
+                {% if request.user_agent.is_mobile %}
+                <img src="{{ food.imagePhone.url }}" alt="{{ food.title }}">
+                {% else %}
                 <img src="{{ food.image.url }}" alt="{{ food.title }}">
+                {% endif %}
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.address }}</p>
             </a>
@@ -36,7 +40,11 @@
         {% if thuc_an_nhanh_posts %}
             {% for food in thuc_an_nhanh_posts %}
             <a href="{% url 'post' post_id=food.id %}">
+                {% if request.user_agent.is_mobile %}
+                <img src="{{ food.imagePhone.url }}" alt="{{ food.title }}">
+                {% else %}
                 <img src="{{ food.image.url }}" alt="{{ food.title }}">
+                {% endif %}
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.address }}</p>
             </a>
@@ -51,7 +59,11 @@
         {% if tra_sua_posts %}
             {% for food in tra_sua_posts %}
             <a href="{% url 'post' post_id=food.id %}">
+                {% if request.user_agent.is_mobile %}
+                <img src="{{ food.imagePhone.url }}" alt="{{ food.title }}">
+                {% else %}
                 <img src="{{ food.image.url }}" alt="{{ food.title }}">
+                {% endif %}
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.address }}</p>
             </a>
@@ -66,7 +78,11 @@
         {% if an_sang_posts %}
             {% for food in an_sang_posts %}
             <a href="{% url 'post' post_id=food.id %}">
+                {% if request.user_agent.is_mobile %}
+                <img src="{{ food.imagePhone.url }}" alt="{{ food.title }}">
+                {% else %}
                 <img src="{{ food.image.url }}" alt="{{ food.title }}">
+                {% endif %}
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.address }}</p>
             </a>

@@ -28,6 +28,7 @@ class Post(models.Model):
     star = models.FloatField(default=0)
     address = models.CharField(max_length=100)
     image = ResizedImageField(size=[700, 400], blank=True, null=True,quality=90)
+    imagePhone = ResizedImageField(size=[300, 200], blank=True, null=True,quality=70, upload_to="phone")
     lat = models.CharField(max_length=200,blank=True,null=True)
     lng = models.CharField(max_length=200,blank=True,null=True)
     idUser = models.ForeignKey("UserInfo", on_delete=models.CASCADE, null= True)
