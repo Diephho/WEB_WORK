@@ -42,6 +42,8 @@ def index(request):
     top_posts = Post.objects.order_by('-star')[:2]  # Lấy 2 bài đăng có star lớn nhất
     other_posts = Post.objects.exclude(pk__in=[post.pk for post in top_posts])  # Lấy các bài đăng không thuộc top_posts
     if request.method == 'POST':
+        if 'start_create_new_account' in request.POST:
+            return render(request, "index.html", {'top_posts': top_posts, 'other_posts': other_posts,'reg_check': True})
         if 'button-login' in request.POST:
             email = request.POST.get('input-login-account')
             password = request.POST.get('input-login-password')
