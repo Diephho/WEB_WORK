@@ -14,7 +14,6 @@
                 <img src="/static/Image_web_offical/LOGO_OFFICIAL.jpg" alt="logoweb" />
             </a>
         </div>
-
         <h3 class="navbar_logo_Heading">
             Ăn sập làng<br />
             Đại học
@@ -77,7 +76,7 @@
                 {% load socialaccount %}
                 {% providers_media_js %}
                 <a href="{% provider_login_url 'facebook' method='js_sdk' %}"><img src="/static/Image_web_offical/fb_icon_login.png" alt="iconFB" /></a>
-                <a href="{% provider_login_url 'google'%}?next=/"><img src="/static/Image_web_offical/icon_google.jpg" alt="iconGG" /></a>
+                <a href="{% provider_login_url 'google'%}"><img src="/static/Image_web_offical/icon_google.jpg" alt="iconGG" /></a>
                 <button type="submit" class="start_login" name="button-login">Login</button>
 
                 <button onclick="handleButtonClick()" class="start_create_new_account">
@@ -214,7 +213,5 @@
                 fetchSearchSuggestions(inputValue);
             }
         });
-
-
     });
 </script>
