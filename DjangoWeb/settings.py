@@ -149,17 +149,26 @@ MEDIA_URL = '/post_images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'post_images')
 
 LOGIN_URL = '/'
-SITE_ID=1
+SITE_ID=2
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 LOGIN_REDIRECT_URL='/'
 LOGOUT_REDIRECT_URL='/'
 
-
-
 SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'offline',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+        'EMAIL_AUTHENTICATION': True
+    },
     'facebook': {
         'METHOD': 'js_sdk', 
         'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
@@ -177,17 +186,8 @@ SOCIALACCOUNT_PROVIDERS = {
         'VERSION': 'v13.0',
         'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
     },
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        },
-        'OAUTH_PKCE_ENABLED': True,
-        'EMAIL_AUTHENTICATION': True
-    }
 }
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 SOCIALACCOUNT_LOGIN_ON_GET=True
+
+
