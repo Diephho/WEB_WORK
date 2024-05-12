@@ -94,6 +94,7 @@
             <div id="imagePreview" style="display: none;">
                 <img id="preview" src="#" alt="Ảnh xem trước" style="max-width: 100%; max-height: 50vw;">
             </div>
+
             <div id="addressField" style="display: none;">
                 <input class="input_textbox" type="text" name="address" alt="Địa chỉ" placeholder="Địa chỉ" required>
             </div>
@@ -114,6 +115,7 @@
             </div>
             <div class="Add_To_Content">
                 <input type="file" name="image" id="fileInput" style="display: none;">
+                <input type="file" name="imagePhone" id ="fileInputPhone" style="display: none;">
                 <a href="#" onclick="openFileExplorer()"><i class="fa-solid fa-image" style="color: #cf6d17;"></i></a>
                 <a href="#" onclick="toggleAddressField()"><i class="fa-solid fa-location-dot"
                         style="color: #cf6d17;"></i></a>
@@ -291,10 +293,12 @@
         var imagePreview = document.getElementById('imagePreview');
         preview.src = URL.createObjectURL(event.target.files[0]);
         imagePreview.style.display = 'block';
+        
     }
 
     // Gắn sự kiện onchange vào input type file
     document.getElementById('fileInput').addEventListener('change', previewImage);
+    
 
     var map;
     function initMap() {

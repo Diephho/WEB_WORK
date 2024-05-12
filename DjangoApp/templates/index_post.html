@@ -33,7 +33,11 @@
                 </div>
             </div>
             <div class="img-dishes">
+                {% if request.user_agent.is_mobile %}
+                <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
+                {% else %}
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% endif %}
             </div>
             <div id="googlemapField">
                 <div id="mapPost"></div>

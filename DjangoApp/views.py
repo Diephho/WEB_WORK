@@ -19,7 +19,6 @@ from django.utils.timezone import localtime
 from allauth.socialaccount.models import SocialAccount
 
     
-    
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'Forget_password.html'
     success_url='done'
@@ -92,7 +91,10 @@ def whilelogin(request, user_id):
             if form.is_valid():
                 post = form.save(commit=False)          
                 post.idUser = userinfo
+                imagephone=form.cleaned_data["image"]
+                post.imagePhone=imagephone
                 post.save()
+                
                 selected_tags = []
                 for key, value in request.POST.items():
                     if value == 'on':  # Nếu checkbox được chọn
@@ -210,7 +212,6 @@ def profile(request, user_id):
         return render(request, 'profile.html', {'otheruserinfo': otheruserinfo, 'is_owner': is_owner})
 
 def post(request, post_id):
-    
     post = get_object_or_404(Post, pk=post_id)
     userpostinfo = post.idUser
     listcomment= Comment.objects.filter(idPost=post_id)

@@ -16,9 +16,13 @@
 <!--  bat dau code cho phan noi dung  -->
 <div class="result_text"> Result search for {{searched}} </div>
     <section class="container">
-            {% for product in keys %}
+            {% for post in keys %}
             <a href="{% url 'post' post_id=product.id %}">
-                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                {% if request.user_agent.is_mobile %}
+                <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
+                {% else %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% endif %}
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.address }}</p>
             </a>

@@ -13,7 +13,11 @@
 <div class="article_post">
     {% for post in top_posts %}
     <a href="{% url 'post' post_id=post.id %}">
+        {% if request.user_agent.is_mobile %}
+        <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
+        {% else %}
         <img src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
         <h3>{{ post.title }}</h3>
     </a>
     {% endfor %}
@@ -22,7 +26,11 @@
 <section class="container">
     {% for post in other_posts %}
     <a href="{% url 'post' post_id=post.id %}">
+        {% if request.user_agent.is_mobile %}
+        <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
+        {% else %}
         <img src="{{ post.image.url }}" alt="{{ post.title }}">
+        {% endif %}
         <h3>{{ post.title }}</h3>
         <p>{{ post.address }}</p>
     </a>

@@ -19,7 +19,11 @@
             {% for post in top_posts %}
             {% with forloop.counter as top_count %}
             <a href="{% url 'post' post_id=post.id %}">
+                {% if request.user_agent.is_mobile %}
+                <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
+                {% else %}
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                {% endif %}
                 <h3>{{ post.title }} - Top {{ top_count }}</h3>
                 <p>{{ post.address }} - {{ post.star }} / 5.0 <i class="fa-solid fa-star" style="color: #FFD43B;"></i></p>
             </a>

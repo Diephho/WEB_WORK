@@ -20,7 +20,7 @@ class PostForm(forms.ModelForm):
     tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), widget=forms.CheckboxSelectMultiple, required=False)
     class Meta:
         model = Post
-        fields = ['title', 'content', 'address', 'image', 'tags', 'lat', 'lng']
+        fields = ['title', 'content', 'address', 'image', 'imagePhone', 'tags', 'lat', 'lng']
 
 class CustomSetPasswordChange(PasswordChangeForm):
     old_password = forms.CharField(
