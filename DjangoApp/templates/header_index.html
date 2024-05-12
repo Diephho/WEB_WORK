@@ -22,7 +22,7 @@
             <div>
                 <form class="Search_Wrapper flex_Search_center" role="search" method=POST action = "{% url 'search' %}">
                     {% csrf_token %}
-                    <button class="Search_SearchIcon" style="display: block" type="submit" name="btnSearch">
+                    <button class="Search_SearchIcon" style="display: block" type="submit" name="Search">
                         <a href="#" aria-label="Search">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20"
                                 height="20">
@@ -75,7 +75,7 @@
             <div class="start_opt">
                 {% load socialaccount %}
                 {% providers_media_js %}
-                <a href=""><img src="/static/Image_web_offical/fb_icon_login.webp" alt="iconFB" /></a>
+                <a href="{% provider_login_url 'facebook' method='js_sdk' %}"><img src="/static/Image_web_offical/fb_icon_login.webp" alt="iconFB" /></a>
                 <a href=""><img src="/static/Image_web_offical/icon_google.webp" alt="iconGG" /></a>
                 <button type="submit" class="start_login" name="button-login">Login</button>
 
