@@ -35,9 +35,22 @@
             <div class="img-dishes">
                 <img src="{{ post.image.url }}" alt="{{ post.title }}">
             </div>
-            <div id="googlemapField">
+            <br>
+            <button class="show_map"onclick="toggleMapField()">Ẩn/Hiện Bản Đồ</button>
+            <br>
+            <div id="googlemapField" style="display:block;">
                 <div id="mapPost"></div>
             </div>
+            <script>
+                function toggleMapField() {
+                    var mapField = document.getElementById('mapPost');
+                    if (mapField.style.display === "none") {
+                        mapField.style.display = "block"; // Hiển thị khối nếu đang ẩn
+                    } else {
+                        mapField.style.display = "none"; // Ẩn khối nếu đang hiển thị
+                    }
+                }
+            </script>
             <div class="post-content">
                 <div class="title-content">
                     <p>{{ post.title }}</p>
@@ -296,7 +309,7 @@
                             <input type="hidden" name="form_type_reply" value="formcommentreply">
                             <input type="number" class="idcommentrep" name="idcommentrep" value=${commentidint} style="display:none;"/>
                             <textarea class="write" name="content-comment-reply" placeholder="Viết bình luận" ></textarea>
-                            <button type="submit" name="send-comment-reply" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #3a74d9; font-size:22px;"></i></button>
+                            <button type="submit" name="send-comment-reply" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC; font-size:22px;"></i></button>
                         </form>
                         `;
                         groupcomment.appendChild(newdiv);
