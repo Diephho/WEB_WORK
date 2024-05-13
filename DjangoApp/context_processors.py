@@ -10,12 +10,21 @@ def userinfo(request):
         if checkusersocailregisters.exists() is False:
             social_accounts = SocialAccount.objects.filter(user=request.user)
             google_account = social_accounts.filter(provider='google').first()
+            facebook_account= social_accounts.filter(provider='facebook').first()
             if google_account:
                 google_given_name = google_account.extra_data.get('given_name', None)
                 google_family_name = google_account.extra_data.get('family_name', None)
                 newuser=UserInfo(id=request.user.id)
                 newuser.firstname=google_given_name
                 newuser.lastname=google_family_name
+                newuser.avatar='avatar_test.jpg'
+                newuser.save()
+            elif facebook_account:
+                facebook_firstname=facebook_account.extra_data.get('first_name',None)
+                facebook_lastname=facebook_account.extra_data.get('last_name',None)
+                newuser=UserInfo(id=request.user.id)
+                newuser.firstname=facebook_firstname
+                newuser.lastname=facebook_lastname
                 newuser.avatar='avatar_test.jpg'
                 newuser.save()
         userinfo = get_object_or_404(UserInfo, id=request.user.id)
