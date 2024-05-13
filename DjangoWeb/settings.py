@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-sg)saf=pu_asn=+zww$p1v@@hrh=5!+h4ed&z+y2!#3_#*(z#j
 # SECURITY WARNING: don't run with debug turned on in production!
 CSRF_TRUSTED_ORIGINS = ['https://ansaplangdaihoc.azurewebsites.net']
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 

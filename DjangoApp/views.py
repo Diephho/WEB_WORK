@@ -67,8 +67,9 @@ def index(request):
                 return render(request, 'index.html', {'error_message_reg': 'Passwords do not match', 'reg_check': True,'top_posts': top_posts, 'other_posts': other_posts})
             else: 
                 user = User.objects.create_user(username=email,email=email, password=password)
+                user.backend = 'django.contrib.auth.backends.ModelBackend'
                 user.save()
-                login(request,user)
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 newuserinfo=UserInfo(id=request.user.id)
                 newuserinfo.avatar='avatar_test.jpg'
                 newuserinfo.save()
