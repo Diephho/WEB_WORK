@@ -42,17 +42,15 @@
             <br>
             <button class="show_map"onclick="toggleMapField()">Ẩn/Hiện Bản Đồ</button>
             <br>
-            <div id="googlemapField" style="display:block;">
-                <div id="mapPost"></div>
-                <script async
-                    src="https://maps.googleapis.com/maps/api/js?key={{key}}&loading=async&callback=initMap">
-                </script>
+            <div id="googlemapPostField" style="display:block;">
+                <div id="mapPost" style="display: none;"></div>
             </div>
             <script>
                 function toggleMapField() {
                     var mapField = document.getElementById('mapPost');
                     if (mapField.style.display === "none") {
                         mapField.style.display = "block"; // Hiển thị khối nếu đang ẩn
+                        initMapForPost();
                     } else {
                         mapField.style.display = "none"; // Ẩn khối nếu đang hiển thị
                     }

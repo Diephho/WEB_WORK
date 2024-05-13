@@ -4,7 +4,7 @@
     </script>
     <div></div>
     <div class="navbar_Wrapper_fulltab">
-        <button class="Search_SearchIcon" style="display: block" type="submit" name="btnSearch" aria-label="Search">
+        <button onclick="toggleSidebar()" class="tab_opt" name="btnsidebar" aria-label="Toggle Sidebar">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
@@ -26,7 +26,7 @@
             <div>
                 <form class="Search_Wrapper flex_Search_center" role="search" method=POST action="{% url 'search' %}">
                     {% csrf_token %}
-                    <button class="Search_SearchIcon" style="display: block" type="submit" name="Search" aria-label="Search">
+                    <button class="Search_SearchIcon" style="display: block" type="submit" name="Search" aria-label="btnsearch">
 
                         <a href="#">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20">
@@ -102,10 +102,10 @@
             <div id="addressField" style="display: none;">
                 <input class="input_textbox" type="text" name="address" alt="Địa chỉ" placeholder="Địa chỉ" required>
             </div>
-            <div id="googlemapField" style="display: none;">
+            <div id="googlemapField" style="display: block;">
                 <input type="hidden" id="id_latitude" name="lat">
                 <input type="hidden" id="id_longitude" name="lng">
-                <div id="map"></div>
+                <div id="map" style="display: none;"></div>
             </div>
             <div class="input_textbox" id="TagField" style="display: none;">
                 <input type="checkbox" id="monChay" name="món chay" placeholder="Món chay">
@@ -268,7 +268,7 @@
     }
 
     function toggleGooglemapField() {
-        var googlemapField = document.getElementById('googlemapField');
+        var googlemapField = document.getElementById('map');
         if (googlemapField.style.display === 'none') {
             googlemapField.style.display = 'block';
         } else {
