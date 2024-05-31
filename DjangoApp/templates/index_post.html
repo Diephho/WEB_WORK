@@ -132,10 +132,8 @@
                                                         <div class="content-comment">{{comment.content}}</div>
                                                         <div class="Box_functionReplyDelete">  
                                                             <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
-                                                            <div class="delete-comment" id="delete_comment"> Xóa bỏ </div>
+                                                            <div class="delete-comment" id="delete_comment-{{comment.id}}"> Xóa bỏ </div>
                                                         </div>
-                                                        
-                                                       
                                                     </div>
                                                 </div>
                                                 `;
@@ -162,7 +160,7 @@
                                             <div class="content-comment">{{comment.content}}</div>
                                             <div class="Box_functionReplyDelete">  
                                                 <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
-                                                <div class="delete-comment" id="delete_comment"> Xóa bỏ </div>
+                                                <div class="delete-comment" id="delete_comment-{{comment.id}}"> Xóa bỏ </div>
                                             </div>
                                             
                                             
@@ -278,7 +276,7 @@
                                 <div class="content-comment">${commentData.content}</div>
                                 <div class="Box_functionReplyDelete">  
                                     <div class="reply-comment" id="reply-comment-${newcommentidstr}">Trả lời</div>
-                                    <div class="delete-comment" id="delete_comment"> Xóa bỏ </div>
+                                    <div class="delete-comment" id="delete_comment-${newcommentidstr}"> Xóa bỏ </div>
                                 </div>
                                 
                             </div>
@@ -389,7 +387,10 @@
                                     <p>${newCommentData.comment.date}</p>
                                 </div>
                                 <div class="content-comment">${commentData.content}</div>
-                                <div class="reply-comment" id="reply-comment-${newcommentidstr}">Trả lời</div>
+                                <div class="Box_functionReplyDelete">  
+                                    <div class="reply-comment" id="reply-comment-${newcommentidstr}">Trả lời</div>
+                                    <div class="delete-comment" id="delete_comment-${newcommentidstr}"> Xóa bỏ </div>
+                                </div>
                             </div>
                         </div>`;
                         
