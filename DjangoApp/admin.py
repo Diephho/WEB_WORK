@@ -4,7 +4,7 @@ from .models import Post,UserInfo, Tag,Comment,React,HistoryChat
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'date', 'star', 'address')
+    list_display = ('id', 'title', 'date', 'star', 'address','slug')
     ordering = ('id',)
 admin.site.register(Post,PostAdmin)
 class UserInfoAdmin(admin.ModelAdmin):

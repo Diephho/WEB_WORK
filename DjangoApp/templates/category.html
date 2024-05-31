@@ -20,7 +20,7 @@
     <section class="container">
         {% if mon_chay_posts %}
             {% for food in mon_chay_posts %}
-            <a href="{% url 'post' post_id=food.id %}">
+            <a href="{% url 'post' slug=food.slug %}">
                 {% if request.user_agent.is_mobile %}
                 <img src="{{ food.imagePhone.url }}" alt="{{ food.title }}">
                 {% else %}
@@ -39,7 +39,7 @@
     <section class="container">
         {% if thuc_an_nhanh_posts %}
             {% for food in thuc_an_nhanh_posts %}
-            <a href="{% url 'post' post_id=food.id %}">
+            <a href="{% url 'post' slug=food.slug %}">
                 {% if request.user_agent.is_mobile %}
                 <img src="{{ food.imagePhone.url }}" alt="{{ food.title }}">
                 {% else %}
@@ -58,7 +58,7 @@
     <section class="container">
         {% if tra_sua_posts %}
             {% for food in tra_sua_posts %}
-            <a href="{% url 'post' post_id=food.id %}">
+            <a href="{% url 'post' slug=food.slug %}">
                 {% if request.user_agent.is_mobile %}
                 <img src="{{ food.imagePhone.url }}" alt="{{ food.title }}">
                 {% else %}
@@ -77,7 +77,7 @@
     <section class="container">
         {% if an_sang_posts %}
             {% for food in an_sang_posts %}
-            <a href="{% url 'post' post_id=food.id %}">
+            <a href="{% url 'post' slug=food.slug %}">
                 {% if request.user_agent.is_mobile %}
                 <img src="{{ food.imagePhone.url }}" alt="{{ food.title }}">
                 {% else %}

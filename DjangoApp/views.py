@@ -17,7 +17,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.utils.timezone import localtime
 from allauth.socialaccount.models import SocialAccount
-
+from django.utils.text import slugify
     
 class CustomPasswordResetView(PasswordResetView):
     template_name = 'Forget_password.html'
@@ -96,6 +96,13 @@ def whilelogin(request, user_id):
                 post.idUser = userinfo
                 imagephone=form.cleaned_data["image"]
                 post.imagePhone=imagephone
+                post.slug = slugify(post.title)
+                if post.id:
+                    post.slug = f"{post.slug}-{post.id}"
+                else:
+                    post.save()
+                    post.slug = f"{post.slug}-{post.id}"
+                    post.save()
                 post.save()
                 
                 selected_tags = []
@@ -107,7 +114,7 @@ def whilelogin(request, user_id):
 
                 # Lưu các tag vào bài đăng
                 post.tags.add(*selected_tags)
-                return redirect('/post/{}/'.format(post.id))
+                return redirect('/post/{}/'.format(post.slug))
             else:
                 for field, errors in form.errors.items():
                     for error in errors:
@@ -198,12 +205,13 @@ def profile(request, user_id):
         userinfo = get_object_or_404(UserInfo,id=user_id)
         if request.method=="POST":
             if 'savebtn' in request.POST:
-                userinfo.firstname=request.POST.get('firstname')
-                userinfo.lastname=request.POST.get('lastname')
-                userinfo.phonenumber=request.POST.get('phonenumber')
-                userinfo.gender=request.POST.get('gender')
-                userinfo.avatar=request.FILES.get('inputavatar')
-                userinfo.introduction=request.POST.get('introduction')
+                userinfo.firstname = request.POST.get('firstname')
+                userinfo.lastname = request.POST.get('lastname')
+                userinfo.phonenumber = request.POST.get('phonenumber')
+                userinfo.gender = request.POST.get('gender')
+                if request.FILES.get('inputavatar') is not None:
+                    userinfo.avatar = request.FILES.get('inputavatar')
+                userinfo.introduction = request.POST.get('introduction')
                 userinfo.save()
                 return render(request, 'profile.html',{'user':userinfo, 'is_owner': is_owner})
             if 'cancelbtn' in request.POST:
@@ -214,8 +222,9 @@ def profile(request, user_id):
         otheruserinfo = get_object_or_404(UserInfo, id=user_id)
         return render(request, 'profile.html', {'otheruserinfo': otheruserinfo, 'is_owner': is_owner})
 
-def post(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
+def post(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    post_id= post.id
     userpostinfo = post.idUser
     listcomment= Comment.objects.filter(idPost=post_id)
     check = {}

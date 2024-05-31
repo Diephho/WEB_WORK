@@ -18,7 +18,7 @@
     <section class="container">
         {% if daily_posts %}
             {% for post in daily_posts %}
-            <a href="{% url 'post' post_id=post.id %}">
+            <a href="{% url 'post' slug=post.slug %}">
                 {% if request.user_agent.is_mobile %}
                 <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
                 {% else %}

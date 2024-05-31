@@ -17,7 +17,7 @@
 <div class="result_text"> Result search for {{searched}} </div>
     <section class="container">
             {% for post in keys %}
-            <a href="{% url 'post' post_id=post.id %}">
+            <a href="{% url 'post' slug=post.slug %}">
                 {% if request.user_agent.is_mobile %}
                 <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
                 {% else %}

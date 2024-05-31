@@ -37,6 +37,7 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag)
     numcreact=models.IntegerField(default=0)
     totalstar=models.IntegerField(default=0)
+    slug = models.SlugField(null=True,blank=True)
     def __str__(self):
         return self.title
     def save(self, *args, **kwargs):

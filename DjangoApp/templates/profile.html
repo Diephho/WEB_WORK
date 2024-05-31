@@ -98,12 +98,6 @@
                             {% else %}
                                 selectElement.value="Male"
                             {% endif %}
-                            var selectavatar= document.getElementById("fileinput");
-                            {% if user.avatar.url is not None %}
-                                selectavatar.src={{user.avatar.url}}
-                            {% else %}
-                                selectavatar.src="/static/User_Picture/avatar_test.jpg";
-                            {% endif %}
                         });
                     </script>
                 </div>

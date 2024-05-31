@@ -18,7 +18,7 @@
     <section class="container">
             {% for post in top_posts %}
             {% with forloop.counter as top_count %}
-            <a href="{% url 'post' post_id=post.id %}">
+            <a href="{% url 'post' slug=post.slug %}">
                 {% if request.user_agent.is_mobile %}
                 <img src="{{ post.imagePhone.url }}" alt="{{ post.title }}">
                 {% else %}
