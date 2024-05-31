@@ -98,7 +98,8 @@
                             <div class="avatar-img"><a href="{% url 'Profile' user_id=userinfo.id %}"><img src="{{userinfo.avatar.url}}" alt="Avatar"></a></div>
                             <input type="hidden" name="form_type" value="formcomment">
                             <textarea class="write" name="content-comment" placeholder="Viết bình luận" ></textarea>
-                            <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC;"></i></button>
+                            <button type="submit" name="send-comment" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC;
+                                background: #fafafa;"></i></button>
                         </form>    
                         <div class="list-comment" id="comments-container">
                             {% for comment in listcomment %}
@@ -129,7 +130,12 @@
                                                             <p>{{comment.date}}</p>
                                                         </div>
                                                         <div class="content-comment">{{comment.content}}</div>
-                                                        <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                                        <div class="Box_functionReplyDelete">  
+                                                            <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                                            <div class="delete-comment" id="delete_comment"> Xóa bỏ </div>
+                                                        </div>
+                                                        
+                                                       
                                                     </div>
                                                 </div>
                                                 `;
@@ -154,7 +160,11 @@
                                                 <p>{{comment.date}}</p>
                                             </div>
                                             <div class="content-comment">{{comment.content}}</div>
-                                            <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                            <div class="Box_functionReplyDelete">  
+                                                <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
+                                                <div class="delete-comment" id="delete_comment"> Xóa bỏ </div>
+                                            </div>
+                                            
                                             
                                         </div>
                                     </div>
@@ -266,7 +276,11 @@
                                     <p>${newCommentData.comment.date}</p>
                                 </div>
                                 <div class="content-comment">${commentData.content}</div>
-                                <div class="reply-comment" id="reply-comment-${newcommentidstr}">Trả lời</div>
+                                <div class="Box_functionReplyDelete">  
+                                    <div class="reply-comment" id="reply-comment-${newcommentidstr}">Trả lời</div>
+                                    <div class="delete-comment" id="delete_comment"> Xóa bỏ </div>
+                                </div>
+                                
                             </div>
                         </div>`;
                         const commentContainer = document.getElementById('comments-container'); 
@@ -314,7 +328,8 @@
                             <input type="hidden" name="form_type_reply" value="formcommentreply">
                             <input type="number" class="idcommentrep" name="idcommentrep" value=${commentidint} style="display:none;"/>
                             <textarea class="write" name="content-comment-reply" placeholder="Viết bình luận" ></textarea>
-                            <button type="submit" name="send-comment-reply" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC; font-size:22px;"></i></button>
+                            <button type="submit" name="send-comment-reply" class="send-comment"><i class="fa-solid fa-paper-plane" style="color: #74C0FC; font-size:22px; 
+                                background: #fafafa;"></i></button>
                         </form>
                         `;
                         groupcomment.appendChild(newdiv);
@@ -444,6 +459,44 @@
             }
             initMapForPost();
         </script>
+        
+        <div id="myModal" class="modal_delete_comment">
+            <div class="modal_delete_comment-content">
+              <span class="close">&times;</span>
+              <p>Bạn có chắc chắn muốn xóa bình luận này không?</p>
+              <div class="modal-buttons">
+                <button class="cancel">Không</button>
+                <button class="delete">Xóa</button>
+              </div>
+            </div>
+          </div>
+          
+          <script>
+          var modal = document.getElementById("myModal");
+          var deleteCommentDiv = document.getElementById("delete_comment");
+          var span = document.getElementsByClassName("close")[0];
+          var cancelBtn = document.querySelector("button.cancel");
+          
+          deleteCommentDiv.onclick = function() {
+            modal.classList.add("show");
+          }
+          
+          span.onclick = function() {
+            modal.classList.remove("show");
+          }
+          
+          cancelBtn.onclick = function() {
+            modal.classList.remove("show");
+          }
+          
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.classList.remove("show");
+            }
+          }
+          </script>
+    
+          
     </div>
 </div>
 {% comment %} <!-- Xong phan noi dung--> {% endcomment %}

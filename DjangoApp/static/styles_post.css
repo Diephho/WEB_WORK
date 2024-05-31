@@ -1,3 +1,5 @@
+@import url("Styles_AI_max-width600.css") screen and (max-width: 600px);
+@import url("Styles_AI_min-width600.css") screen and (min-width: 600px);
 * {
     margin: 0;
     padding: 0;
@@ -1427,19 +1429,20 @@ ul {
         display: flex;
         flex-wrap: wrap;
         color: #000;
-        background-color: #f8d8b8;
+        background-color: #fafafa;
         border-radius: 8px;
         box-shadow: 10px 10px 5px 0px rgba(154, 148, 148, 0.75);
     }
-    
+
     #map {
         height: 100%;
     }
-    
+
     #mapPost {
 
         height: 25rem;
     }
+
     .post-item {
         position: relative;
         font-size: 1.5rem;
@@ -1457,7 +1460,7 @@ ul {
     }
 
     .avatar-img img:first-child {
-        margin: 1rem;
+        margin: 0rem 0rem 1rem 1rem;
         border: 3px solid #f0ac31;
         border-radius: 50%;
         width: 3rem;
@@ -1524,97 +1527,146 @@ ul {
     }
 
     .user-comment {
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: 1rem;
     }
-    
+
     .user-comment .first-child,
     .user-comment .second-child {
-        flex-grow: 1; /* Căn chỉnh kích thước của các phần tử */
+        flex-grow: 1;
+        /* Căn chỉnh kích thước của các phần tử */
         flex-shrink: 1;
     }
-    
+
     .user-comment .third-child {
-        flex-shrink: 0; /* Không co lại phần tử cuối cùng */
-        margin-left: auto; /* Đẩy phần tử cuối cùng sang bên phải */
+        flex-shrink: 0;
+        /* Không co lại phần tử cuối cùng */
+        margin-left: auto;
+        /* Đẩy phần tử cuối cùng sang bên phải */
     }
-    
-    .user-comment-reply{
-        display: flex ;
+
+    .user-comment-reply {
+        display: flex;
 
     }
+
     .user-comment-reply {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: 1rem;
     }
-    
+
     .user-comment-reply .first-child,
     .user-comment-reply .second-child {
-        flex-grow: 1; /* Căn chỉnh kích thước của các phần tử */
+        flex-grow: 1;
+        /* Căn chỉnh kích thước của các phần tử */
         flex-shrink: 1;
     }
-    
+
     .user-comment-reply .third-child {
-        flex-shrink: 0; /* Không co lại phần tử cuối cùng */
-        margin-left: auto; /* Đẩy phần tử cuối cùng sang bên phải */
+        flex-shrink: 0;
+        /* Không co lại phần tử cuối cùng */
+        margin-left: auto;
+        /* Đẩy phần tử cuối cùng sang bên phải */
     }
-    .reply-comment{
+
+    /*  bat dau function Box_functionReplyDelete  */
+    .Box_functionReplyDelete {
+        display: flex;
+        justify-content: flex-start;
+        background-color: #fafafa;
+        font-size: 14px;
+        font-weight: 600;
+        object-fit: contain;
+        margin: 0.5rem 0;
+    }
+
+    .reply-comment {
+
+        cursor: pointer;
+        background-color: #fafafa;
+        font-size: 14px;
+        margin-right: 2rem;
+        font-weight: 600;
+    }
+
+    .delete-comment {
         cursor: pointer;
     }
+
     .reply-comment:hover {
-        color :red ;
+        color: red;
     }
-    
-    .show_map{
+
+    .delete-comment:hover {
+        color: red;
+
+    }
+
+    .reply-comment:active {
+        color: red;
+    }
+
+    .delete-comment:active {
+        color: red;
+    }
+
+    /*  ket thuc function Box_functionReplyDelete  */
+
+    .show_map {
         cursor: pointer;
         background-color: rgb(55, 55, 215);
         transition: 0.3 ease-in-out;
         border-radius: 5px;
-        color : #fefefe ;
+        color: #fefefe;
         font-size: 12px;
         font-weight: 500;
         text-align: center;
 
-        margin: 1rem 0; 
-        width : 6rem ;
-        height: 3rem ;
+        margin: 1rem 0;
+        width: 6rem;
+        height: 3rem;
     }
-    .show_map:active{
+
+    .show_map:active {
         background-color: red;
     }
 
     /*  */
     .write {
+        padding: 10px 0 0 11px;
         resize: none;
-        background-color: #f4f5f8;
-        height: 3rem;
-        width: 70%;
+        background-color: #f0f0f0;
+        height: 4rem;
+        width: 80%;
         font-size: 1.3rem;
-        border-radius: 4px;
+        border-radius: 25px;
     }
 
     .fa-solid.fa-paper-plane {
         color: #3a74d9;
         font-size: 22px;
-        background-color: #f8d8b8;;
+        /* background-color: #f8d8b8;; */
     }
 
 
     .send-comment {
         cursor: pointer;
+        margin-left: 1rem;
     }
 
     .comment {
+
         display: flex;
         justify-content: space-around;
     }
 
     .summary-comment {
-        width: 100%;
+        width: 86%;
         display: flex;
         flex-direction: column;
         text-decoration: none;
@@ -1629,10 +1681,13 @@ ul {
     }
 
     .comment-name a {
-        margin-right: 4rem;
-        font-size: 1.3rem;
+        padding: 3px 3px 0px 18px;
+        height: 2rem;
+        width: 13rem;
+        font-size: 14px;
         text-decoration: none;
         color: rgb(90, 115, 198);
+        font-weight: 600;
     }
 
     .comment-name p {
@@ -1642,8 +1697,12 @@ ul {
     }
 
     .content-comment {
-        font-size : 16px;
-        width: 100%;
+        padding: 8px;
+        border-radius: 25px;
+        background-color: #f0f0f0;
+        margin: 0.8rem 0rem;
+        font-size: 16px;
+        width: 14rem;
         max-height: 200px;
         overflow-y: auto;
         overflow-x: hidden;
@@ -1682,6 +1741,7 @@ ul {
         height: 5rem;
         margin-right: 1rem;
         margin-top: 3rem;
+        margin-left: 2rem;
     }
 
     .author-info img {
@@ -1757,6 +1817,8 @@ ul {
 
 
     .likeandcomment .slcomment {
+        /* margin: 1rem; */
+        font-size: 14px;
         float: right;
     }
 
@@ -1778,6 +1840,102 @@ ul {
     }
 
     /* ket thuc footer max-width: 600px */
+
+    /* bat dau code cho modal delete comment max-width : 600px */
+
+    .modal_delete_comment {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        transition: opacity 0.3s ease;
+        opacity: 0;
+    }
+
+    .modal_delete_comment.show {
+        display: block;
+        opacity: 1;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    /* Modal content box */
+    .modal_delete_comment-content {
+        background-color: #fefefe;
+        margin: 60% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    .modal_delete_comment.show .modal_delete_comment-content {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /* Close button */
+    .close {
+        margin-top: -12px;
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Buttons */
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .modal-buttons button {
+        color: #fafafa;
+        font-weight: 600;
+        background-color: blue;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 19px;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .delete-comment {}
+
+    button.cancel {
+        background-color: #f1f1f1;
+        /* Grey background for cancel button */
+        color: black;
+    }
+
+    /* ket thuc code cho modal delete comment max-width : 600px */
+    /* bat dau AI */
+    .modal_AI {
+        margin: 9rem 0 0 9rem;
+    }
+    /*  ket thuc AI */
 }
 
 @media only screen and (max-width: 540px) {
@@ -2044,6 +2202,7 @@ ul {
         margin: 0px 5px;
         padding: 8px 16px;
     }
+
     /* ket thuc header min-width: 600px */
 
     .Search_Wrapper {
@@ -2149,6 +2308,7 @@ ul {
         height: 4rem;
         font-weight: 500;
     }
+
     .start_opt img {
         margin-top: -1rem;
         width: 4rem;
@@ -2736,19 +2896,20 @@ ul {
         display: flex;
         flex-wrap: wrap;
         color: #000;
-        background-color: #f8d8b8;
+        background-color: #fafafa;
         border-radius: 8px;
         box-shadow: 10px 10px 5px 0px rgba(154, 148, 148, 0.75);
     }
-    
+
     #map {
         height: 25rem;
     }
-    
+
     #mapPost {
 
         height: 25rem;
     }
+
     .post-item {
         position: relative;
         font-size: 1.5rem;
@@ -2766,7 +2927,7 @@ ul {
     }
 
     .avatar-img img:first-child {
-        margin: 1rem;
+        margin: 0rem 0rem 1rem 1rem;
         border: 3px solid #f0ac31;
         border-radius: 50%;
         width: 3rem;
@@ -2838,46 +2999,89 @@ ul {
         align-items: center;
         margin-top: 1rem;
     }
-    
+
     .user-comment .first-child,
     .user-comment .second-child {
-        flex-grow: 1; /* Căn chỉnh kích thước của các phần tử */
+        flex-grow: 1;
+        /* Căn chỉnh kích thước của các phần tử */
         flex-shrink: 1;
     }
-    
+
     .user-comment .third-child {
-        flex-shrink: 0; /* Không co lại phần tử cuối cùng */
-        margin-left: auto; /* Đẩy phần tử cuối cùng sang bên phải */
+        flex-shrink: 0;
+        /* Không co lại phần tử cuối cùng */
+        margin-left: auto;
+        /* Đẩy phần tử cuối cùng sang bên phải */
     }
-    
-    .user-comment-reply{
-        display: flex ;
+
+    .user-comment-reply {
+        display: flex;
 
     }
+
     .user-comment-reply {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: 1rem;
     }
-    
+
     .user-comment-reply .first-child,
     .user-comment-reply .second-child {
-        flex-grow: 1; /* Căn chỉnh kích thước của các phần tử */
+        flex-grow: 1;
+        /* Căn chỉnh kích thước của các phần tử */
         flex-shrink: 1;
     }
-    
+
     .user-comment-reply .third-child {
-        flex-shrink: 0; /* Không co lại phần tử cuối cùng */
-        margin-left: auto; /* Đẩy phần tử cuối cùng sang bên phải */
+        flex-shrink: 0;
+        /* Không co lại phần tử cuối cùng */
+        margin-left: auto;
+        /* Đẩy phần tử cuối cùng sang bên phải */
     }
-    .reply-comment{
+
+    /*  bat dau function Box_functionReplyDelete  */
+    .Box_functionReplyDelete {
+        display: flex;
+        justify-content: flex-start;
+        background-color: #fafafa;
+        font-size: 14px;
+        font-weight: 600;
+        object-fit: contain;
+        margin: 0.5rem 0;
+    }
+
+    .reply-comment {
+
+        cursor: pointer;
+        background-color: #fafafa;
+        font-size: 14px;
+        margin-right: 2rem;
+        font-weight: 600;
+    }
+
+    .delete-comment {
         cursor: pointer;
     }
+
     .reply-comment:hover {
-        color :red ;
+        color: red;
     }
-    
+
+    .delete-comment:hover {
+        color: red;
+
+    }
+
+    .reply-comment:active {
+        color: red;
+    }
+
+    .delete-comment:active {
+        color: red;
+    }
+
+    /*  ket thuc function Box_functionReplyDelete  */
     .show_map {
         cursor: pointer;
         background-color: rgb(55, 55, 215);
@@ -2891,24 +3095,26 @@ ul {
         width: 12rem;
         height: 3rem;
     }
-    .show_map:active{
+
+    .show_map:active {
         background-color: red;
     }
 
     /*  */
     .write {
+        padding: 10px 0 0 11px;
         resize: none;
-        background-color: #f4f5f8;
-        height: 3rem;
-        width: 70%;
+        background-color: #f0f0f0;
+        height: 4rem;
+        width: 80%;
         font-size: 1.3rem;
-        border-radius: 4px;
+        border-radius: 25px;
     }
 
     .fa-solid.fa-paper-plane {
         color: #3a74d9;
         font-size: 22px;
-        background-color: #f8d8b8;;
+        /* background-color: #f8d8b8;; */
     }
 
 
@@ -2922,7 +3128,7 @@ ul {
     }
 
     .summary-comment {
-        width: 100%;
+        width: 90%;
         display: flex;
         flex-direction: column;
         text-decoration: none;
@@ -2937,10 +3143,13 @@ ul {
     }
 
     .comment-name a {
-        margin-right: 4rem;
-        font-size: 1.3rem;
+        padding: 3px 3px 0px 18px;
+        height: 2rem;
+        width: 13rem;
+        font-size: 14px;
         text-decoration: none;
         color: rgb(90, 115, 198);
+        font-weight: 600;
     }
 
     .comment-name p {
@@ -2950,8 +3159,12 @@ ul {
     }
 
     .content-comment {
-        font-size : 16px;
-        width: 100%;
+        padding: 8px;
+        border-radius: 25px;
+        background-color: #f0f0f0;
+        margin: 0.8rem 0rem;
+        font-size: 16px;
+        width: 14rem;
         max-height: 200px;
         overflow-y: auto;
         overflow-x: hidden;
@@ -2990,6 +3203,7 @@ ul {
         height: 5rem;
         margin-right: 1rem;
         margin-top: 3rem;
+
     }
 
     .author-info img {
@@ -3040,6 +3254,7 @@ ul {
         font-weight: 500;
         color: gray;
     }
+
     .line {
         border: solid blue 1px;
     }
@@ -3068,9 +3283,106 @@ ul {
     }
 
 
+    /* bat dau code cho modal delete comment min-width : 600px */
+
+    .modal_delete_comment {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        /* overflow: auto; */
+        background-color: rgba(0, 0, 0, 0.4);
+        transition: opacity 1s ease;
+        opacity: 0;
+    }
+
+    .modal_delete_comment.show {
+        display: block;
+        opacity: 1;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    /* Modal content box */
+    .modal_delete_comment-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    .modal_delete_comment.show .modal_delete_comment-content {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /* Close button */
+    .close {
+        margin-top: -12px;
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Buttons */
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .modal-buttons button {
+        color: #fafafa;
+        font-weight: 600;
+        background-color: blue;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 19px;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .delete-comment {}
+
+    button.cancel {
+        background-color: #f1f1f1;
+        /* Grey background for cancel button */
+        color: black;
+    }
+
+
+    /* ket thuc code cho modal delete comment min-width : 600px */
+    /* bat dau AI */
+    .modal_AI {
+        margin: 9rem 0 0 19%;
+    }
+    /*  ket thuc AI */
+
     /*  ket thuc code css cho phan noi dung  */
 
-    
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -3081,10 +3393,12 @@ ul {
         border-radius: 13px;
         width: 36vw;
     }
+
     .register_btn,
     .login_btn {
         margin-right: 15px;
     }
+
     /* ket thuc header min-width 768px */
 
     .btn_upfile {
@@ -3103,6 +3417,11 @@ ul {
         margin: calc(var(--height_header) + 2em) auto auto auto;
         width: 50vw;
     }
+     /* bat dau AI */
+     .modal_AI {
+        margin: 9rem 0 0 16%;
+    }
+    /*  ket thuc AI */
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -3121,6 +3440,7 @@ ul {
         width: 11rem;
         margin-right: 30px;
     }
+
     .avatar_user_page {
         width: 4rem;
         height: 4rem;
@@ -3163,6 +3483,11 @@ ul {
         margin: calc(var(--height_header) + 2em) auto auto auto;
         width: 60vw;
     }
+     /* bat dau AI */
+     .modal_AI {
+        margin: 9rem 0 0 36%;
+    }
+    /*  ket thuc AI */
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
