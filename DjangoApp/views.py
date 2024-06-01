@@ -89,6 +89,7 @@ def whilelogin(request, user_id):
         top_posts = Post.objects.order_by('-star')[:2]  # Lấy 2 bài đăng có star lớn nhất
         other_posts = Post.objects.exclude(pk__in=[post.pk for post in top_posts])  # Lấy các bài đăng không thuộc top_posts
         form = PostForm()
+        valid=True
         if request.method == 'POST' and 'dangbai' in request.POST:
             form = PostForm(request.POST, request.FILES)
             if form.is_valid():
@@ -119,7 +120,8 @@ def whilelogin(request, user_id):
                 for field, errors in form.errors.items():
                     for error in errors:
                         print(f"{field}: {error}")
-        return render(request,'index_login.html', {'form': form,'top_posts': top_posts, 'other_posts': other_posts, 'userinfo': userinfo,'ListHistorychat': ListHistorychat})
+                valid=False
+        return render(request,'index_login.html', {'form': form,'top_posts': top_posts, 'other_posts': other_posts, 'userinfo': userinfo,'ListHistorychat': ListHistorychat, 'valid':valid})
     else:
         if request.user.is_authenticated:
             return redirect('/usr/{}/'.format(request.user.id))
@@ -221,7 +223,12 @@ def profile(request, user_id):
         is_owner = False
         otheruserinfo = get_object_or_404(UserInfo, id=user_id)
         return render(request, 'profile.html', {'otheruserinfo': otheruserinfo, 'is_owner': is_owner})
-
+def DeleteComment(commenttodel):
+    commentreply=commenttodel.idcommentReply
+    if commentreply is not None:
+        DeleteComment(commentreply)
+    commenttodel.delete()
+    
 def post(request, slug):
     post = get_object_or_404(Post, slug=slug)
     post_id= post.id
@@ -246,6 +253,11 @@ def post(request, slug):
                 form_type=data_post.get('form_type')
             except json.JSONDecodeError:
                 return HttpResponseBadRequest('Invalid JSON data.')
+            if data_post.get('form_type')=='delete-comment':
+                idtodelete=data_post.get('id')
+                commenttodel=get_object_or_404(Comment,id=idtodelete)
+                DeleteComment(commenttodel)
+                return JsonResponse({},status=200)
             if data_post.get('form_type')=='react':
                 st=data_post.get('star')
                 if React.objects.filter(idpost= post.id, iduser=userinfo.id).exists() is True:

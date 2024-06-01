@@ -180,6 +180,9 @@
 
     // bat dau code cho dropdown search
     document.addEventListener('DOMContentLoaded', function () {
+        {% if valid == False %}
+            alert("Không thể Post bài");
+        {% endif %}
         var searchInput = document.getElementById('Search_input');
         var searchDropdown = document.querySelector('.Search_dropdown');
 

@@ -47,7 +47,7 @@
             </div>
             <script>
                 function toggleMapField() {
-                    var mapField = document.getElementById('mapPost');
+                    let mapField = document.getElementById('mapPost');
                     if (mapField.style.display === "none") {
                         mapField.style.display = "block"; // Hiển thị khối nếu đang ẩn
                         initMapForPost();
@@ -111,10 +111,10 @@
                                             let newdiv=document.createElement("div");
                                             newdiv.id = "group-comment-{{comment.id}}";
                                             {% if comment.idcommentReply.idcommentReply is None %}
-                                                newdiv.style.marginLeft="2rem";
+                                                newdiv.style.marginLeft="5rem";
                                             {% endif %}
                                             newdiv.innerHTML=`
-                                                <div class="comment">
+                                                <div class="comment" style="margin-left: -1rem">
                                                     <div class="avatar-img">
                                                         <a href="#">
                                                             <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
@@ -139,11 +139,12 @@
                                                 `;
                                                 parentdiv.appendChild(newdiv);
                                                 initializeReplyButtons();
+                                                initializeDeleteButtons();
                                         });
                                     </script>
                                 {% else %}
                                     <div id="group-comment-{{comment.id}}">
-                                        <div class="comment">
+                                        <div class="comment" style="margin-left: -1rem">
                                             <div class="avatar-img">
                                                 <a href="{% url 'Profile' user_id=comment.idUsercomment.id %}">
                                                     <img src="{{comment.idUsercomment.avatar.url}}" alt="Avatar">
@@ -176,6 +177,17 @@
                 </div>
             </div>
         </div>
+        
+        <div id="myModal" class="modal_delete_comment">
+            <div class="modal_delete_comment-content">
+              <span class="close">&times;</span>
+              <p>Bạn có chắc chắn muốn xóa bình luận này không?</p>
+              <div class="modal-buttons">
+                <button class="cancel">Không</button>
+                <button class="delete" id="delete-accept">Xóa</button>
+              </div>
+            </div>
+          </div>
         <script>
             let checkcomment = [];
             let countcomment=0;
@@ -284,10 +296,11 @@
                         const commentContainer = document.getElementById('comments-container'); 
                         commentContainer.appendChild(newComment);
                         commentForm.reset(); 
-                        var cmid=`${newCommentData.comment.id}`;
+                        let cmid=`${newCommentData.comment.id}`;
                         checkcomment.push(cmid);
                         console.log(checkcomment);
                         initializeReplyButtons();
+                        initializeDeleteButtons();
                         countcommentfunc();
                     } catch (error) {
                         console.error('Error submitting comment:', error);
@@ -317,7 +330,7 @@
                             }
                         }
                         if(check==true){
-                            newdiv.style.marginLeft='2rem';
+                            newdiv.style.marginLeft='5rem';
                         }
                         newdiv.innerHTML=`
                         <form class="user-comment-reply" id="reply-comment-form" method="POST">
@@ -370,10 +383,10 @@
                             }
                         }
                         if(check==true){
-                            newComment.style.marginLeft='2rem';
+                            newComment.style.marginLeft='5rem';
                         }
                         newComment.innerHTML = 
-                        `<div class="comment">
+                        `<div class="comment" style="margin-left: -1rem;">
                             <div class="avatar-img">
                                 <a href="#">
                                     <img src="{{userinfo.avatar.url}}" alt="Avatar">
@@ -403,6 +416,7 @@
                         });
                         countcommentfunc();
                         initializeReplyButtons();
+                        initializeDeleteButtons();
                     } catch (error) {
                         console.error('Error submitting comment:', error);
                         alert('An error occurred. Please try again later.');
@@ -411,6 +425,7 @@
             }
             document.addEventListener('DOMContentLoaded', function() {
                 initializeReplyButtons();
+                initializeDeleteButtons();
                 commentform();
                 {% for comment in listcomment %}
                     {% if comment.idcommentReply is None %}
@@ -420,7 +435,7 @@
                 {% endfor %}
                 console.log(checkcomment);
                 countcomment={{listcomment.count}};
-                var slc=document.getElementById('slbl');
+                let slc=document.getElementById('slbl');
                 slc.innerHTML = `${countcomment} Bình luận`;
                 {% if request.user.is_authenticated %}
                     star={{userstar}};
@@ -430,7 +445,7 @@
 
             function countcommentfunc(){
                 countcomment++;
-                var slc=document.getElementById('slbl');
+                let slc=document.getElementById('slbl');
                 slc.innerHTML = `${countcomment} Bình luận`;
             }
             function highlightStars(starhover) {
@@ -444,7 +459,7 @@
                     star.classList.remove('highlighted');
                 }
             }
-            var mapPost;
+            let mapPost;
             function initMapForPost() {
                 // Initialize Google Map
                 mapPost = new google.maps.Map(document.getElementById('mapPost'), {
@@ -459,45 +474,59 @@
                 });
             }
             initMapForPost();
-        </script>
-        
-        <div id="myModal" class="modal_delete_comment">
-            <div class="modal_delete_comment-content">
-              <span class="close">&times;</span>
-              <p>Bạn có chắc chắn muốn xóa bình luận này không?</p>
-              <div class="modal-buttons">
-                <button class="cancel">Không</button>
-                <button class="delete">Xóa</button>
-              </div>
-            </div>
-          </div>
-          
-          <script>
-          var modal = document.getElementById("myModal");
-          var deleteCommentDiv = document.getElementById("delete_comment");
-          var span = document.getElementsByClassName("close")[0];
-          var cancelBtn = document.querySelector("button.cancel");
-          
-          deleteCommentDiv.onclick = function() {
-            modal.classList.add("show");
-          }
-          
-          span.onclick = function() {
-            modal.classList.remove("show");
-          }
-          
-          cancelBtn.onclick = function() {
-            modal.classList.remove("show");
-          }
-          
-          window.onclick = function(event) {
-            if (event.target == modal) {
-              modal.classList.remove("show");
+            function initializeDeleteButtons(){
+                let deleteCommentDivs = document.querySelectorAll(".delete-comment");
+                let modal = document.getElementById("myModal");
+                let span = document.getElementsByClassName("close")[0];
+                let cancelBtn = document.querySelector("button.cancel");
+                deleteCommentDivs.forEach(function(deleteCommentDiv) {
+                    deleteCommentDiv.addEventListener("click", function() {
+                        let clickid=this.id; 
+                        console.log("Clicked ID:", clickid);
+                        modal.classList.add("show");
+                        let deleteaccept=document.getElementById("delete-accept");
+                        deleteaccept.addEventListener("click", function(){
+                            let idtodeletenum=clickid.replace("delete_comment-", "");
+                            let idtodelete=`group-comment-${idtodeletenum}`;
+                            console.log(idtodelete);
+                            commenttodelete=document.getElementById(idtodelete);
+                            commenttodelete.remove();
+                            deletesent={
+                                'id': idtodeletenum,
+                                'form_type': 'delete-comment',
+                            };
+                            fetch('', { 
+                                method: 'POST',
+                                headers: {
+                                    "X-CSRFToken": "{{csrf_token}}",
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(deletesent)
+                            })
+                            .then(response=>response.json())
+                            .then(data=>{
+                                alert("Delete successfully !");
+                                modal.classList.remove("show");                              
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                        });
+                    });
+                });
+                cancelBtn.addEventListener("click", function() {
+                    modal.classList.remove("show");
+                });
+                span.addEventListener("click", function() {
+                    modal.classList.remove("show");
+                });
+                window.addEventListener("click", function(event) {
+                    if (event.target == modal) {
+                        modal.classList.remove("show");
+                    }
+                });
             }
-          }
-          </script>
-    
-          
+        </script>
     </div>
 </div>
 {% comment %} <!-- Xong phan noi dung--> {% endcomment %}

@@ -1,5 +1,6 @@
 @import url("Styles_AI_max-width600.css") screen and (max-width: 600px);
 @import url("Styles_AI_min-width600.css") screen and (min-width: 600px);
+
 * {
     margin: 0;
     padding: 0;
@@ -1096,18 +1097,24 @@ ul {
         margin: auto;
         width: 76%;
         height: 96%;
-        background-color: #e2d5bd;
+        background-color: #fef6f0;
         border-radius: 15px;
         z-index: 123;
     }
 
     .input_textbox {
+        background: #fafafa;
+        padding: 10px 6px;
+        margin: 12px 0px;
         font-size: 15px;
         height: 1.8rem;
-        border-radius: 5px;
-        width: 85%;
-
+        border-radius: 31px;
+        width: 96%;
         justify-content: space-around;
+    }
+
+    .input_textbox label {
+        margin-left: 3px;
     }
 
     .modal_Post .body_modal_Post p {
@@ -1148,12 +1155,13 @@ ul {
     }
 
     .box_input_content {
-
         font-size: 16px;
-        width: 100%;
-        padding-bottom: 15%;
-        height: 9%;
+        width: 96%;
+        /* padding-bottom: 15%; */
+        height: 14%;
         resize: none;
+        border-radius: 9px;
+        padding: 20px 5px;
     }
 
     .Add_To_Content>p {
@@ -1162,6 +1170,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -1174,6 +1183,7 @@ ul {
     }
 
     .btn_post_content {
+        margin: 15px 0px;
         justify-content: center;
         display: flex;
         font-size: 17px;
@@ -1434,12 +1444,13 @@ ul {
         box-shadow: 10px 10px 5px 0px rgba(154, 148, 148, 0.75);
     }
 
-    #map {
-        height: 100%;
-    }
 
     #mapPost {
 
+        height: 21rem;
+    }
+
+    #map {
         height: 25rem;
     }
 
@@ -1453,14 +1464,14 @@ ul {
     }
 
     .author {
-        margin: 2rem 0px 0px;
+        margin: 2rem 0px 0px 2rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
     }
 
     .avatar-img img:first-child {
-        margin: 0rem 0rem 1rem 1rem;
+        margin: 0rem 0rem 0rem 0rem;
         border: 3px solid #f0ac31;
         border-radius: 50%;
         width: 3rem;
@@ -1489,6 +1500,7 @@ ul {
     }
 
     .author .summary-post {
+        margin-left: 2rem;
         display: flex;
         flex-direction: column;
     }
@@ -1660,7 +1672,8 @@ ul {
     }
 
     .comment {
-
+        margin-top: 1rem;
+        margin-left: -0.2rem;
         display: flex;
         justify-content: space-around;
     }
@@ -1675,6 +1688,8 @@ ul {
     }
 
     .comment-name {
+
+        margin-top: 0.5rem;
         font-size: 13px;
         display: flex;
         justify-content: space-between;
@@ -1684,7 +1699,7 @@ ul {
         padding: 3px 3px 0px 18px;
         height: 2rem;
         width: 13rem;
-        font-size: 14px;
+        font-size: 17px;
         text-decoration: none;
         color: rgb(90, 115, 198);
         font-weight: 600;
@@ -1922,7 +1937,7 @@ ul {
         display: inline-block;
     }
 
-    .delete-comment {}
+
 
     button.cancel {
         background-color: #f1f1f1;
@@ -1935,6 +1950,7 @@ ul {
     .modal_AI {
         margin: 9rem 0 0 9rem;
     }
+
     /*  ket thuc AI */
 }
 
@@ -2579,20 +2595,26 @@ ul {
         font-size: 1.5rem;
         position: relative;
         margin: auto;
-        width: 60%;
+        width: 50%;
         height: 96%;
-        background-color: #e2d5bd;
+        background-color: #fef6f0;
         border-radius: 15px;
         z-index: 123;
     }
 
     .input_textbox {
+        background: #fafafa;
+        padding: 10px 6px;
+        margin: 12px 0px;
         font-size: 15px;
         height: 1.8rem;
-        border-radius: 5px;
-        width: 85%;
-
+        border-radius: 31px;
+        width: 96%;
         justify-content: space-around;
+    }
+
+    .input_textbox label {
+        margin-left: 3px;
     }
 
     .modal_Post .body_modal_Post p {
@@ -2604,8 +2626,7 @@ ul {
     }
 
     .modal_Post .body_modal_Post>p {
-        padding: 20px;
-        margin-top: 25px 0;
+        padding: 15px;
         border-bottom: 2px solid black;
     }
 
@@ -2633,12 +2654,13 @@ ul {
     }
 
     .box_input_content {
-
         font-size: 16px;
-        width: 100%;
-        padding-bottom: 15%;
-        height: 9%;
+        width: 96%;
+        /* padding-bottom: 15%; */
+        height: 14%;
         resize: none;
+        border-radius: 9px;
+        padding: 20px 5px;
     }
 
     .Add_To_Content>p {
@@ -2647,6 +2669,7 @@ ul {
 
     .Add_To_Content {
         text-align: center;
+        margin-top: 2rem;
     }
 
     .Add_To_Content a {
@@ -2659,6 +2682,7 @@ ul {
     }
 
     .btn_post_content {
+        margin-bottom: 2rem;
         justify-content: center;
         display: flex;
         font-size: 17px;
@@ -2920,14 +2944,14 @@ ul {
     }
 
     .author {
-        margin: 2rem 0px 0px;
+        margin: 2rem 0px 0px 2rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
     }
 
     .avatar-img img:first-child {
-        margin: 0rem 0rem 1rem 1rem;
+        margin: 0rem 0rem 0rem 0rem;
         border: 3px solid #f0ac31;
         border-radius: 50%;
         width: 3rem;
@@ -2956,6 +2980,7 @@ ul {
     }
 
     .author .summary-post {
+        margin-left: 2rem;
         display: flex;
         flex-direction: column;
     }
@@ -3123,6 +3148,8 @@ ul {
     }
 
     .comment {
+        margin-top: 1rem;
+        margin-left: -0.2rem;
         display: flex;
         justify-content: space-around;
     }
@@ -3137,6 +3164,8 @@ ul {
     }
 
     .comment-name {
+
+        margin-top: 0.5rem;
         font-size: 13px;
         display: flex;
         justify-content: space-between;
@@ -3146,7 +3175,7 @@ ul {
         padding: 3px 3px 0px 18px;
         height: 2rem;
         width: 13rem;
-        font-size: 14px;
+        font-size: 17px;
         text-decoration: none;
         color: rgb(90, 115, 198);
         font-weight: 600;
@@ -3364,7 +3393,7 @@ ul {
         display: inline-block;
     }
 
-    .delete-comment {}
+
 
     button.cancel {
         background-color: #f1f1f1;
@@ -3378,6 +3407,7 @@ ul {
     .modal_AI {
         margin: 9rem 0 0 19%;
     }
+
     /*  ket thuc AI */
 
     /*  ket thuc code css cho phan noi dung  */
@@ -3410,17 +3440,19 @@ ul {
     }
 
     .modal_Post .body_modal_Post {
-        width: 45vw;
+        width: 40vw;
     }
 
     .container {
         margin: calc(var(--height_header) + 2em) auto auto auto;
         width: 50vw;
     }
-     /* bat dau AI */
-     .modal_AI {
+
+    /* bat dau AI */
+    .modal_AI {
         margin: 9rem 0 0 16%;
     }
+
     /*  ket thuc AI */
 }
 
@@ -3448,7 +3480,7 @@ ul {
     }
 
     .modal_Post .body_modal_Post {
-        width: 37vw;
+        width: 35vw;
     }
 
     /*  */
@@ -3483,17 +3515,19 @@ ul {
         margin: calc(var(--height_header) + 2em) auto auto auto;
         width: 60vw;
     }
-     /* bat dau AI */
-     .modal_AI {
+
+    /* bat dau AI */
+    .modal_AI {
         margin: 9rem 0 0 36%;
     }
+
     /*  ket thuc AI */
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .modal_Post .body_modal_Post {
-        width: 32vw;
+        width: 30vw;
     }
 
 
