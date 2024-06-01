@@ -132,7 +132,9 @@
                                                         <div class="content-comment">{{comment.content}}</div>
                                                         <div class="Box_functionReplyDelete">  
                                                             <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
-                                                            <div class="delete-comment" id="delete_comment-{{comment.id}}"> Xóa bỏ </div>
+                                                            {% if request.user.is_superuser or userinfo == comment.idUsercomment %}
+                                                                <div class="delete-comment" id="delete_comment-{{comment.id}}"> Xóa bỏ </div>
+                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -161,7 +163,9 @@
                                             <div class="content-comment">{{comment.content}}</div>
                                             <div class="Box_functionReplyDelete">  
                                                 <div class="reply-comment" id="reply-comment-{{comment.id}}">Trả lời</div>
-                                                <div class="delete-comment" id="delete_comment-{{comment.id}}"> Xóa bỏ </div>
+                                                {% if request.user.is_superuser or userinfo == comment.idUsercomment %}
+                                                    <div class="delete-comment" id="delete_comment-{{comment.id}}"> Xóa bỏ </div>
+                                                {% endif %}
                                             </div>
                                             
                                             
